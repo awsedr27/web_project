@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>login</title>
 <link rel="stylesheet" href="/css/css.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
+
 </head>
 <body>
 <div id="wrap">
