@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,14 @@
 				<li><img src="/img/4.jpg"></li>
 			</ul>
 		</div>
-		<div id="itemImg"></div>
+		<div id="itemImg">
+			<c:forEach var="item" items="${itemList}">
+				<div>
+					<img src="${item.itemUrl}">
+				</div>
+			</c:forEach>
+		</div>
+
 		<div id="footer"></div>
 	</div>
 

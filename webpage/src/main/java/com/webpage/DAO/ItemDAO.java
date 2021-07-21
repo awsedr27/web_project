@@ -1,12 +1,9 @@
 package com.webpage.DAO;
 
-import javax.sql.DataSource;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-@Repository
-public class ItemDAO {
+public interface ItemDAO {
+	
+	public List<ItemDTO> getTime();
 
-	@Autowired
-	private DataSource dataSource;
 }
