@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface ItemDAO {
 	
-	public List<ItemDTO> getTime();
+	public List<ItemDTO> getItemDAO();
+	public List<ItemDTO> getItemAjax(int pageNum);
+	
 
 }

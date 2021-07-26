@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD 선언 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper">
+	<!-- DAO의 메서드가 될 것이다. -->
+
+	<!-- 현재 시간 조회 -->
+	<select id="getLimitItem" resultType="com.webpage.DAO.ItemDTO">
+		select *from item order by itemId limit 6
+	</select>
+
+	<select id="getAjaxItem" resultType="com.webpage.DAO.ItemDTO"
+		parameterType="int">
+		select *from item where itemId>#{pageNum} order by itemId limit 6
+	</select>
+</mapper>

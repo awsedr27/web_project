@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
 #wrap {
-	overflow: hidden;
+	overflow: visible;
 	margin: 0 auto;
 	width: 1000px;
-	height: 1000px;
 }
-
+/*-------------네비게이션 영역---------------*/
 .nav-tabs>li {
 	float: right;
 	margin-bottom: -1px;
@@ -24,3 +23,22 @@
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
+
+/*-------------item area---------------*/
+#itemImgWrap{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#itemImg{
+	width:274px;
+	height:320px;
+	margin-bottom: 20px;
+}
+#item{
+	width:274px;
+	height:274px;
+}
+/*------------------------------------*/
+

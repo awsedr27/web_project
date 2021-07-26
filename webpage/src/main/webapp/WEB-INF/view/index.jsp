@@ -45,14 +45,17 @@
 				<li><img src="/img/4.jpg"></li>
 			</ul>
 		</div>
-		<div id="itemImg">
+		
+		<div id="itemImgWrap">
 			<c:forEach var="item" items="${itemList}">
-				<div>
-					<img src="${item.itemUrl}">
+				<div id="itemImg">
+					<img id="item" src="${item.itemUrl}">
+					<h2>${item.itemText}</h2>
 				</div>
 			</c:forEach>
 		</div>
-
+		
+		
 		<div id="footer"></div>
 	</div>
 
