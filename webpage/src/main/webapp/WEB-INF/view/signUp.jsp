@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>sign in</title>
+<title>sign up</title>
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="/css/jquery.bxslider.css">
 <link rel="stylesheet" href="/css/css.css">
@@ -19,23 +19,18 @@
 
 
 		<div class="sign_box">
-			<h2 align="center">로그인</h2>
-			<form action="/signIn" method="post" id="login">
+			<h2 align="center">회원가입</h2>
+			<form action="/signUp" method="post" id="login">
 				<div align='center'>
-					<input type="text" class="id_login" name="userID" placeholder="아이디"><br>
-					<input type="password" class="password_login" name="userPassword"
-						placeholder="비밀번호"><br> <input class="login_button"
-						type="submit" value="로그인">
+					<input type="text" class="id_login" name="memberID" placeholder="아이디"><br>
+					<input type="password" class="password_login" name="memberPassword"
+						placeholder="비밀번호"><br>
+					<input type="date" id="birthday" name="birthday" placeholder="생일">
+					<input type="text" id="phoneNum" name="phoneNum" placeholder="핸드폰번호 (-빼고)">
+					<input type="text" id="email" name="email" placeholder="이메일">
+				    <input class="login_button" type="submit" value="회원가입">
 				</div>
 			</form>
-			
-			<div id="loginSearch">
-			<a href="/serchId">아이디찾기</a> 
-			<a href="/serchPassword">비밀번호찾기</a>
-			</div>
-			<button type="button" id="signUpBtn"
-				onclick="location.href='/signUp'">회원가입</button>
-			
 		</div>
 
 

@@ -7,8 +7,9 @@
 }
 /*-------------네비게이션 영역---------------*/
 .nav-tabs>li {
-	float: right;
+	float: left;
 	margin-bottom: -1px;
+	margin-left: 35px;
 }
 
 .bx-wrapper .bx-pager.bx-default-pager a {
@@ -24,21 +25,169 @@
 	border-radius: 5px;
 }
 
-/*-------------item area---------------*/
-#itemImgWrap{
+/*-------------아이템리스트 영역---------------*/
+#itemListWrap {
 	display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-#itemImg{
-	width:274px;
-	height:320px;
+.itemImg {
+	width: 274px;
+	height: 320px;
 	margin-bottom: 20px;
+	position: relative;
 }
-#item{
-	width:274px;
-	height:274px;
+
+.item {
+	width: 274px;
+	height: 274px;
+}
+.itemId{
+	   visibility: hidden;
+	
+}
+
+.itemText {
+	display: inline-block;
+	width: 135px;
+}
+
+.itemPrice {
+	display: inline-block;
+	width: 135px;
+}
+
+.itemPrice>p {
+	text-align-last: right;
 }
 /*------------------------------------*/
+/*------------footer------------------*/
+#footer {
+	border-top: 1px solid rgb(191, 181, 181);;
+	border-bottom: 1px solid rgb(191, 181, 181);
+}
 
+#footerTitle {
+	display: inline-block;
+}
+
+#footerContens {
+	display: inline-block;
+	font-size: x-large;
+	position: relative;
+	left: 70px;
+}
+/*-----------------로그인,회원가입 영역-----------*/
+.sign_box {
+	border: double;
+	height: 400px;
+	width: 400px;
+	position: relative;
+	top: 50%;
+	left: 30%;
+	margin-bottom: 10px;
+}
+
+.id_login {
+	width: 265px;
+	height: 47px;
+	border-style: hidden;
+	border-bottom-style: dotted;
+}
+
+.password_login {
+	width: 265px;
+	height: 47px;
+	border-style: hidden;
+	border-bottom-style: dotted;
+	margin-bottom: 10px;
+}
+
+.login_button {
+	width: 265px;
+	height: 47px;
+	position: relative;
+	background: white;
+	border-style: dotted;
+}
+
+#signUpBtn {
+	border-style: dotted;
+	background: white;
+	margin-top: 10px;
+	position: relative;
+	left: 258px;
+	display: block;
+}
+
+#loginSearch>a {
+	margin-top: 10px;
+	position: relative;
+	left: 172px;
+	color: #767676;
+}
+
+#birthday {
+	display: block;
+	width: 266px;
+	border-style: dotted;
+	margin-bottom: 10px;
+}
+
+#phoneNum {
+	display: block;
+	width: 266px;
+	border-style: dotted;
+	margin-bottom: 10px;
+}
+
+#email {
+	display: block;
+	width: 266px;
+	border-style: dotted;
+	margin-bottom: 10px;
+}
+/*-----------------아이템뷰 영역-----------*/
+#itemViewWrap {
+	
+}
+
+#itemViewImg {
+	display: inline-block;
+	width: 500px;
+	height: 500px;
+}
+
+#itemViewImg>img {
+	width: 500px;
+	height: 500px;
+}
+
+#itemViewTextWrap {
+	display: inline-block;
+	width: 495px;
+	height: 500px;
+	position: absolute;
+	bottom: 52px;
+}
+
+.itemViewText {
+	font-size: 30px;
+	position: relative;
+	bottom: -30px;
+	margin-left: 50px;
+	margin-bottom: 17px;
+	border-bottom-style: dotted;
+}
+
+.itemViewText>.itemView {
+	display: inline-block;
+	margin-left: 100px;
+}
+#itemViewBtn{
+	position: relative;
+    left: 854px;
+    margin-bottom: 10px;
+	
+}

@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- DTD 선언 -->
+
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper">
-	<!-- DAO의 메서드가 될 것이다. -->
 
-	<!-- 현재 시간 조회 -->
-	<select id="getLimitItem" resultType="com.webpage.DAO.ItemDTO">
+
+	<!-- 아이템 매퍼 -->
+
+	<select id="getLimitItem"
+		resultType="com.webpage.DAO.item.ItemDTO">
 		select *from item order by itemId limit 6
 	</select>
 
-	<select id="getAjaxItem" resultType="com.webpage.DAO.ItemDTO"
-		parameterType="int">
-		select *from item where itemId>#{pageNum} order by itemId limit 6
+	<select id="getAjaxItem"
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="int">
+		select *from
+		item where itemId>#{lastIdNum} order by itemId limit 6
+	</select>
+		
+	<select id="getItemView"
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="int">
+		select * from item where itemId=#{itemId}
+	</select>
+	
+	<select id="getCategoryItem"
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="String">
+		select *from item where category=#{category} order by itemId limit 6 
+		
+	</select>
+	
+	<select id="getCategoryAjaxItem"
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="Map">
+		select *from
+		item where itemId>#{lastIdNum} and category=#{category} order by itemId limit 6
+	</select>
+	
+	<!-- 회원 매퍼-->
+	<select id="setMember" parameterType="com.webpage.DAO.member.MemberDTO">
+	INSERT INTO homeshop.memberinfo (`memberID`, `memberPassword`, `birthday`, `phoneNum`, `email`) VALUES (#{memberID}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email});
+	</select>
+	
+	<select id="getMember"
+		resultType="String" parameterType="Map">
+		select memberID from memberinfo where memberID=#{userID} and memberPassword=#{userPassword}
+	</select>
+	
+		<!-- 아이템뷰에 리뷰-->
+    <select id="getReview"
+		resultType="com.webpage.DAO.review.ReviewDTO" parameterType="int">
+		select * from review where itemId=#{itemId}
 	</select>
 </mapper>

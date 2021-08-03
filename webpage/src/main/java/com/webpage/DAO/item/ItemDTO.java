@@ -1,4 +1,4 @@
-package com.webpage.DAO;
+package com.webpage.DAO.item;
 
 public class ItemDTO {
 
@@ -9,6 +9,9 @@ public class ItemDTO {
 	private String itemText;
 	private boolean discount;
 	private int discountNum;
+	private int popularity;
+	private String category;
+	
 	
 	
 	
@@ -54,6 +57,19 @@ public class ItemDTO {
 	public void setDiscountNum(int discountNum) {
 		this.discountNum = discountNum;
 	}
+	public int getPopularity() {
+		return popularity;
+	}
+	public void setPopularity(int popularity) {
+		this.popularity = popularity;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	
 	
 	
