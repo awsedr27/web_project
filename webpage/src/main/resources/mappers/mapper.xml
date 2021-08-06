@@ -40,12 +40,12 @@
 	
 	<!-- 회원 매퍼-->
 	<select id="setMember" parameterType="com.webpage.DAO.member.MemberDTO">
-	INSERT INTO homeshop.memberinfo (`memberID`, `memberPassword`, `birthday`, `phoneNum`, `email`) VALUES (#{memberID}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email});
+	INSERT INTO homeshop.memberinfo (`memberId`, `memberPassword`, `birthday`, `phoneNum`, `email`) VALUES (#{memberId}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email});
 	</select>
 	
 	<select id="getMember"
 		resultType="String" parameterType="Map">
-		select memberID from memberinfo where memberID=#{userID} and memberPassword=#{userPassword}
+		select memberID from memberinfo where memberId=#{memberId} and memberPassword=#{memberPassword}
 	</select>
 	
 		<!-- 아이템뷰에 리뷰-->
@@ -53,4 +53,20 @@
 		resultType="com.webpage.DAO.review.ReviewDTO" parameterType="int">
 		select * from review where itemId=#{itemId}
 	</select>
+	
+	<!-- 장바구니 -->
+	
+	<select id="getAjaxCart"
+		resultType="com.webpage.DAO.cart.CartDTO" parameterType="String">
+		select * from cart where memberId=#{memberId}
+	</select>
+
+	<select id="setCart"
+	parameterType="com.webpage.DAO.cart.CartDTO">
+	INSERT INTO homeshop.cart (`memberId`, `itemId`, `itemUrl`, `itemName`,
+	`itemPrice`, `discountNum`, `discount`, `popularity`, `category`)
+	VALUES (#{memberId}, #{itemId}, #{itemUrl}, #{itemName}, #{itemPrice}, #{discountNum}, #{discount},#{popularity},#{category});
+
+</select>
+	
 </mapper>

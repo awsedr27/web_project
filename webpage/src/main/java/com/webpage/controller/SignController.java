@@ -30,17 +30,16 @@ public class SignController {
 	}
 	
 	@RequestMapping(value="/signIn",method=RequestMethod.POST)
-	public String signIn(HttpServletRequest request,@RequestParam("userID") String id,@RequestParam("userPassword") int password) {
+	public String signIn(HttpServletRequest request,@RequestParam("userID") String memberId,@RequestParam("userPassword") int password) {
 		
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("userID", id);
-		map.put("userPassword", password);
+		map.put("memberId", memberId);
+		map.put("memberPassword", password);
 		HttpSession session=request.getSession();
 		
 		boolean signIn=memberService.getMember(map);
 		if(signIn==true) {
-			session.setAttribute("userId", id);
-			
+			session.setAttribute("memberId", memberId);
 			return "redirect:/index";
 			
 		}

@@ -6,18 +6,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class MemberDTO {
 
-	private String memberID;
+	private String memberId;
 	private int memberPassword;
 	private Date birthday;
 	private int phoneNum;
 	private String email;
 	
 	
-	public String getMemberID() {
-		return memberID;
+	
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemberID(String memberID) {
-		this.memberID = memberID;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public int getMemberPassword() {
 		return memberPassword;

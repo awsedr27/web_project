@@ -39,7 +39,7 @@ public class CategoryController {
 	
 	@ResponseBody
 	@RequestMapping("/category/ajax")
-	public List<ItemDTO> itemAjax(@RequestParam("category") String category,@RequestParam("lastIdNum") int lastIdNum){
+	public List<ItemDTO> categoryAjax(@RequestParam("category") String category,@RequestParam("lastIdNum") int lastIdNum){
 		List<ItemDTO> list=itemService.getCategoryItemAjaxService(lastIdNum,category);
 		return list;
 		

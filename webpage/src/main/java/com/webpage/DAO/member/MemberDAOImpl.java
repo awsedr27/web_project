@@ -23,11 +23,11 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		String userID=sqlSession.selectOne("mapper.getMember",map);
 		if(userID==null) {
-			System.out.print(userID);
+			
 			return false;
 		}
 		else {
-			System.out.print(userID);
+			
 			return true;
 		}
 		

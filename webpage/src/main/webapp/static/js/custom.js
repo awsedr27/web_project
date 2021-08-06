@@ -25,19 +25,19 @@ $(window).scroll(function() {
 	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 		if(startAjax!=false)
 		{
+			
 			startAjax=false;
 			
-		if(urlParams==null){
+		    if(urlParams==null){
 			
-			next_page();
-		}
-		else{
+			    next_page();
+		    }
+		    else{
 			
-			next_page_category();
-		}
+			    next_page_category();
+		    }
 		
 			
-		
 		}
 		
 	}
@@ -54,15 +54,15 @@ function next_page() {
 			try{
 			
 			for (step = 0; step < 6; step++){
-			$("#itemListWrap").append("<div class='itemImg'><img class='item' src='" +
-			 item[step].itemUrl +"'><div class='itemText'>"+item[step].itemText+"</div>"+
+			$("#itemListWrap").append("<div class='itemImg'><a href='/itemView?itemId="+item[step].itemId+"'><img class='item' src='" +
+			 item[step].itemUrl +"'></a><div class='itemText'>"+item[step].itemText+"</div>"+
 		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
 		}
 		lastIdNum=item[5].itemId;
 		startAjax=true;
 		
 		}catch(error){
-				
+			
 			startAjax=false;
 
 		}
@@ -80,14 +80,14 @@ function next_page_category() {
 		dataType: "json",
 		success: function(item) {
 			try{
-			
+	
 			for (step = 0; step < 6; step++){
-			$("#itemListWrap").append("<div class='itemImg'><img class='item' src='" +
-			 item[step].itemUrl +"'><div class='itemText'>"+item[step].itemText+"</div>"+
+			$("#itemListWrap").append("<div class='itemImg'><a href='/itemView?itemId="+item[step].itemId+"'><img class='item' src='" +
+			 item[step].itemUrl +"'></a><div class='itemText'>"+item[step].itemText+"</div>"+
 		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
 		}
 		lastIdNum=item[5].itemId;
-		startAjax=true;
+		 startAjax=true;
 		
 		}catch(error){
 			
@@ -97,4 +97,48 @@ function next_page_category() {
 		}
 	})
 }
+/*----------장바구니 -------------- */
+$(function() {
+	$("#cartBtn").on("click", function() {
+		if(document.getElementById("cartView")){
+			$("#cartViewOutSide").remove();
+			$("#cartView").remove();
+			
+		}else{
+			$("body").prepend("<div id='cartView'></div>");
+			$("body").prepend("<div id='cartViewOutSide'></div>");
+			cart();
+			
+		}
+			
 
+
+		})
+	
+
+})
+
+
+function cart() {
+	$.ajax({
+		type: "POST",
+		url: "/cart/ajax",
+		dataType: "json",
+		success: function(item) {
+			try {
+
+				for (step = 0; step < 6; step++) {
+					$("#cartView").append("<div class='cartContentsWrap'><div class='cartContents'>" + item[step].itemId + "</div>"
+						+ "<div class='cartContents'>" + item[step].itemName + "</div>" + "<div class='cartContents'><img src='" + item[step].itemUrl + "'></div></div>");
+
+					
+				}
+
+
+			} catch (error) {
+
+			}
+		}
+	})
+}
+	

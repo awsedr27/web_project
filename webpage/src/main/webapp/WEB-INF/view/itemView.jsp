@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
 					role="button" aria-expanded="false"> 나의쇼핑 <span class="caret"></span>
 				</a>
 				<c:choose>
-				    <c:when test="${not empty sessionScope.userId}"> 
+				    <c:when test="${not empty sessionScope.memberId}"> 
 				        <ul class="dropdown-menu" role="menu">
 						    <li><a>통합게시판</a></li>
 						    <li><a>장바구니</a></li>
@@ -73,7 +74,7 @@
 		<div class="itemViewText"><b>카드적립</b><div class="itemView"></div></div>
 		</div>
 		<div id="itemViewBtn">
-		<button id="itemPutBtn" >장바구니</button>
+		<button id="itemPutBtn" onclick="location.href='/cartPut?itemId=${itemView.itemId}'">장바구니</button>
 		<button id="itemBuyBtn" >결제하기</button>
 		</div>
 
@@ -115,5 +116,11 @@
 		
 		</div>
 </div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="/js/bootstrap.js"></script>
+	
+	
 </body>
 </html>

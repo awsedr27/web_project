@@ -38,7 +38,7 @@
 					role="button" aria-expanded="false"> 나의쇼핑 <span class="caret"></span>
 				</a>
 				<c:choose>
-				    <c:when test="${not empty sessionScope.userId}"> 
+				    <c:when test="${not empty sessionScope.memberId}"> 
 				        <ul class="dropdown-menu" role="menu">
 						    <li><a>통합게시판</a></li>
 						    <li><a>장바구니</a></li>
@@ -76,20 +76,23 @@
 		<div id="itemListWrap">
 			<c:forEach var="item" items="${itemList}">
 				<div class="itemImg">
-
-					<a href="/itemView?itemId=${item.itemId}"> <img class="item"
-						src="${item.itemUrl}"></a>
+					<a href="/itemView?itemId=${item.itemId}">
+					<img class="item"src="${item.itemUrl}">
+					</a>
 					<div class="itemText">
 						<h2>${item.itemText}</h2>
 					</div>
 					<div class="itemPrice">
 						<p>${item.itemPrice}</p>
 					</div>
-					<div class="itemId">${item.itemId}</div>
-
-
+					<div class="itemId">${item.itemId}
+					</div>
 				</div>
 			</c:forEach>
+		</div>
+		
+		<div id="cartBtnWrap">
+		<button id="cartBtn">사이드버튼</button>
 		</div>
 
 

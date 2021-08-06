@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webpage.DAO.item.ItemDTO;
 import com.webpage.DAO.review.ReviewDTO;
@@ -28,14 +29,17 @@ public class ItemViewController {
 		
 		if(itemId==null) {
 			
+			
 			return "redirect:/index";
 
 		}else {
-		
+			
+			
 		ItemDTO itemView=itemService.getItemView(itemId);
 		List<ReviewDTO> review=reviewService.getReview(itemId);
 		model.addAttribute("itemView",itemView); 
 		model.addAttribute("review",review); 
+		
 		return "itemView";
 		}
 	}
