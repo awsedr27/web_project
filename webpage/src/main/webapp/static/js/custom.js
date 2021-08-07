@@ -1,6 +1,23 @@
 /**
  * 
  */
+
+$(function(){
+	var checkBtn=true;
+	$("#dropDownBtn").on("click",function(){
+		if(checkBtn){
+		$("#dropDownWrap").children("ul").css("display","block");
+		checkBtn=false;
+		 }else{
+			$("#dropDownWrap").children("ul").css("display","none");
+			checkBtn=true;
+		}
+	})
+})
+
+
+
+
 /*----------슬라이드 바--------------*/
 $(function() {
 	$('.slide').bxSlider({
@@ -55,7 +72,7 @@ function next_page() {
 			
 			for (step = 0; step < 6; step++){
 			$("#itemListWrap").append("<div class='itemImg'><a href='/itemView?itemId="+item[step].itemId+"'><img class='item' src='" +
-			 item[step].itemUrl +"'></a><div class='itemText'>"+item[step].itemText+"</div>"+
+			 item[step].itemUrl +"'></a><div class='itemText'><h2>"+item[step].itemText+"</h2></div>"+
 		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
 		}
 		lastIdNum=item[5].itemId;

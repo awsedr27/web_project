@@ -6,23 +6,54 @@
 	width: 1000px;
 }
 /*-------------네비게이션 영역---------------*/
-.nav-tabs>li {
-	float: left;
-	margin-bottom: -1px;
-	margin-left: 35px;
+#navWrap{
+	   
+	
 }
-
-.bx-wrapper .bx-pager.bx-default-pager a {
-	background: #fff;
-	text-indent: -9999px;
-	display: block;
-	width: 10px;
-	height: 10px;
-	margin: 0 5px;
-	outline: 0;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
+#nav{
+	list-style: none;
+	display: inline-block;
+	width: 850px;
+}
+.navLi{
+	display: inline-block;
+    margin-right: 50px;
+    position: relative;
+    left: 200px;
+}
+.navLi>a{
+	text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: block;
+}
+#dropDownWrap{
+	display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+#dropDownWrap>ul{
+	position: absolute;
+    left: 10px;
+    width: 86px;
+    border: solid 1px #ababab;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    text-align: center;
+    list-style: none;
+    background: white;
+    display: none;
+}
+#dropDownBtn{
+	position: relative;
+    border: none;
+    background: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+.dropDown{
+	  
 }
 
 /*-------------아이템리스트 영역---------------*/
@@ -56,6 +87,7 @@
 .itemPrice {
 	display: inline-block;
 	width: 135px;
+	position: absolute;
 }
 
 .itemPrice>p {

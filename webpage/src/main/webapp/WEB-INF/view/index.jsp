@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>index</title>
-<link rel="stylesheet" href="/css/bootstrap.css">
+
 <link rel="stylesheet" href="/css/jquery.bxslider.css">
 <link rel="stylesheet" href="/css/css.css">
 
@@ -17,52 +17,43 @@
 		<div id="header">
 			<h2>홈쇼핑</h2>
 		</div>
-		<div id="nav">
-			<ul class="nav nav-tabs">
+		
+		
+<div id="navWrap">
+<ul id="nav">
+<li class="navLi"><a href="">할인상품</a></li>
+<li class="navLi"><a href="">인기상품</a></li>
+<li class="navLi"><a href="">식품</a></li>
+<li class="navLi"><a href="">가전</a></li>
+<li class="navLi"><a href="">의류</a></li>
+<li class="navLi"><a href="">도서</a></li>
+<li class="navLi"><a href="">서비스</a></li>
 
-				<li role="presentation"><a href="/login" role="button">
-						할인상품</a></li>
-				<li role="presentation"><a href="/login" role="button">
-						인기상품</a></li>
-				<li role="presentation"><a href="/category?category=food"
-					role="button"> 식품</a></li>
-				<li role="presentation"><a href="/login" role="button"> 가전</a></li>
-				<li role="presentation"><a href="/category?category=clothing"
-					role="button"> 의류</a></li>
-				<li role="presentation"><a href="/login" role="button"> 도서</a></li>
-				<li role="presentation"><a href="/login" role="button"> 서비스</a></li>
-				<li role="presentation"><a href="/login" role="button"> 잡화</a></li>
+</ul>
+<div id="dropDownWrap">
+<button id="dropDownBtn">나의쇼핑</button>
+<c:choose>
+			<c:when test="${not empty sessionScope.memberId}">
+				<ul>
+					<li class="dropDown"><a href="">서비스</a></li>
+					<li class="dropDown"><a href="">서비스</a></li>
+					<li class="dropDown"><a href="">서비스</a></li>
+				</ul>
+			</c:when>
 
-				<li role="presentation" class="dropdown"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-expanded="false"> 나의쇼핑 <span class="caret"></span>
-				</a>
-				<c:choose>
-				    <c:when test="${not empty sessionScope.memberId}"> 
-				        <ul class="dropdown-menu" role="menu">
-						    <li><a>통합게시판</a></li>
-						    <li><a>장바구니</a></li>
-						    <li><a>이전장바구니</a></li>
-						    <li><a>내정보</a></li>
-					    </ul>
-					</c:when>
-					
-					<c:otherwise>
-					    <ul class="dropdown-menu" role="menu">
-						    <li><a>로그인하세요</a></li>
-					    </ul>
-					</c:otherwise>
-				   
-				</c:choose>
+			<c:otherwise>
+				<ul>
+					<li><a>로그인하세요</a></li>
+				</ul>
+			</c:otherwise>
 
-					
-				</li>
+		</c:choose>
 
-			</ul>
-		</div>
+</div>
 
 
-
+</div>
+		
 
 		<div id="sliderBar">
 			<ul class="slide">
