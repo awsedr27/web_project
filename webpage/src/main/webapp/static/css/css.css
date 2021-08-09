@@ -5,6 +5,27 @@
 	margin: 0 auto;
 	width: 1000px;
 }
+
+/*------------슬라이더바--------------------*/
+.bx-viewport{
+	width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 340px;
+}
+.bx-wrapper img{
+    width: 450px;
+    height: 300px;
+    max-width: 100%;
+    display: inline-block;
+    position: relative;
+    left: -7px;
+    margin-left: 35px;
+}
+
+
+
+
 /*-------------네비게이션 영역---------------*/
 #navWrap{
 	   
@@ -62,17 +83,32 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-
-.itemImg {
+.itemWrap{
 	width: 274px;
 	height: 320px;
 	margin-bottom: 20px;
 	position: relative;
 }
 
-.item {
+.itemImg {
 	width: 274px;
 	height: 274px;
+}
+
+.itemImgWrap {
+	width: 274px;
+	height: 274px;
+	overflow: hidden;
+}
+
+
+.itemImg:hover{
+	width:300px;
+	height: 300px;
+	position: relative;
+    right:13px;
+    bottom:13px;
+	
 }
 .itemId{
 	   visibility: hidden;
@@ -251,4 +287,41 @@
     z-index: 2;
     background: white;
 	
+}
+
+/*------------아이콘---------------*/
+#iconNav{
+	position:absolute;
+}
+#iconWrap{
+	font-size: 40px;
+    position: absolute;
+    display: inline-block;
+    left: 772px;
+    top: -56px;
+    width: 250px;
+}
+
+#iconPower {
+	margin-left: 28px;
+	color: #c5c5c5;
+}
+
+#iconUser {
+	margin-left: 28px;
+	color: #c5c5c5;
+}
+
+#iconCart {
+	margin-left: 28px;
+	color: #c5c5c5;
+}
+#iconChevron{}
+.itemIcon{
+	position: absolute;
+    display: none;
+    width: 274px;
+    height: 30px;
+    text-align: center;
+    top: 1px;
 }

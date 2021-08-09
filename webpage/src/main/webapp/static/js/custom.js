@@ -1,16 +1,24 @@
 /**
  * 
  */
-
+/*-----------------네비게이션바 아이콘 밑 드롭다운---------------------- */
 $(function(){
 	var checkBtn=true;
 	$("#dropDownBtn").on("click",function(){
-		if(checkBtn){
-		$("#dropDownWrap").children("ul").css("display","block");
-		checkBtn=false;
-		 }else{
-			$("#dropDownWrap").children("ul").css("display","none");
-			checkBtn=true;
+		if (checkBtn) {
+			$("#dropDownWrap").children("ul").css("display", "block");
+			$("#iconChevron").removeClass("fas fa-chevron-down");
+			$("#iconChevron").addClass("fas fa-chevron-up");
+
+			//$(".fas fa-chevron-down").attr({"class":"fas fa-chevron-up"});
+			checkBtn = false;
+		} else 
+		{
+			$("#dropDownWrap").children("ul").css("display", "none");
+			$("#iconChevron").removeClass("fas fa-chevron-up");
+			$("#iconChevron").addClass("fas fa-chevron-down");
+			//$(".fas fa-chevron-up").attr({"class":"fas fa-chevron-down"});
+			checkBtn = true;
 		}
 	})
 })
@@ -71,8 +79,8 @@ function next_page() {
 			try{
 			
 			for (step = 0; step < 6; step++){
-			$("#itemListWrap").append("<div class='itemImg'><a href='/itemView?itemId="+item[step].itemId+"'><img class='item' src='" +
-			 item[step].itemUrl +"'></a><div class='itemText'><h2>"+item[step].itemText+"</h2></div>"+
+			$("#itemListWrap").append("<div class='itemWrap'><div class='itemImgWrap'><a href='/itemView?itemId="+item[step].itemId+"'><img class='itemImg' src='" +
+			 item[step].itemUrl +"'></a></div><div class='itemIcon'><i class='fas fa-shopping-basket'></i></div><div class='itemText'><h2>"+item[step].itemText+"</h2></div>"+
 		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
 		}
 		lastIdNum=item[5].itemId;
@@ -99,8 +107,8 @@ function next_page_category() {
 			try{
 	
 			for (step = 0; step < 6; step++){
-			$("#itemListWrap").append("<div class='itemImg'><a href='/itemView?itemId="+item[step].itemId+"'><img class='item' src='" +
-			 item[step].itemUrl +"'></a><div class='itemText'>"+item[step].itemText+"</div>"+
+			$("#itemListWrap").append("<div class='itemWrap'><div class='itemImgWrap'><a href='/itemView?itemId="+item[step].itemId+"'><img class='itemImg' src='" +
+			 item[step].itemUrl +"'></a></div><div class='itemIcon'><i class='fas fa-shopping-basket'></i></div><div class='itemText'>"+item[step].itemText+"</div>"+
 		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
 		}
 		lastIdNum=item[5].itemId;
@@ -158,4 +166,26 @@ function cart() {
 		}
 	})
 }
-	
+/*----------------아이템 호버시 장바구니 보여주기 -------------- */	
+
+
+
+$(function() {
+	$("#itemListWrap").on("mouseover", ".itemImgWrap", function() {
+		$(this).nextAll(".itemIcon").css("display", "inline-block");
+	})
+
+	$("#itemListWrap").on("mouseout", ".itemImgWrap", function() {
+		$(this).nextAll(".itemIcon").css("display", "none");
+
+
+	})
+
+
+
+})
+
+
+
+
+
