@@ -35,7 +35,7 @@ public class CategoryController {
 		return "index";
 		}
 	}
-	
+ 
 	
 	@ResponseBody
 	@RequestMapping("/category/ajax")
