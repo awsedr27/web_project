@@ -48,7 +48,7 @@
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-							<li class="dropDown"><a href="">서비스</a></li>
+					    	<li class="dropDown"><a href="">서비스</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
