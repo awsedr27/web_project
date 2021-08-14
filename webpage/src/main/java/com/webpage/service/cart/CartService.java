@@ -10,4 +10,6 @@ public interface CartService {
 
 	public void setCartService(CartDTO cart);
 
+	public void deleteCart(String memberId, int itemId);
+
 }

@@ -7,8 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>itemView</title>
-<link rel="stylesheet" href="/css/bootstrap.css">
-<link rel="stylesheet" href="/css/jquery.bxslider.css">
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
 <link rel="stylesheet" href="/css/css.css">
 
 </head>
@@ -17,49 +19,53 @@
 		<div id="header">
 			<h2>홈쇼핑</h2>
 		</div>
-		<div id="nav">
-			<ul class="nav nav-tabs">
+		
+		<div id="iconNav">
+			<div id="iconWrap">
+				<a href="/signIn"><i class="fas fa-power-off" id="iconPower"></i></a>
+				<a href=""><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
+					class="fas fa-shopping-cart" id="iconCart"></i></a>
+			</div>
+		</div>
 
-				<li role="presentation"><a href="/login" role="button">
-						할인상품</a></li>
-				<li role="presentation"><a href="/login" role="button">
-						인기상품</a></li>
-				<li role="presentation"><a href="/category?category=food"
-					role="button"> 식품</a></li>
-				<li role="presentation"><a href="/login" role="button"> 가전</a></li>
-				<li role="presentation"><a href="/category?category=clothing"
-					role="button"> 의류</a></li>
-				<li role="presentation"><a href="/login" role="button"> 도서</a></li>
-				<li role="presentation"><a href="/login" role="button"> 서비스</a></li>
-				<li role="presentation"><a href="/login" role="button"> 잡화</a></li>
-
-				<li role="presentation" class="dropdown"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-expanded="false"> 나의쇼핑 <span class="caret"></span>
-				</a>
-				<c:choose>
-				    <c:when test="${not empty sessionScope.memberId}"> 
-				        <ul class="dropdown-menu" role="menu">
-						    <li><a>통합게시판</a></li>
-						    <li><a>장바구니</a></li>
-						    <li><a>이전장바구니</a></li>
-						    <li><a>내정보</a></li>
-					    </ul>
-					</c:when>
-					
-					<c:otherwise>
-					    <ul class="dropdown-menu" role="menu">
-						    <li><a>로그인하세요</a></li>
-					    </ul>
-					</c:otherwise>
-				   
-				</c:choose>
-
-					
-				</li>
+		<div id="navWrap">
+			<ul id="nav">
+				<li class="navLi"><a href="">할인상품</a></li>
+				<li class="navLi"><a href="">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=food">식품</a></li>
+				<li class="navLi"><a href="">가전</a></li>
+				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
+				<li class="navLi"><a href="">도서</a></li>
+				<li class="navLi"><a href="">서비스</a></li>
 
 			</ul>
+			<div id="dropDownWrap">
+				<button id="dropDownBtn">
+					내 쇼핑<i class="fas fa-chevron-down" id="iconChevron"></i>
+				</button>
+
+				<c:choose>
+					<c:when test="${not empty sessionScope.memberId}">
+						<ul>
+							<li class="dropDown"><a href="">서비스</a></li>
+							<li class="dropDown"><a href="">서비스</a></li>
+							<li class="dropDown"><a href="">서비스</a></li>
+						</ul>
+					</c:when>
+
+					<c:otherwise>
+						<ul>
+							<li><a>로그인하세요</a></li>
+						</ul>
+					</c:otherwise>
+
+				</c:choose>
+
+			</div>
+
+
 		</div>
+		
 		
 		
 		<div id="itemViewWrap">
@@ -120,7 +126,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
-	
+	<script src="/js/common.js"></script>
 	
 </body>
 </html>

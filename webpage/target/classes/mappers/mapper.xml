@@ -67,6 +67,29 @@
 	`itemPrice`, `discountNum`, `discount`, `popularity`, `category`)
 	VALUES (#{memberId}, #{itemId}, #{itemUrl}, #{itemName}, #{itemPrice}, #{discountNum}, #{discount},#{popularity},#{category});
 
-</select>
+    </select>
 	
+	<select id="deleteCart"
+		 parameterType="Map">
+		DELETE FROM homeshop.cart WHERE (memberId =#{memberId}) and (itemId =#{itemId});
+	</select>
+	
+	<!-- 게시판  -->
+	<select id="getBbs"
+		resultType="com.webpage.DAO.bbs.BbsDTO" parameterType="Int">
+		select *from bbs order by bbs_id limit #{bbsNum},5
+	</select>
+	
+	<select id="getPageCnt"
+		resultType="Int">
+		select count(*)from bbs
+	</select>
+	
+	<select id="setBbs"
+		 parameterType="com.webpage.DAO.bbs.BbsDTO">
+		 INSERT INTO homeshop.bbs
+(memberId, bbs_id, bbs_title, bbs_time, bbs_contents)
+values (${memberId},(select ifnull(max(bbs_id)+1,1)from bbs as b),'${bbs_title}','${bbs_time}','${bbs_contents}');
+
+	</select>
 </mapper>

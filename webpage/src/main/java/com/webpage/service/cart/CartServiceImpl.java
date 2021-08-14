@@ -28,4 +28,10 @@ public class CartServiceImpl implements CartService {
 		
 	}
 
+	@Override
+	public void deleteCart(String memberId, int itemId) {
+		cartDAO.deleteCart(memberId,itemId);
+		
+	}
+
 }

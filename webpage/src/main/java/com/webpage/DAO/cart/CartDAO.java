@@ -8,4 +8,6 @@ public interface CartDAO {
 
 	void setCartDAO(CartDTO cart);
 
+	void deleteCart(String memberId, int itemId);
+
 }

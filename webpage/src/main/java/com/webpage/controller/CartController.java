@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,27 @@ public class CartController {
 	
 	@Autowired
 	ItemDAO itemDAO;
+	
+	
+	@RequestMapping("/cart")
+	public String cart(HttpServletRequest request,Model model){
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		List<CartDTO> list=cartService.getCartAjaxService(memberId);
+		model.addAttribute("cartList", list);
+		
+		return "cart";
+		}
+	
+	@ResponseBody
+	@RequestMapping("/cart/ajaxDel")
+	public void cartDel(HttpServletRequest request,@RequestParam("itemId") int itemId) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		cartService.deleteCart(memberId,itemId);
+	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping("/cart/ajax")

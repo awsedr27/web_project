@@ -1,6 +1,8 @@
 package com.webpage.DAO.cart;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,19 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public void setCartDAO(CartDTO cart) {
+		
 		sqlSession.insert("mapper.setCart", cart);
+		
+		
+	}
+
+	@Override
+	public void deleteCart(String memberId, int itemId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("itemId", itemId);
+		
+		sqlSession.delete("mapper.deleteCart",map);
 		
 	}
 

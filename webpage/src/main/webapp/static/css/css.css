@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+
+body{margin:0px}
+
 #wrap {
 	overflow: visible;
 	margin: 0 auto;
@@ -102,14 +105,7 @@
 }
 
 
-.itemImg:hover{
-	width:300px;
-	height: 300px;
-	position: relative;
-    right:13px;
-    bottom:13px;
-	
-}
+
 .itemId{
 	   visibility: hidden;
 	
@@ -237,13 +233,11 @@
 	width: 495px;
 	height: 500px;
 	position: absolute;
-	bottom: 52px;
 }
 
 .itemViewText {
-	font-size: 30px;
+	font-size: 25px;
 	position: relative;
-	bottom: -30px;
 	margin-left: 50px;
 	margin-bottom: 17px;
 	border-bottom-style: dotted;
@@ -286,7 +280,15 @@
     right: 5px;
     z-index: 2;
     background: white;
-	
+}
+.cartTable{
+	width: 215px;
+    height: 50px;
+    text-align: center;
+}
+.cartTable>img{
+	width:100px;
+	height:100px;
 }
 
 /*------------아이콘---------------*/
@@ -321,7 +323,14 @@
 	position: absolute;
     display: none;
     width: 274px;
-    height: 30px;
+    height: 50px;
     text-align: center;
-    top: 1px;
+    background: black;
+    opacity: 70%;
+    font-size:32px;
+    top: 0px;
 }
+.fa-shopping-basket{
+	    color: #dadada;
+}
+
