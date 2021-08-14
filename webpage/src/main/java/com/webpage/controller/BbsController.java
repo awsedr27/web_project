@@ -54,7 +54,7 @@ public class BbsController {
 		String memberId=(String) session.getAttribute("memberId");
 	
 		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-		String dateString=dateFormat.format(new java.util.Date());
+     	String dateString=dateFormat.format(new java.util.Date());
 		Date bbs_time=java.sql.Date.valueOf(dateString);
 		BbsDTO bbsDTO=new BbsDTO();
 		bbsDTO.setMemberId(memberId);
