@@ -130,6 +130,8 @@ body{margin:0px}
 #footer {
 	border-top: 1px solid rgb(191, 181, 181);;
 	border-bottom: 1px solid rgb(191, 181, 181);
+	margin-top: 100px;
+	margin-bottom: 50px;
 }
 
 #footerTitle {
@@ -333,4 +335,70 @@ body{margin:0px}
 .fa-shopping-basket{
 	    color: #dadada;
 }
+/*------------게시판----------------*/
+#bbsWrap a{
+	text-decoration: none;
+    color: black;
+
+}
+#bbsTableWrap>table{
+	width: 1000px;
+	text-align: center;
+	border-collapse: collapse;
+}
+#bbsTableWrap th:nth-child(4){
+	    width: 100px;
+	
+}
+#bbsTableWrap th:nth-child(3){
+	    width: 100px;
+	
+}
+
+#bbsTableWrap th:nth-child(1){
+	    width: 100px;
+	
+}
+#bbsTableWrap th,td{
+	border-bottom: solid 1px #e0e0e0;;
+	padding: 10px;
+   
+}
+#bbsWriteBtn{
+	display: inline-block;
+}
+#bbsWriteBtn>button{
+	background: #f7c856;
+    border: solid 1px black;
+}
+#bbsPagingWrap{
+	display: inline-block;
+    position: relative;
+    left: 389px;
+    top: 10px;
+}
+#writeBbsWrap input:nth-child(1){
+	width: 700px;
+    height: 33px;
+    position: relative;
+    top: 50px;
+}
+#writeBbsWrap input:nth-child(3){
+	position: relative;
+    left: 707px;
+    border: solid 1px black;
+    background: #f7c856;;
+    width: 45px;
+    height: 30px;
+}
+#writeBbsWrap textarea{
+	width: 700px;
+    height: 400px;
+    display: block;
+    position: relative;
+    top: 100px;
+    resize:none;
+    font-size: 16pt;
+}
+
 
