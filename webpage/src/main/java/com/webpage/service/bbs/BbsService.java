@@ -12,4 +12,10 @@ public interface BbsService {
 
 	void setBbs(BbsDTO bbsDTO);
 
+	BbsDTO getBbsView(int bbs_id);
+
+	void setBbsModify(String bbs_title, String bbs_contents, int bbs_id);
+
+	void deleteBbs(int bbs_id);
+
 }

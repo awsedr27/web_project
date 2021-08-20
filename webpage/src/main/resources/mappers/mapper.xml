@@ -40,12 +40,33 @@
 	
 	<!-- 회원 매퍼-->
 	<select id="setMember" parameterType="com.webpage.DAO.member.MemberDTO">
-	INSERT INTO homeshop.memberinfo (`memberId`, `memberPassword`, `birthday`, `phoneNum`, `email`) VALUES (#{memberId}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email});
+	INSERT INTO homeshop.memberinfo (`memberId`, `memberPassword`, `birthday`, `phoneNum`, `email`,`houseLocation`) VALUES (#{memberId}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email},#{houseLocation});
 	</select>
 	
 	<select id="getMember"
 		resultType="String" parameterType="Map">
 		select memberID from memberinfo where memberId=#{memberId} and memberPassword=#{memberPassword}
+	</select>
+	
+	<select id="getMemberInfo"
+		resultType="com.webpage.DAO.member.MemberDTO" parameterType="String">
+		select * from memberinfo where memberId=#{memberId}
+	</select>
+	
+	<select id="setMyInfoModify"
+		 parameterType="com.webpage.DAO.member.MemberDTO">
+UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday}, `phoneNum` = #{phoneNum}, `email` = #{email}, `houseLocation` = #{houseLocation} WHERE (`memberId` = #{memberId});
+	</select>
+	
+	<select id="checkPassword"
+		resultType="Int" parameterType="String">
+		select memberPassword from memberinfo where memberId=#{memberId}
+	</select>
+	
+	<select id="setNewPassword"
+		 parameterType="Map">
+		UPDATE homeshop.memberinfo SET memberPassword = #{newPassword} WHERE (memberId = #{memberId});
+
 	</select>
 	
 		<!-- 아이템뷰에 리뷰-->
@@ -77,7 +98,7 @@
 	<!-- 게시판  -->
 	<select id="getBbs"
 		resultType="com.webpage.DAO.bbs.BbsDTO" parameterType="Int">
-		select *from bbs order by bbs_id limit #{bbsNum},5
+		select *from bbs order by bbs_id DESC limit #{bbsNum},10
 	</select>
 	
 	<select id="getPageCnt"
@@ -90,6 +111,22 @@
 		 INSERT INTO homeshop.bbs
 (memberId, bbs_id, bbs_title, bbs_time, bbs_contents)
 values (${memberId},(select ifnull(max(bbs_id)+1,1)from bbs as b),'${bbs_title}','${bbs_time}','${bbs_contents}');
+
+	</select>
+	
+	<select id="getBbsView"
+		resultType="com.webpage.DAO.bbs.BbsDTO" parameterType="Int">
+		select * from bbs where bbs_id=#{bbs_id}
+	</select>
+	
+	<select id="setBbsModify"
+		 parameterType="Map">
+UPDATE homeshop.bbs SET bbs_title = #{bbs_title},bbs_contents=#{bbs_contents} WHERE (bbs_id = #{bbs_id});
+	</select>
+	
+	<select id="deleteBbs"
+		 parameterType="Int">
+		DELETE FROM homeshop.bbs WHERE (bbs_id = #{bbs_id});
 
 	</select>
 </mapper>

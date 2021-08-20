@@ -292,6 +292,31 @@ body{margin:0px}
 	width:100px;
 	height:100px;
 }
+/*------------결제영역--------------*/
+#orderWrap{
+	    
+}
+#orderImgWrap{
+	display: inline-block;
+	border: solid 1px #bdb9b9;
+}
+#orderImgWrap>ul{
+	list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+}
+#orderImgWrap img{
+	width:100px;
+	height:100px;
+}
+#orderImgWrap>span{
+	position: relative;
+    top: 10px;
+    left: 10px;
+    font-size: 15pt;
+    font-weight: bold;
+}
 
 /*------------아이콘---------------*/
 #iconNav{
@@ -370,6 +395,7 @@ body{margin:0px}
 #bbsWriteBtn>button{
 	background: #f7c856;
     border: solid 1px black;
+    font-family: Dotum,'돋움';
 }
 #bbsPagingWrap{
 	display: inline-block;
@@ -382,6 +408,7 @@ body{margin:0px}
     height: 33px;
     position: relative;
     top: 50px;
+    font-size:20pt;
 }
 #writeBbsWrap input:nth-child(3){
 	position: relative;
@@ -400,5 +427,36 @@ body{margin:0px}
     resize:none;
     font-size: 16pt;
 }
-
+#bbsTitle{
+	font-size: 24px;
+}
+#bbsMemberId{
+	display: inline-block;
+    border-right: solid 1px #bdb9b9;
+    padding-right: 10px;
+}
+#bbsTime{
+	display: inline-block;
+}
+#bbsContents{
+	width: 1000px;
+    height: 400px;
+    font-size: 16pt;
+    border-top: solid 1px #bdb9b9;
+    padding-top: 30px;
+}
+#bbsViewWrap a{
+	text-decoration: none;
+    color: black;
+}
+#bbsViewWrap button:nth-child(5){
+	background: #f7c856;
+    border: solid 1px black;
+    font-family: Dotum,'돋움';
+}
+#bbsViewWrap button:nth-child(6){
+	background: #f7c856;
+    border: solid 1px black;
+    font-family: Dotum,'돋움';
+}
 

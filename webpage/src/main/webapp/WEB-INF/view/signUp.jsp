@@ -22,12 +22,13 @@
 			<h2 align="center">회원가입</h2>
 			<form action="/signUp" method="post" id="login">
 				<div align='center'>
-					<input type="text" class="id_login" name="memberID" placeholder="아이디"><br>
+					<input type="text" class="id_login" name="memberId" placeholder="아이디"><br>
 					<input type="password" class="password_login" name="memberPassword"
 						placeholder="비밀번호"><br>
 					<input type="date" id="birthday" name="birthday" placeholder="생일">
 					<input type="text" id="phoneNum" name="phoneNum" placeholder="핸드폰번호 (-빼고)">
 					<input type="text" id="email" name="email" placeholder="이메일">
+					<input type="text" id="houseLocation" name="houseLocation" placeholder="집주소">
 				    <input class="login_button" type="submit" value="회원가입">
 				</div>
 			</form>

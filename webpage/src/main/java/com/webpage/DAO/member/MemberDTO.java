@@ -11,7 +11,7 @@ public class MemberDTO {
 	private Date birthday;
 	private int phoneNum;
 	private String email;
-	
+	private String houseLocation;
 	
 	
 	public String getMemberId() {
@@ -44,6 +44,13 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getHouseLocation() {
+		return houseLocation;
+	}
+	public void setHouseLocation(String houseLocation) {
+		this.houseLocation = houseLocation;
+	}
+	
 	
 	
 }

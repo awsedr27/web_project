@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>bbsView</title>
  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
@@ -24,8 +24,8 @@
 		<div id="iconNav">
 			<div id="iconWrap">
 				<a href="/signIn"><i class="fas fa-power-off" id="iconPower"></i></a>
-				<a href="/myInfo"><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
-					class="fas fa-shopping-cart" id="iconCart"></i></a>
+				<a href=""><i class="far fa-user" id="iconUser"></i></a> <a
+					href="/cart"><i class="fas fa-shopping-cart" id="iconCart"></i></a>
 			</div>
 		</div>
 
@@ -37,7 +37,7 @@
 				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
 				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
-				<li class="navLi"><a href="/bbs">게시판</a></li>
+				<li class="navLi"><a href="/category?category=clothing">서비스</a></li>
 
 			</ul>
 			<div id="dropDownWrap">
@@ -48,8 +48,8 @@
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-					    	<li class="dropDown"><a href="">주문하기</a></li>
-							<li class="dropDown"><a href="">장바구니</a></li>
+							<li class="dropDown"><a href="">서비스</a></li>
+							<li class="dropDown"><a href="">서비스</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
 					</c:when>
@@ -59,62 +59,28 @@
 							<li><a>로그인하세요</a></li>
 						</ul>
 					</c:otherwise>
-
 				</c:choose>
-
 			</div>
-
-
 		</div>
 
+		<div id="bbsViewWrap">
+		    <div id="bbsTitle">${bbsView.bbs_title}</div>
+			<div id="bbsMemberId">${bbsView.memberId}</div>
+			<div id="bbsTime">${bbsView.bbs_time}</div>
 
-		<div id="sliderBar">
-			<ul class="slide">
-				<li><a href="/login"><img src="/img/banner1.jpg"></a>
-				    <a href="/login"><img src="/img/banner2.jpg"></a>
-				</li>
-				<li><a href="/login"><img src="/img/banner3.jpg"></a>
-				    <a href="/login"><img src="/img/banner4.jpg"></a>
-				</li>
-				<li><a href="/login"><img src="/img/banner5.jpg"></a>
-				    <a href="/login"><img src="/img/banner6.jpg"></a>
-				</li>
+			
 
-			</ul>
+			<div id="bbsContents">${bbsView.bbs_contents}</div>
+
+			<button>
+				<a href="/bbs/modify?bbs_id=${bbsView.bbs_id}">수정하기</a>
+			</button>
+			<button>
+				<a
+					href="/bbs/delete?bbs_id=${bbsView.bbs_id}&memberId=${bbsView.memberId}">삭제하기</a>
+			</button>
+
 		</div>
-
-		<div id="itemListWrap">
-			<c:forEach var="item" items="${itemList}">
-				<div class="itemWrap">
-					<div class="itemImgWrap">
-						<a href="/itemView?itemId=${item.itemId}"> <img
-							class="itemImg" src="${item.itemUrl}">
-						</a>
-						<div class="itemIcon">
-							<a href="/cartPut?itemId=${item.itemId}">
-							<i class="fas fa-shopping-basket"></i></a>
-						</div>
-					</div>
-
-					<div class="itemText">
-						<h2>${item.itemText}</h2>
-					</div>
-					
-					<div class="itemPrice">
-						<p>${item.itemPrice}</p>
-					</div>
-					
-					<div class="itemId">${item.itemId}
-					</div>
-					
-				</div>
-			</c:forEach>
-		</div>
-		
-		<div id="cartBtnWrap">
-		<button id="cartBtn">사이드버튼</button>
-		</div>
-
 
 		<div id="footer">
 			<div id="footerTitle">
@@ -129,14 +95,9 @@
 			</div>
 		</div>
 
+
+
 	</div>
-
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="/js/bootstrap.js"></script>
-	<script src="/js/jquery.bxslider.js"></script>
-	<script src="/js/custom.js"></script>
-	<script src="/js/common.js"></script>
+	
 </body>
 </html>

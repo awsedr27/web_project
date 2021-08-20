@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>order</title>
  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
@@ -24,7 +24,7 @@
 		<div id="iconNav">
 			<div id="iconWrap">
 				<a href="/signIn"><i class="fas fa-power-off" id="iconPower"></i></a>
-				<a href="/myInfo"><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
+				<a href=""><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
 					class="fas fa-shopping-cart" id="iconCart"></i></a>
 			</div>
 		</div>
@@ -48,8 +48,8 @@
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-					    	<li class="dropDown"><a href="">주문하기</a></li>
-							<li class="dropDown"><a href="">장바구니</a></li>
+					    	<li class="dropDown"><a href="">서비스</a></li>
+							<li class="dropDown"><a href="">서비스</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
 					</c:when>
@@ -68,52 +68,45 @@
 		</div>
 
 
-		<div id="sliderBar">
-			<ul class="slide">
-				<li><a href="/login"><img src="/img/banner1.jpg"></a>
-				    <a href="/login"><img src="/img/banner2.jpg"></a>
-				</li>
-				<li><a href="/login"><img src="/img/banner3.jpg"></a>
-				    <a href="/login"><img src="/img/banner4.jpg"></a>
-				</li>
-				<li><a href="/login"><img src="/img/banner5.jpg"></a>
-				    <a href="/login"><img src="/img/banner6.jpg"></a>
-				</li>
+		<div id="orderWrap">
 
-			</ul>
-		</div>
+			<div id="orderImgWrap">
+			<span>주문상품</span>
+				<ul>
+					<c:forEach var="cartItem" items="${cartList}">
+						<li><img src="${cartItem.itemUrl}"></li>
+					</c:forEach>
+				</ul>
+			</div>
 
-		<div id="itemListWrap">
-			<c:forEach var="item" items="${itemList}">
-				<div class="itemWrap">
-					<div class="itemImgWrap">
-						<a href="/itemView?itemId=${item.itemId}"> <img
-							class="itemImg" src="${item.itemUrl}">
-						</a>
-						<div class="itemIcon">
-							<a href="/cartPut?itemId=${item.itemId}">
-							<i class="fas fa-shopping-basket"></i></a>
-						</div>
-					</div>
-
-					<div class="itemText">
-						<h2>${item.itemText}</h2>
-					</div>
-					
-					<div class="itemPrice">
-						<p>${item.itemPrice}</p>
-					</div>
-					
-					<div class="itemId">${item.itemId}
-					</div>
-					
-				</div>
-			</c:forEach>
 		</div>
 		
-		<div id="cartBtnWrap">
-		<button id="cartBtn">사이드버튼</button>
+		<div id="orderInfo">
+		<form action="/cart/order/payment">
+		<ul>
+		<li>주문자:<input type="text" name="orderName"></li>
+		<li>배송지:<input type="text" name="orderLocation"></li>
+		<li>받는분:<input type="text" name="orderRecipient"></li>
+		<li>배송 시 요청사항:<input type="text" name="orderRequest"></li>
+		<li>할인쿠폰</li>
+		<li>결제수단</li>
+		</ul>
+		</form>
+		
 		</div>
+		
+		<div id="orderBtn"><button>결제하기</button></div>
+		
+
+
+
+
+
+
+
+
+
+
 
 
 		<div id="footer">

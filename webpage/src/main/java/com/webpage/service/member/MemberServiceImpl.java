@@ -26,6 +26,32 @@ public class MemberServiceImpl implements MemberService {
 		return signIn;
 	}
 
+	@Override
+	public MemberDTO getMemberInfo(String memberId) {
+		MemberDTO memberDTO=memberDAO.getMemberInfo(memberId);
+		return memberDTO;
+		
+	}
+
+	@Override
+	public void setMyInfoModify(MemberDTO memberDTO) {
+		memberDAO.setMyInfoModify(memberDTO);
+		
+	}
+
+	@Override
+	public boolean checkPassword(String userId,int memberPassword) {
+		boolean passwordCheck=memberDAO.checkPassword(userId,memberPassword);
+		return passwordCheck;
+	}
+
+	@Override
+	public void setNewPassword(String userId, int newPassword) {
+		
+		memberDAO.setNewPassword(userId,newPassword);
+		
+	}
+
 	
 
 	

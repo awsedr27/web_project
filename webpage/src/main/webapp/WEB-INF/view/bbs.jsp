@@ -64,29 +64,52 @@
 		</div>
 
 		<div id="bbsWrap">
-			<table border="1">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>글쓴이</th>
-					<th>작성일</th>
-				</tr>
-
-				<c:forEach var="bbs" items="${bbsList}">
-
+			<div id="bbsTableWrap">
+				<table>
 					<tr>
-						<th>${bbs.bbs_id}</th>
-						<th>${bbs.bbs_title}</th>
-						<th>${bbs.memberId}</th>
-						<th>${bbs.bbs_time}</th>
+						<th>번호</th>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>작성일</th>
 					</tr>
+
+					<c:forEach var="bbs" items="${bbsList}">
+
+						<tr>
+							<td>${bbs.bbs_id}</td>
+							<td><a href="/bbs/view?bbs_id=${bbs.bbs_id}">${bbs.bbs_title}</a></td>
+							<td>${bbs.memberId}</td>
+							<td>${bbs.bbs_time}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div id="bbsWriteBtn">
+				<button>
+					<a href="/bbs/write">글쓰기</a>
+				</button>
+			</div>
+			<div id="bbsPagingWrap">
+				<c:forEach var="i" begin='${bbsPageRange}' end='${bbsPageCnt}'>
+					<a href="/bbs?pageNum=${i}">${i}</a>
 				</c:forEach>
-			</table>
-			<button><a href="/write">글쓰기</a></button>
-			
-			<c:forEach var="i"  begin='${bbsPageRange}' end='${bbsPageCnt}'>
-			<a href="/bbs?pageNum=${i}">${i}
-			</c:forEach>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div id="footerTitle">
+				<h2>HomeShop</h2>
+				<br> 대표이사 : 김진옥 주소 : 서울특별시 은평구 <br> 판매신고번호 : 2020-서울-0000호
+				<br>개인정보 및 보호책임자 : 김진옥 <br> 안전한 금융거래를 위해 타인에게 비밀번호를 발설하지
+				마십시오.<br>
+			</div>
+			<div id="footerContens">
+				<br> 고객센터 전화번호 : 000-0000-0000 <br>(업무시간 09:00~21:00) <br>
+				이메일 : awsedr27@naver.com<br>
+			</div>
 		</div>
 
 	</div>
+	
+</body>
+</html>

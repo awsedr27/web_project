@@ -17,6 +17,7 @@ import com.webpage.DAO.cart.CartDTO;
 import com.webpage.DAO.item.ItemDAO;
 import com.webpage.DAO.item.ItemDTO;
 import com.webpage.service.cart.CartService;
+import com.webpage.service.item.ItemService;
 
 @Controller
 public class CartController {
@@ -25,7 +26,7 @@ public class CartController {
 	CartService cartService;
 	
 	@Autowired
-	ItemDAO itemDAO;
+	ItemService itemService;
 	
 	
 	@RequestMapping("/cart")
@@ -63,7 +64,7 @@ public class CartController {
 	public String cartPut(@RequestParam("itemId") int itemId,HttpServletRequest request){
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
-		ItemDTO item=itemDAO.getItemView(itemId);
+		ItemDTO item=itemService.getItemView(itemId);
 		CartDTO cart = new CartDTO();
 		cart.setMemberId(memberId);
 		cart.setItemId(itemId);
@@ -80,4 +81,6 @@ public class CartController {
 		return "redirect:/index";
 		
 	}
+	
+	
 }
