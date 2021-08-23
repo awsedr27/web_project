@@ -38,25 +38,25 @@ public class BbsDAOImpl implements BbsDAO {
 	}
 
 	@Override
-	public BbsDTO getBbsView(int bbs_id) {
-		BbsDTO bbs=sqlSession.selectOne("mapper.getBbsView", bbs_id);
+	public BbsDTO getBbsView(int bbsId) {
+		BbsDTO bbs=sqlSession.selectOne("mapper.getBbsView", bbsId);
 		return bbs;
 	}
 
 	@Override
-	public void setBbsModify(String bbs_title, String bbs_contents,int bbs_id) {
+	public void setBbsModify(String bbsTitle, String bbsContents,int bbsId) {
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("bbs_title", bbs_title);
-		map.put("bbs_contents", bbs_contents);
-		map.put("bbs_id", bbs_id);
+		map.put("bbsTitle", bbsTitle);
+		map.put("bbsContents", bbsContents);
+		map.put("bbsId", bbsId);
 
 		sqlSession.update("mapper.setBbsModify", map);
 		
 	}
 
 	@Override
-	public void deleteBbs(int bbs_id) {
-		sqlSession.delete("mapper.deleteBbs", bbs_id);
+	public void deleteBbs(int bbsId) {
+		sqlSession.delete("mapper.deleteBbs", bbsId);
 		
 	}
 

@@ -5,41 +5,41 @@ import java.sql.Date;
 public class BbsDTO {
 	
 	private String memberId;
-	private int bbs_id;
-	private String bbs_title;
-	private Date bbs_time;
-	private String bbs_contents;
-	
+	private int bbsId;
+	private String bbsTitle;
+	private Date bbsTime;
+	private String bbsContents;
 	public String getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public int getBbs_id() {
-		return bbs_id;
+	public int getBbsId() {
+		return bbsId;
 	}
-	public void setBbs_id(int bbs_id) {
-		this.bbs_id = bbs_id;
+	public void setBbsId(int bbsId) {
+		this.bbsId = bbsId;
 	}
-	public String getBbs_title() {
-		return bbs_title;
+	public String getBbsTitle() {
+		return bbsTitle;
 	}
-	public void setBbs_title(String bbs_title) {
-		this.bbs_title = bbs_title;
+	public void setBbsTitle(String bbsTitle) {
+		this.bbsTitle = bbsTitle;
 	}
-	public Date getBbs_time() {
-		return bbs_time;
+	public Date getBbsTime() {
+		return bbsTime;
 	}
-	public void setBbs_time(Date bbs_time) {
-		this.bbs_time = bbs_time;
+	public void setBbsTime(Date bbsTime) {
+		this.bbsTime = bbsTime;
 	}
-	public String getBbs_contents() {
-		return bbs_contents;
+	public String getBbsContents() {
+		return bbsContents;
 	}
-	public void setBbs_contents(String bbs_contents) {
-		this.bbs_contents = bbs_contents;
+	public void setBbsContents(String bbsContents) {
+		this.bbsContents = bbsContents;
 	}
+	
 	
 	
 

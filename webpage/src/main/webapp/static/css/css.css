@@ -76,8 +76,9 @@ body{margin:0px}
     font-weight: bold;
     font-size: 18px;
 }
-.dropDown{
-	  
+#dropDownWrap a{
+	text-decoration: none;
+    color: black;
 }
 
 /*-------------아이템리스트 영역---------------*/
@@ -88,7 +89,7 @@ body{margin:0px}
 }
 .itemWrap{
 	width: 274px;
-	height: 320px;
+	height: 355px;
 	margin-bottom: 20px;
 	position: relative;
 }
@@ -110,21 +111,26 @@ body{margin:0px}
 	   visibility: hidden;
 	
 }
+.itemText{
+	display:inline-block;
 
-.itemText {
-	display: inline-block;
-	width: 135px;
+}
+
+.itemText>span{
+	font-size: 23px;
+    font-weight: 100;
+
 }
 
 .itemPrice {
-	display: inline-block;
-	width: 135px;
-	position: absolute;
+	
+}
+.itemPrice>span{
+	font-size: 28px;
+    font-weight: bold;
 }
 
-.itemPrice>p {
-	text-align-last: right;
-}
+
 /*------------------------------------*/
 /*------------footer------------------*/
 #footer {
@@ -242,7 +248,7 @@ body{margin:0px}
 	position: relative;
 	margin-left: 50px;
 	margin-bottom: 17px;
-	border-bottom-style: dotted;
+	    border-bottom: solid 1px #e0e0e0;
 }
 
 .itemViewText>.itemView {
@@ -255,6 +261,57 @@ body{margin:0px}
     margin-bottom: 10px;
 	
 }
+.review{
+	display:inline-block;
+}
+#reviewContents{
+	width: 540px;
+	text-align: center;
+	border-collapse: collapse;
+}
+#reviewContents th:nth-child(1){
+	
+	width: 60px;
+}
+#reviewContents th:nth-child(2){
+	
+	width: 270px;
+}
+#reviewContents th:nth-child(3){
+	    width: 91px;
+	
+}
+#reviewContents th:nth-child(4){
+	
+	    width: 85px;
+}
+#reviewContents tr{
+	border-bottom: solid 1px black;
+}
+#starReviewIconWrap{
+	display:inline-block;
+}
+#writeReviewWrap{
+	display: inline-block;
+    position: relative;
+    left: 50px;
+}
+#writeReview{
+	  
+	width: 300px;
+    border: none;
+    border-bottom: solid 1px #e0e0e0;
+    text-align:center;
+}
+#writeReviewBtn{
+	position: relative;
+    width: 90px;
+    left: 7px;
+    background: #f7c856;
+    border: solid 1px black;
+    font-family: Dotum,'돋움';
+}
+
 
 /*-------------장바구니 영역------------------*/
 #cartBtnWrap{
@@ -317,6 +374,9 @@ body{margin:0px}
     font-size: 15pt;
     font-weight: bold;
 }
+#orderInfo ul{
+	list-style: none;
+}
 
 /*------------아이콘---------------*/
 #iconNav{
@@ -360,6 +420,8 @@ body{margin:0px}
 .fa-shopping-basket{
 	    color: #dadada;
 }
+
+
 /*------------게시판----------------*/
 #bbsWrap a{
 	text-decoration: none;
@@ -384,8 +446,8 @@ body{margin:0px}
 	    width: 100px;
 	
 }
-#bbsTableWrap th,td{
-	border-bottom: solid 1px #e0e0e0;;
+#bbsTableWrap th,#bbsTableWrap td{
+	border-bottom: solid 1px #e0e0e0;
 	padding: 10px;
    
 }

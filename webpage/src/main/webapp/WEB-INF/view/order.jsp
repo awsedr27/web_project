@@ -81,21 +81,30 @@
 
 		</div>
 		
+		
+		
 		<div id="orderInfo">
-		<form action="/cart/order/payment">
+		<form action="/cart/order/payment" method="post">
 		<ul>
 		<li>주문자:<input type="text" name="orderName"></li>
 		<li>배송지:<input type="text" name="orderLocation"></li>
 		<li>받는분:<input type="text" name="orderRecipient"></li>
 		<li>배송 시 요청사항:<input type="text" name="orderRequest"></li>
-		<li>할인쿠폰</li>
-		<li>결제수단</li>
+		
+		<c:forEach var="cartItem" items="${cartList}" varStatus="status">
+		    <li><input type="hidden" name="orderItemList[${status.index}].itemId" value="${cartItem.itemId}"></li>
+		    <li><input type="hidden" name="orderItemList[${status.index}].itemName" value="${cartItem.itemName}"></li>
+		    <li><input type="hidden" name="orderItemList[${status.index}].itemPrice" value="${cartItem.itemPrice}"></li>
+		    <li><input type="hidden" name="orderItemList[${status.index}].discountNum" value="${cartItem.discountNum}"></li>
+		    <li><input type="hidden" name="orderItemList[${status.index}].discount" value="${cartItem.discount}"></li>
+		</c:forEach>
 		</ul>
+		<input type="submit" value="결제하기">
 		</form>
 		
 		</div>
 		
-		<div id="orderBtn"><button>결제하기</button></div>
+	
 		
 
 
@@ -129,7 +138,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/jquery.bxslider.js"></script>
-	<script src="/js/custom.js"></script>
 	<script src="/js/common.js"></script>
 </body>
 </html>

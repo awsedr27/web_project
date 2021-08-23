@@ -7,16 +7,16 @@ $(function(){
 	$("#dropDownBtn").on("click",function(){
 		if (checkBtn) {
 			$("#dropDownWrap").children("ul").css("display", "block");
-			$("#iconChevron").removeClass("fas fa-chevron-down");
-			$("#iconChevron").addClass("fas fa-chevron-up");
+			$("#iconChevronDown").removeClass("fas fa-chevron-down");
+			$("#iconChevronDown").addClass("fas fa-chevron-up");
 
 			
 			checkBtn = false;
 		} else 
 		{
 			$("#dropDownWrap").children("ul").css("display", "none");
-			$("#iconChevron").removeClass("fas fa-chevron-up");
-			$("#iconChevron").addClass("fas fa-chevron-down");
+			$("#iconChevronDown").removeClass("fas fa-chevron-up");
+			$("#iconChevronDown").addClass("fas fa-chevron-down");
 			
 			checkBtn = true;
 		}
@@ -31,10 +31,18 @@ $(function() {
 		if(document.getElementById("cartView")){
 			$("#cartViewOutSide").remove();
 			$("#cartView").remove();
+			$("#iconChevronLeft").removeClass("fas fa-chevron-right");
+			$("#iconChevronLeft").addClass("fas fa-chevron-left");
+			$("#cartBtn").css("position","");
+			$("#cartBtn").css("right","");
 			
 		}else{
 			$("body").prepend("<div id='cartView'></div>");
 			$("body").prepend("<div id='cartViewOutSide'></div>");
+			$("#iconChevronLeft").removeClass("fas fa-chevron-left");
+			$("#iconChevronLeft").addClass("fas fa-chevron-right");
+			$("#cartBtn").css("position","relative");
+			$("#cartBtn").css("right","984px");
 			cart();
 		}
 		
@@ -49,23 +57,26 @@ function cart() {
 		success: function(item) {
 			try {
 				$("#cartView").append("<div class='cartTableWrap'><table border='1'><tr><th class='cartTable'>이름</th><th class='cartTable'>가격</th><th class='cartTable'>인기도</th><th class='cartTable'>사진</th><th></th></table>")
-				for (step = 0; step < 6; step++) {
+				
+				$.each(item,function(index,item){
 					$(".cartTableWrap>table").append("<tr><td class='cartTable'>"
-						+ item[step].itemName + "</td>"
-						+"<td class='cartTable'>"
-						+ item[step].itemPrice + "</td>"
-						+"<td class='cartTable'>"
-						+ item[step].popularity + "</td>"
-						+"<td class='cartTable'>"
-						+ "<img src='" + item[step].itemUrl + "'>"
-						+ "</td>"
-						+"<td>"
-						+ "<button class='cartDelBtn' value='" + item[step].itemId + "'><i class='far fa-trash-alt'></i></button></td>");
-				}
+					+item.itemName+"</td>"
+					+"<td class='cartTable'>"
+					+item.itemPrice+ "</td>"
+					+"<td class='cartTable'>"
+					+item.popularity+ "</td>"
+					+"<td class='cartTable'>"
+					+ "<img src='" + item.itemUrl + "'>"
+					+ "</td>"
+					+"<td>"
+					+ "<button class='cartDelBtn' value='" + item.itemId + "'><i class='far fa-trash-alt'></i></button></td>")
+				})
+				
 
 
 
 			} catch (error) {
+				alert(error);
 
 			}
 		}

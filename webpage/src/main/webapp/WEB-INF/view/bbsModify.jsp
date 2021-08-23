@@ -67,11 +67,11 @@
 		
 			<div id="writeBbsWrap">
 			<form action="/bbs/modify_action" method="post">
-				<input type="text" name="bbs_title" value="${bbs.bbs_title}"></input>
-				<textarea name="bbs_contents">${bbs.bbs_contents}</textarea>
+				<input type="text" name="bbsTitle" value="${bbs.bbsTitle}"></input>
+				<textarea name="bbsContents">${bbs.bbsContents}</textarea>
 				<input type="submit"></input>
 				<input type="hidden" name="memberId" value="${bbs.memberId}">
-				<input type="hidden" name="bbs_id" value="${bbs.bbs_id}">
+				<input type="hidden" name="bbsId" value="${bbs.bbsId}">
 				
 				
 

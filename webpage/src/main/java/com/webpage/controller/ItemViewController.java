@@ -1,6 +1,11 @@
 package com.webpage.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.webpage.DAO.bbs.BbsDTO;
 import com.webpage.DAO.item.ItemDTO;
 import com.webpage.DAO.review.ReviewDTO;
 import com.webpage.service.item.ItemService;
@@ -25,7 +32,9 @@ public class ItemViewController {
 	
 	
 	@RequestMapping("/itemView")
-	public String itemViewController(Model model,@RequestParam(value="itemId",required = false) Integer itemId) {
+	public String itemViewController(HttpServletRequest request,Model model,@RequestParam(value="itemId",required = false) Integer itemId) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
 		
 		if(itemId==null) {
 			
@@ -33,15 +42,57 @@ public class ItemViewController {
 			return "redirect:/index";
 
 		}else {
+		if(memberId==null) {
+			ItemDTO itemView=itemService.getItemView(itemId);
+			 boolean writeReviewBtn=false;
+			model.addAttribute("itemView",itemView); 
+			model.addAttribute("writeBtnExist",writeReviewBtn); 
+			
+			return "itemView";
+			
+		}else {
+			ItemDTO itemView=itemService.getItemView(itemId);
+			 boolean writeReviewBtn=reviewService.getWriteReviewBtn(memberId,itemView.getItemId());
+			model.addAttribute("itemView",itemView); 
+			model.addAttribute("writeBtnExist",writeReviewBtn); 
+			
+			return "itemView";
 			
 			
-		ItemDTO itemView=itemService.getItemView(itemId);
-		List<ReviewDTO> review=reviewService.getReview(itemId);
-		model.addAttribute("itemView",itemView); 
-		model.addAttribute("review",review); 
-		
-		return "itemView";
 		}
+			
+	   
+		
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/review")
+	public List<ReviewDTO> Review(@RequestParam("itemId") int itemId) {
+		List<ReviewDTO> review=reviewService.getReview(itemId);
+		return review;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/writeReview")
+	public void writeReview(HttpServletRequest request,@RequestParam("reviewContents") String reviewContents,@RequestParam("writeReviewItemId") int writeReviewItemId,
+			@RequestParam("star") int star) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		
+		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+     	String dateString=dateFormat.format(new java.util.Date());
+		Date reviewTime=java.sql.Date.valueOf(dateString);
+		
+		ReviewDTO review=new ReviewDTO();
+		review.setMemberId(memberId);
+		review.setItemId(writeReviewItemId);
+		review.setContents(reviewContents);
+		review.setRating(star);
+		review.setReviewTime(reviewTime);
+		
+		reviewService.setReview(review);
+		
 	}
 
 }

@@ -70,10 +70,18 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	</select>
 	
 		<!-- 아이템뷰에 리뷰-->
+		<select id="getWriteReviewBtn" parameterType="Map" resultType="com.webpage.DAO.review.ReviewDTO">
+		select * from review where memberId=#{memberId} and itemId=#{itemId}
+		</select>
+		
     <select id="getReview"
 		resultType="com.webpage.DAO.review.ReviewDTO" parameterType="int">
 		select * from review where itemId=#{itemId}
 	</select>
+	<insert id="setReview" parameterType="com.webpage.DAO.review.ReviewDTO">
+	INSERT INTO homeshop.review (`memberId`, `itemId`, `contents`, `rating`, `reviewTime`) VALUES (#{memberId},#{itemId},#{contents},#{rating},#{reviewTime});
+	
+	</insert>
 	
 	<!-- 장바구니 -->
 	
@@ -98,7 +106,7 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	<!-- 게시판  -->
 	<select id="getBbs"
 		resultType="com.webpage.DAO.bbs.BbsDTO" parameterType="Int">
-		select *from bbs order by bbs_id DESC limit #{bbsNum},10
+		select *from bbs order by bbsId DESC limit #{bbsNum},10
 	</select>
 	
 	<select id="getPageCnt"
@@ -109,24 +117,53 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	<select id="setBbs"
 		 parameterType="com.webpage.DAO.bbs.BbsDTO">
 		 INSERT INTO homeshop.bbs
-(memberId, bbs_id, bbs_title, bbs_time, bbs_contents)
-values (${memberId},(select ifnull(max(bbs_id)+1,1)from bbs as b),'${bbs_title}','${bbs_time}','${bbs_contents}');
+(memberId, bbsId, bbsTitle, bbsTime, bbsContents)
+values (${memberId},(select ifnull(max(bbsId)+1,1)from bbs as b),'${bbsTitle}','${bbsTime}','${bbsContents}');
 
 	</select>
 	
 	<select id="getBbsView"
 		resultType="com.webpage.DAO.bbs.BbsDTO" parameterType="Int">
-		select * from bbs where bbs_id=#{bbs_id}
+		select * from bbs where bbsId=#{bbsId}
 	</select>
 	
 	<select id="setBbsModify"
 		 parameterType="Map">
-UPDATE homeshop.bbs SET bbs_title = #{bbs_title},bbs_contents=#{bbs_contents} WHERE (bbs_id = #{bbs_id});
+UPDATE homeshop.bbs SET bbsTitle = #{bbsTitle},bbsContents=#{bbsContents} WHERE (bbsId = #{bbsId});
 	</select>
 	
 	<select id="deleteBbs"
 		 parameterType="Int">
-		DELETE FROM homeshop.bbs WHERE (bbs_id = #{bbs_id});
+		DELETE FROM homeshop.bbs WHERE (bbsId = #{bbsId});
 
 	</select>
+	
+<!-- 주문  -->
+	<insert id="setOrderInfo"
+		parameterType="com.webpage.DAO.orderInfo.OrderInfoDTO">
+		INSERT INTO homeshop.orderInfo
+		(orderId,memberId,orderName,orderLocation,orderRecipient,orderRequest)
+		values ((select ifnull(max(orderId)+1,1)from orderInfo as
+		o),#{memberId},#{orderName},#{orderLocation},#{orderRecipient},#{orderRequest});
+
+	</insert>
+	<select id="getOrderId" resultType="Int">
+	select max(orderId)from orderInfo; 
+	</select>
+	
+	<select id="getOrderInfo" resultType="com.webpage.DAO.orderInfo.OrderInfoDTO">
+	select *from orderInfo; 
+	</select>
+	
+	<insert id="setOrderItem"
+		parameterType="com.webpage.DAO.orderItem.OrderItemDTO">
+		INSERT INTO homeshop.orderItem
+		(orderId, memberId, itemId, itemName,
+		itemPrice,discountNum,discount,orderItemIndex)
+		values (#{orderId},#{memberId},#{itemId},#{itemName},#{itemPrice},#{discountNum},#{discount},(select ifnull(max(orderItemIndex)+1,1)from orderItem as
+		oi));
+
+	</insert>
+	
+	
 </mapper>

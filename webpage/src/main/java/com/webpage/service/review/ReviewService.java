@@ -8,4 +8,8 @@ public interface ReviewService {
 
 	List<ReviewDTO> getReview(int itemId);
 
+	void setReview(ReviewDTO review);
+
+	boolean getWriteReviewBtn(String memberId, int itemId);
+
 }

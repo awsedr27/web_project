@@ -64,20 +64,20 @@
 		</div>
 
 		<div id="bbsViewWrap">
-		    <div id="bbsTitle">${bbsView.bbs_title}</div>
+		    <div id="bbsTitle">${bbsView.bbsTitle}</div>
 			<div id="bbsMemberId">${bbsView.memberId}</div>
-			<div id="bbsTime">${bbsView.bbs_time}</div>
+			<div id="bbsTime">${bbsView.bbsTime}</div>
 
 			
 
-			<div id="bbsContents">${bbsView.bbs_contents}</div>
+			<div id="bbsContents">${bbsView.bbsContents}</div>
 
 			<button>
-				<a href="/bbs/modify?bbs_id=${bbsView.bbs_id}">수정하기</a>
+				<a href="/bbs/modify?bbsId=${bbsView.bbsId}">수정하기</a>
 			</button>
 			<button>
 				<a
-					href="/bbs/delete?bbs_id=${bbsView.bbs_id}&memberId=${bbsView.memberId}">삭제하기</a>
+					href="/bbs/delete?bbsId=${bbsView.bbsId}&memberId=${bbsView.memberId}">삭제하기</a>
 			</button>
 
 		</div>

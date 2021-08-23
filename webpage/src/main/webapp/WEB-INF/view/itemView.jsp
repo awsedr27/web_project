@@ -15,6 +15,7 @@
 
 </head>
 <body>
+
 <div id="wrap">
 		<div id="header">
 			<h2>홈쇼핑</h2>
@@ -74,10 +75,15 @@
 		<div class="itemViewText"><h1>${itemView.itemName}</h1></div>
 		<div class="itemViewText"><b>판매가</b>  <div class="itemView">${itemView.itemPrice}원</div></div>
 		<div class="itemViewText"><b>상품설명</b> <div class="itemView">${itemView.itemText}</div></div>
+		<c:if test="${itemView.discount eq true}">
+		<div class="itemViewText"><b>할인가</b>  <div class="itemView">-${itemView.discountNum}원</div></div>
+		</c:if>
+		<div class="itemViewText"><b>추천점수(한사람당 1~5)</b>  <div class="itemView">${itemView.popularity}점</div></div>
 		<div class="itemViewText"><b>배송지</b>  <div class="itemView"></div></div>
 		<div class="itemViewText"><b>배송비</b>  <div class="itemView">5000원</div></div>
-		<div class="itemViewText"><b>made in</b>  <div class="itemView"></div></div>
-		<div class="itemViewText"><b>카드적립</b><div class="itemView"></div></div>
+		
+		<input type="hidden" value="${itemView.itemId}" id="itemIdInput">
+		
 		</div>
 		<div id="itemViewBtn">
 		<button id="itemPutBtn" onclick="location.href='/cartPut?itemId=${itemView.itemId}'">장바구니</button>
@@ -86,24 +92,20 @@
 
 			<div id="reviewWrap">
 				<div class="review">
-					<table border="1">
-						<tr>
-							<th>아이디</th>
-							<th>리뷰내용</th>
-							<th>별점</th>
-							<th>입력날짜</th>
-						</tr>
-						<c:forEach var="review" items="${review}">
-						<tr>
-							<td>${review.memberId}</td>
-							<td>${review.contents}</td>
-							<td>${review.rating}</td>
-							<td>${review.reviewTime}</td>
-						</tr>
-						</c:forEach>
 
-					</table>
+
+
+					<div class="reviewContentsWrap">
+						
+
+					</div>
+
+
+					<input type="hidden" id="writeBtnExist" value="${writeBtnExist}">
+
+
 				</div>
+				
 			</div>
 
 
@@ -127,6 +129,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/common.js"></script>
+	<script src="/js/review.js"></script>
 	
 </body>
 </html>

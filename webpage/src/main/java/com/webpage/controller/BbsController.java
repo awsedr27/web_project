@@ -49,7 +49,7 @@ public class BbsController {
 	}
 	
 	@RequestMapping("bbs/put")
-	public String bbsPut(HttpServletRequest request,@RequestParam("bbs_title") String bbs_title,@RequestParam("bbs_contents") String bbs_contents) {
+	public String bbsPut(HttpServletRequest request,@RequestParam("bbsTitle") String bbsTitle,@RequestParam("bbsContents") String bbsContents) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		if(memberId==null) {
@@ -57,12 +57,12 @@ public class BbsController {
 		}
 		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
      	String dateString=dateFormat.format(new java.util.Date());
-		Date bbs_time=java.sql.Date.valueOf(dateString);
+		Date bbsTime=java.sql.Date.valueOf(dateString);
 		BbsDTO bbsDTO=new BbsDTO();
 		bbsDTO.setMemberId(memberId);
-		bbsDTO.setBbs_title(bbs_title);
-		bbsDTO.setBbs_contents(bbs_contents);
-		bbsDTO.setBbs_time(bbs_time);
+		bbsDTO.setBbsTitle(bbsTitle);
+		bbsDTO.setBbsContents(bbsContents);
+		bbsDTO.setBbsTime(bbsTime);
 		
 		bbsService.setBbs(bbsDTO);
 		
@@ -71,28 +71,28 @@ public class BbsController {
 	}
 	
 	@RequestMapping("bbs/view")
-	public String bbsView(Model model,@RequestParam("bbs_id") int bbs_id) {
-		BbsDTO bbs = bbsService.getBbsView(bbs_id);
+	public String bbsView(Model model,@RequestParam("bbsId") int bbsId) {
+		BbsDTO bbs = bbsService.getBbsView(bbsId);
 		model.addAttribute("bbsView", bbs);
 		
 		return "bbsView";
 	}
 	
 	@RequestMapping("bbs/modify")
-	public String bbsModify(Model model,@RequestParam("bbs_id") int bbs_id) {
-		BbsDTO bbs = bbsService.getBbsView(bbs_id);
+	public String bbsModify(Model model,@RequestParam("bbsId") int bbsId) {
+		BbsDTO bbs = bbsService.getBbsView(bbsId);
 		model.addAttribute("bbs", bbs);
 		
 		return "bbsModify";
 	}
 	
 	@RequestMapping("/bbs/modify_action")
-	public String bbsModify_Action(HttpServletRequest request,@RequestParam("bbs_id") int bbs_id, @RequestParam("bbs_title") String bbs_title,
-			@RequestParam("bbs_contents") String bbs_contents,@RequestParam("memberId") String memberId) {
+	public String bbsModify_Action(HttpServletRequest request,@RequestParam("bbsId") int bbsId, @RequestParam("bbsTitle") String bbsTitle,
+			@RequestParam("bbsContents") String bbs_contents,@RequestParam("memberId") String memberId) {
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("memberId");
 		if(userId.equals(memberId)) {
-			bbsService.setBbsModify(bbs_title,bbs_contents,bbs_id);
+			bbsService.setBbsModify(bbsTitle,bbs_contents,bbsId);
 			return "redirect:/bbs";
 		}else {
 			return "redirect:/bbs";
@@ -103,12 +103,12 @@ public class BbsController {
 	}
 	
 	@RequestMapping("bbs/delete")
-	public String bbsDelete(HttpServletRequest request,@RequestParam("bbs_id") int bbs_id,@RequestParam("memberId") String memberId) {
+	public String bbsDelete(HttpServletRequest request,@RequestParam("bbsId") int bbsId,@RequestParam("memberId") String memberId) {
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("memberId");
 		
 		if(userId.equals(memberId)) {
-			bbsService.deleteBbs(bbs_id);
+			bbsService.deleteBbs(bbsId);
 			return "redirect:/bbs";
 		}
 		else {

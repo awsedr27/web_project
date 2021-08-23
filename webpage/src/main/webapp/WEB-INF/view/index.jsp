@@ -42,13 +42,13 @@
 			</ul>
 			<div id="dropDownWrap">
 				<button id="dropDownBtn">
-					내 쇼핑<i class="fas fa-chevron-down" id="iconChevron"></i>
+					내 쇼핑<i class="fas fa-chevron-down" id="iconChevronDown"></i>
 				</button>
 
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-					    	<li class="dropDown"><a href="">주문하기</a></li>
+					    	<li class="dropDown"><a href="/cart/order">주문하기</a></li>
 							<li class="dropDown"><a href="">장바구니</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
@@ -56,7 +56,7 @@
 
 					<c:otherwise>
 						<ul>
-							<li><a>로그인하세요</a></li>
+							<li><a href="/signIn">로그인</a></li>
 						</ul>
 					</c:otherwise>
 
@@ -97,11 +97,11 @@
 					</div>
 
 					<div class="itemText">
-						<h2>${item.itemText}</h2>
+						<span>${item.itemText}</span>
 					</div>
 					
 					<div class="itemPrice">
-						<p>${item.itemPrice}</p>
+						<span>${item.itemPrice}원</span>
 					</div>
 					
 					<div class="itemId">${item.itemId}
@@ -112,7 +112,7 @@
 		</div>
 		
 		<div id="cartBtnWrap">
-		<button id="cartBtn">사이드버튼</button>
+		<button id="cartBtn"><i id="iconChevronLeft" class="fas fa-chevron-left"></i></button>
 		</div>
 
 

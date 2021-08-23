@@ -76,10 +76,10 @@
 					<c:forEach var="bbs" items="${bbsList}">
 
 						<tr>
-							<td>${bbs.bbs_id}</td>
-							<td><a href="/bbs/view?bbs_id=${bbs.bbs_id}">${bbs.bbs_title}</a></td>
+							<td>${bbs.bbsId}</td>
+							<td><a href="/bbs/view?bbsId=${bbs.bbsId}">${bbs.bbsTitle}</a></td>
 							<td>${bbs.memberId}</td>
-							<td>${bbs.bbs_time}</td>
+							<td>${bbs.bbsTime}</td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -11,7 +11,7 @@ public class ItemDTO {
 	private int discountNum;
 	private int popularity;
 	private String category;
-	
+	private int remainder;
 	
 	
 	
@@ -68,6 +68,12 @@ public class ItemDTO {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public int getRemainder() {
+		return remainder;
+	}
+	public void setRemainder(int remainder) {
+		this.remainder = remainder;
 	}
 	
 	

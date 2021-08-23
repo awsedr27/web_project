@@ -1,6 +1,8 @@
 package com.webpage.DAO.review;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,29 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return review;
 		
 		
+	}
+
+	@Override
+	public void setReview(ReviewDTO review) {
+		sqlSession.insert("mapper.setReview", review);
+		
+	}
+
+	@Override
+	public boolean getWriteReviewBtn(String memberId,int itemId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("itemId", itemId);
+		
+		ReviewDTO writeReviewBtn=sqlSession.selectOne("mapper.getWriteReviewBtn", map);
+		
+		if(writeReviewBtn==null) {
+			return true;
+			
+		}else {
+			return false;
+		}
+	
 	}
 
 }

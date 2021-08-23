@@ -53,8 +53,8 @@ function next_page() {
 			
 			for (step = 0; step < 6; step++){
 			$("#itemListWrap").append("<div class='itemWrap'><div class='itemImgWrap'><a href='/itemView?itemId="+item[step].itemId+"'><img class='itemImg' src='" +
-			 item[step].itemUrl +"'></a><div class='itemIcon'><a href='cartPut?itemId="+item[step].itemId+"'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemText'><h2>"+item[step].itemText+"</h2></div>"+
-		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
+			 item[step].itemUrl +"'></a><div class='itemIcon'><a href='cartPut?itemId="+item[step].itemId+"'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemText'><span>"+item[step].itemText+"</span></div>"+
+		"<div class='itemPrice'><span>"+item[step].itemPrice+"원</span></div>")
 		}
 		lastIdNum=item[5].itemId;
 		startAjax=true;
@@ -81,8 +81,8 @@ function next_page_category() {
 	
 			for (step = 0; step < 6; step++){
 			$("#itemListWrap").append("<div class='itemWrap'><div class='itemImgWrap'><a href='/itemView?itemId="+item[step].itemId+"'><img class='itemImg' src='" +
-			 item[step].itemUrl +"'></a><div class='itemIcon'><a href='/cartPut?itemId="+item[step].itemId+"'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemText'>"+item[step].itemText+"</div>"+
-		"<div class='itemPrice'><p>"+item[step].itemPrice+"</p></div>")
+			 item[step].itemUrl +"'></a><div class='itemIcon'><a href='/cartPut?itemId="+item[step].itemId+"'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemText'><span>"+item[step].itemText+"</span></div>"+
+		"<div class='itemPrice'><span>"+item[step].itemPrice+"원</span></div>")
 		}
 		lastIdNum=item[5].itemId;
 		 startAjax=true;

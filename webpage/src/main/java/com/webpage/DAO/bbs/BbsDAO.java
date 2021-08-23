@@ -10,10 +10,10 @@ public interface BbsDAO {
 
 	void setBbs(BbsDTO bbsDTO);
 
-	BbsDTO getBbsView(int bbs_id);
+	BbsDTO getBbsView(int bbsId);
 
-	void setBbsModify(String bbs_title, String bbs_contents, int bbs_id);
+	void setBbsModify(String bbsTitle, String bbsContents, int bbsId);
 
-	void deleteBbs(int bbs_id);
+	void deleteBbs(int bbsId);
 
 }

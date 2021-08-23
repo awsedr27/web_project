@@ -32,20 +32,20 @@ public class BbsServiceImpl implements BbsService {
 	}
 
 	@Override
-	public BbsDTO getBbsView(int bbs_id) {
-		BbsDTO bbs=bbsDAO.getBbsView(bbs_id);
+	public BbsDTO getBbsView(int bbsId) {
+		BbsDTO bbs=bbsDAO.getBbsView(bbsId);
 		return bbs;
 	}
 
 	@Override
-	public void setBbsModify(String bbs_title, String bbs_contents,int bbs_id) {
-		bbsDAO.setBbsModify(bbs_title,bbs_contents,bbs_id);
+	public void setBbsModify(String bbsTitle, String bbsContents,int bbsId) {
+		bbsDAO.setBbsModify(bbsTitle,bbsContents,bbsId);
 		
 	}
 
 	@Override
-	public void deleteBbs(int bbs_id) {
-		bbsDAO.deleteBbs(bbs_id);
+	public void deleteBbs(int bbsId) {
+		bbsDAO.deleteBbs(bbsId);
 		
 	}
 

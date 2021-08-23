@@ -65,8 +65,8 @@
 
 		<div id="writeBbsWrap">
 			<form action="/bbs/put" method="post">
-				<input type="text" name="bbs_title" placeholder="제목입력하세요"></input>
-				<textarea name="bbs_contents" placeholder="글을 입력하세요(100자)"></textarea>
+				<input type="text" name="bbsTitle" placeholder="제목입력하세요"></input>
+				<textarea name="bbsContents" placeholder="글을 입력하세요(100자)"></textarea>
 				<input type="submit"></input>
 				
 

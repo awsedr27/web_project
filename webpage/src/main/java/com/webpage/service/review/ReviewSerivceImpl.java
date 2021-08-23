@@ -22,4 +22,18 @@ public class ReviewSerivceImpl implements ReviewService {
 		return review;
 	}
 
+
+	@Override
+	public void setReview(ReviewDTO review) {
+		reviewDAO.setReview(review);
+		
+	}
+
+
+	@Override
+	public boolean getWriteReviewBtn(String memberId,int itemId) {
+		boolean writeReviewBtn=reviewDAO.getWriteReviewBtn(memberId,itemId);
+		return writeReviewBtn;
+	}
+
 }

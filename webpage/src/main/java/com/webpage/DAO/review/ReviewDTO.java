@@ -2,12 +2,15 @@ package com.webpage.DAO.review;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ReviewDTO {
 	
 	private String memberId;
-	private String itemId;
+	private int itemId;
 	private String contents;
 	private int rating;
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private Date reviewTime;
 	public String getMemberId() {
 		return memberId;
@@ -15,10 +18,10 @@ public class ReviewDTO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getItemId() {
+	public int getItemId() {
 		return itemId;
 	}
-	public void setItemId(String itemId) {
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 	public String getContents() {
