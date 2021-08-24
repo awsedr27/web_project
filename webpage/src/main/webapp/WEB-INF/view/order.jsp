@@ -97,6 +97,8 @@
 		    <li><input type="hidden" name="orderItemList[${status.index}].itemPrice" value="${cartItem.itemPrice}"></li>
 		    <li><input type="hidden" name="orderItemList[${status.index}].discountNum" value="${cartItem.discountNum}"></li>
 		    <li><input type="hidden" name="orderItemList[${status.index}].discount" value="${cartItem.discount}"></li>
+		    <li><input type="hidden" name="orderItemList[${status.index}].quantity" value="${cartItem.quantity}"></li>
+		    
 		</c:forEach>
 		</ul>
 		<input type="submit" value="결제하기">

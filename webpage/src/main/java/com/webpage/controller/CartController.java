@@ -34,6 +34,9 @@ public class CartController {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		List<CartDTO> list=cartService.getCartAjaxService(memberId);
+		
+		
+		
 		model.addAttribute("cartList", list);
 		
 		return "cart";
@@ -59,9 +62,9 @@ public class CartController {
 		
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping("/cartPut")
-	public String cartPut(@RequestParam("itemId") int itemId,HttpServletRequest request){
+	public void cartPut(@RequestParam(value = "quantity",required = false,defaultValue = "1") int quantity,@RequestParam(value = "itemId") int itemId,HttpServletRequest request){
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		ItemDTO item=itemService.getItemView(itemId);
@@ -75,10 +78,11 @@ public class CartController {
 		cart.setDiscount(item.isDiscount());
 		cart.setPopularity(item.getPopularity());
 		cart.setCategory(item.getCategory());
+		cart.setQuantity(quantity);
 		
 		cartService.setCartService(cart);
 		
-		return "redirect:/index";
+		
 		
 	}
 	

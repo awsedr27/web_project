@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.webpage.DAO.cart.CartDAO;
 import com.webpage.DAO.cart.CartDTO;
+import com.webpage.DAO.item.ItemDAO;
 import com.webpage.DAO.orderInfo.OrderInfoDAO;
 import com.webpage.DAO.orderInfo.OrderInfoDTO;
 import com.webpage.DAO.orderItem.OrderItemDAO;
@@ -23,6 +24,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	OrderItemDAO orderItemDAO;
+	
+	@Autowired
+	ItemDAO itemDAO;
 
 	@Override
 	public List<CartDTO> readCartOrderService(String memberId) {
@@ -36,6 +40,10 @@ public class OrderServiceImpl implements OrderService {
 		
 		int orderId=orderInfoDAO.setOrderInfo(orderInfo);
 		orderItemDAO.setOrderItem(orderInfo,orderId);
+		itemDAO.setRemainder(orderInfo);
+		cartDAO.setDeleteAllCart(orderInfo);
+		
+		
 	
 	
 		

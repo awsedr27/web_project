@@ -48,4 +48,16 @@ public class ItemServiceImpl implements ItemService {
 		return item;
 	}
 
+	@Override
+	public List<ItemDTO> getHotItem() {
+		List<ItemDTO> item = itemDAO.getHotItem();
+		return item;
+	}
+
+	@Override
+	public List<ItemDTO> getDiscountItem() {
+		List<ItemDTO> item = itemDAO.getDiscountItem();
+		return item;
+	}
+
 }

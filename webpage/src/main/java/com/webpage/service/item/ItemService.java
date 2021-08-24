@@ -10,6 +10,8 @@ public interface ItemService {
 	ItemDTO getItemView(int itemId);
 	List<ItemDTO> getCategory(String category);
 	List<ItemDTO> getCategoryItemAjaxService(int lastIdNum, String category);
+	List<ItemDTO> getHotItem();
+	List<ItemDTO> getDiscountItem();
 
 
 }

@@ -66,25 +66,36 @@
 
 
 		</div>
-		
+
 		<div id="myInfoWrap">
-		<div>${memberInfo.memberId}</div>
-		<div>${memberInfo.birthday}</div>
-		<div>${memberInfo.phoneNum}</div>
-		<div>${memberInfo.email}</div>
-		<div>${memberInfo.houseLocation}</div>
-		<button><a href="/myInfo/modify?mode=myInfo">수정하기</a></button>
-		<button><a href="/myInfo/modify?mode=modifyPassword">비밀번호변경</a></button>
-		
+			<div id="myInfoText">
+				<div>아이디 : ${memberInfo.memberId}</div>
+				<div>생일 : ${memberInfo.birthday}</div>
+				<div>전화번호 : ${memberInfo.phoneNum}</div>
+				<div>이메일 : ${memberInfo.email}</div>
+				<div>집주소 : ${memberInfo.houseLocation}</div>
+			</div>
+			<div id="myInfoBtn">
+				<button>
+					<a href="/myInfo/modify?mode=myInfo">수정하기</a>
+				</button>
+				<button>
+					<a href="/myInfo/modify?mode=modifyPassword">비밀번호변경</a>
+				</button>
+			</div>
+			
+			<div>내가 쓴 글 구역</div>
+
+
 		</div>
-		
 
 
-		
 
-		
-		
-		
+
+
+
+
+
 
 
 		<div id="footer">

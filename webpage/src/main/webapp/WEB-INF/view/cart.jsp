@@ -24,7 +24,7 @@
 		<div id="iconNav">
 			<div id="iconWrap">
 				<a href="/signIn"><i class="fas fa-power-off" id="iconPower"></i></a>
-				<a href=""><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
+				<a href="/myInfo"><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
 					class="fas fa-shopping-cart" id="iconCart"></i></a>
 			</div>
 		</div>
@@ -37,30 +37,34 @@
 				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
 				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
-				<li class="navLi"><a href="/category?category=clothing">서비스</a></li>
+				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
 			<div id="dropDownWrap">
 				<button id="dropDownBtn">
-					내 쇼핑<i class="fas fa-chevron-down" id="iconChevron"></i>
+					내 쇼핑<i class="fas fa-chevron-down" id="iconChevronDown"></i>
 				</button>
 
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-							<li class="dropDown"><a href="">서비스</a></li>
-							<li class="dropDown"><a href="">서비스</a></li>
+					    	<li class="dropDown"><a href="/order">주문하기</a></li>
+							<li class="dropDown"><a href="">장바구니</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
 					</c:when>
 
 					<c:otherwise>
 						<ul>
-							<li><a>로그인하세요</a></li>
+							<li><a href="/signIn">로그인</a></li>
 						</ul>
 					</c:otherwise>
+
 				</c:choose>
+
 			</div>
+
+
 		</div>
 
 		<div class="cartTableWrap">
@@ -69,10 +73,12 @@
 					<table border="1">
 
 						<tr>
-							<th class="cartTable">이름</th>
-							<th class="cartTable">가격</th>
-							<th class="cartTable">인기도</th>
-							<th class="cartTable">사진</th>
+							<th>이름</th>
+							<th>가격</th>
+							<th>할인</th>
+							<th>사진</th>
+							<th>개수</th>
+							
 							<td></td>
 						</tr>
 
@@ -81,10 +87,19 @@
 
 
 							<tr>
-								<td class="cartTable">${cartItem.itemName}</td>
-								<td class="cartTable">${cartItem.itemPrice}</td>
-								<td class="cartTable">${cartItem.popularity}</td>
-								<td class="cartTable"><img src="${cartItem.itemUrl}"></td>
+								<td>${cartItem.itemName}</td>
+								<td><span class="cartTableItemPrice">${cartItem.itemPrice}</span>원</td>
+								<c:choose>
+								<c:when test="${cartItem.discount eq true}">
+								<td>-<span class="cartTableItemDiscount">${cartItem.discountNum}</span>원</td>
+								</c:when>
+								<c:otherwise>
+								<td>-<span class="cartTableItemDiscount">0</span>원</td>
+								</c:otherwise>
+								</c:choose>
+								<td><img src="${cartItem.itemUrl}"></td>
+								<td><div class="itemId">${cartItem.itemId}</div><button class="cartQuantityMiusBtn">-</button><span class="cartQuantity">${cartItem.quantity}</span><button class="cartQuantityPlusBtn">+</button></td>
+								
 								<td><div>
 										<button class="cartDelBtn" value="${cartItem.itemId}">
 											<i class="far fa-trash-alt"></i>
@@ -94,6 +109,16 @@
 
 						</c:forEach>
 					</table>
+					<div id="cartTextWrap">
+					<div>총 주문금액</div>
+					<span id="cartPriceSum">${cartSum}</span>원
+					<div>할인 금액</div>
+					-<span id="cartPriceDiscountSum">${cartDiscountSum}</span>원
+					
+					<div>예상결제금액</div>
+					<span id="cartAllPriceSum"></span>원
+					
+					</div>
        
 
 				</c:when>

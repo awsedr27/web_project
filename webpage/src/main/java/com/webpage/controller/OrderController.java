@@ -21,13 +21,18 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	
-	@RequestMapping("/cart/order")
+	@RequestMapping("/order")
 	public String order(HttpServletRequest request,Model model) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		List<CartDTO> list=orderService.readCartOrderService(memberId);
 		model.addAttribute("cartList", list);
 		return "order";
+	}
+	
+	@RequestMapping("/cart/order")
+	public String cartOrder() {
+		return "";
 	}
 	
 	@RequestMapping("/cart/order/payment")

@@ -24,8 +24,8 @@
 		<div id="iconNav">
 			<div id="iconWrap">
 				<a href="/signIn"><i class="fas fa-power-off" id="iconPower"></i></a>
-				<a href=""><i class="far fa-user" id="iconUser"></i></a> <a
-					href="/cart"><i class="fas fa-shopping-cart" id="iconCart"></i></a>
+				<a href="/myInfo"><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
+					class="fas fa-shopping-cart" id="iconCart"></i></a>
 			</div>
 		</div>
 
@@ -37,30 +37,34 @@
 				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
 				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
-				<li class="navLi"><a href="/category?category=clothing">서비스</a></li>
+				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
 			<div id="dropDownWrap">
 				<button id="dropDownBtn">
-					내 쇼핑<i class="fas fa-chevron-down" id="iconChevron"></i>
+					내 쇼핑<i class="fas fa-chevron-down" id="iconChevronDown"></i>
 				</button>
 
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-							<li class="dropDown"><a href="">서비스</a></li>
-							<li class="dropDown"><a href="">서비스</a></li>
+					    	<li class="dropDown"><a href="/order">주문하기</a></li>
+							<li class="dropDown"><a href="">장바구니</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
 					</c:when>
 
 					<c:otherwise>
 						<ul>
-							<li><a>로그인하세요</a></li>
+							<li><a href="/signIn">로그인</a></li>
 						</ul>
 					</c:otherwise>
+
 				</c:choose>
+
 			</div>
+
+
 		</div>
 
 		<div id="bbsViewWrap">

@@ -38,6 +38,21 @@
 		item where itemId>#{lastIdNum} and category=#{category} order by itemId limit 6
 	</select>
 	
+	<update id="setRemainder" parameterType="com.webpage.DAO.orderItem.OrderItemDTO">
+	UPDATE `homeshop`.`item` SET `remainder` =remainder-#{quantity} WHERE (`itemId` = #{itemId});
+	
+	</update>
+	
+	<select id="getHotItem"
+		resultType="com.webpage.DAO.item.ItemDTO">
+	select * from item order by popularity desc;
+	</select>
+	
+	<select id="getDiscountItem"
+		resultType="com.webpage.DAO.item.ItemDTO">
+	select * from item order by discountNum desc;
+	</select>
+	
 	<!-- 회원 매퍼-->
 	<select id="setMember" parameterType="com.webpage.DAO.member.MemberDTO">
 	INSERT INTO homeshop.memberinfo (`memberId`, `memberPassword`, `birthday`, `phoneNum`, `email`,`houseLocation`) VALUES (#{memberId}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email},#{houseLocation});
@@ -93,15 +108,30 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	<select id="setCart"
 	parameterType="com.webpage.DAO.cart.CartDTO">
 	INSERT INTO homeshop.cart (`memberId`, `itemId`, `itemUrl`, `itemName`,
-	`itemPrice`, `discountNum`, `discount`, `popularity`, `category`)
-	VALUES (#{memberId}, #{itemId}, #{itemUrl}, #{itemName}, #{itemPrice}, #{discountNum}, #{discount},#{popularity},#{category});
+	`itemPrice`, `discountNum`, `discount`, `popularity`, `category`, `quantity`)
+	VALUES (#{memberId}, #{itemId}, #{itemUrl}, #{itemName}, #{itemPrice}, #{discountNum}, #{discount},#{popularity},#{category},#{quantity});
 
     </select>
 	
-	<select id="deleteCart"
+	<delete id="deleteCart"
 		 parameterType="Map">
 		DELETE FROM homeshop.cart WHERE (memberId =#{memberId}) and (itemId =#{itemId});
+	</delete>
+	
+	<delete id="deleteAllCart"
+		 parameterType="String">
+		DELETE FROM homeshop.cart WHERE memberId=#{memberId};
+	</delete>
+	
+	<select id="checkCart"
+		resultType="com.webpage.DAO.cart.CartDTO" parameterType="com.webpage.DAO.cart.CartDTO">
+		select * from cart where memberId=#{memberId} and itemId=#{itemId}
 	</select>
+	
+	<update id="updateCart" parameterType="com.webpage.DAO.cart.CartDTO">
+	UPDATE homeshop.cart SET `quantity` = #{quantity} WHERE (`memberId` = #{memberId}) and (`itemId` = #{itemId});
+	
+	</update>
 	
 	<!-- 게시판  -->
 	<select id="getBbs"
@@ -159,9 +189,9 @@ UPDATE homeshop.bbs SET bbsTitle = #{bbsTitle},bbsContents=#{bbsContents} WHERE 
 		parameterType="com.webpage.DAO.orderItem.OrderItemDTO">
 		INSERT INTO homeshop.orderItem
 		(orderId, memberId, itemId, itemName,
-		itemPrice,discountNum,discount,orderItemIndex)
+		itemPrice,discountNum,discount,orderItemIndex,quantity)
 		values (#{orderId},#{memberId},#{itemId},#{itemName},#{itemPrice},#{discountNum},#{discount},(select ifnull(max(orderItemIndex)+1,1)from orderItem as
-		oi));
+		oi),#{quantity});
 
 	</insert>
 	

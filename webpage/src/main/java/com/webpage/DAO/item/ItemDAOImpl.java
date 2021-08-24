@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.webpage.DAO.orderInfo.OrderInfoDTO;
+
 @Repository
 public class ItemDAOImpl implements ItemDAO {
 
@@ -18,9 +20,6 @@ public class ItemDAOImpl implements ItemDAO {
 	public List<ItemDTO> getItemDAO() {
 		List<ItemDTO> listDAO=sqlSession.selectList("mapper.getLimitItem");
 		return listDAO;
-		
-	
-
 }
 
 	@Override
@@ -54,6 +53,26 @@ public class ItemDAOImpl implements ItemDAO {
 		
 		List<ItemDTO> listDAO=sqlSession.selectList("mapper.getCategoryAjaxItem",map);
 		return listDAO;
+	}
+
+	@Override
+	public void setRemainder(OrderInfoDTO orderInfo) {
+		for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
+
+		sqlSession.selectOne("mapper.setRemainder",orderInfo.getOrderItemList().get(i));
+		}
+	}
+
+	@Override
+	public List<ItemDTO> getHotItem() {
+		List<ItemDTO> list=sqlSession.selectList("mapper.getHotItem");
+		return list;
+	}
+
+	@Override
+	public List<ItemDTO> getDiscountItem() {
+		List<ItemDTO> list=sqlSession.selectList("mapper.getDiscountItem");
+		return list;
 	}
 
 }

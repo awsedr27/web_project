@@ -8,7 +8,7 @@ public class OrderItemDTO {
 	private int itemPrice;
 	private int discountNum;
 	private boolean discount;
-	
+	private int quantity;
 	
 	public int getOrderId() {
 		return orderId;
@@ -51,6 +51,12 @@ public class OrderItemDTO {
 	}
 	public void setDiscount(boolean discount) {
 		this.discount = discount;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 

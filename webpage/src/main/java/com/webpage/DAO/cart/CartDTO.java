@@ -10,7 +10,7 @@ public class CartDTO {
 	private int discountNum;
 	private int popularity;
 	private String category;
-	
+	private int quantity;
 	
 	public String getMemberId() {
 		return memberId;
@@ -65,6 +65,12 @@ public class CartDTO {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	

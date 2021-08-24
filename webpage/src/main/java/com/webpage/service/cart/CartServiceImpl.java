@@ -24,7 +24,13 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public void setCartService(CartDTO cart) {
-		cartDAO.setCartDAO(cart);
+		boolean checkCart=cartDAO.checkCart(cart);
+		if(checkCart) {
+			cartDAO.setCartDAO(cart);
+		}else {
+			cartDAO.updateCartDAO(cart);
+		}
+		
 		
 	}
 

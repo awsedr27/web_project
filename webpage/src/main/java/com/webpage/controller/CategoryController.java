@@ -44,5 +44,21 @@ public class CategoryController {
 		return list;
 		
 	}
+	
+	@RequestMapping("/category/hotItem")
+	public String hotItem(Model model) {
+		List<ItemDTO> list=itemService.getHotItem();
+		model.addAttribute("itemList",list);
+
+		return "index";
+	}
+	
+	@RequestMapping("/category/discountItem")
+	public String discountItem(Model model) {
+		List<ItemDTO> list=itemService.getDiscountItem();
+		model.addAttribute("itemList",list);
+
+		return "index";
+	}
 
 }

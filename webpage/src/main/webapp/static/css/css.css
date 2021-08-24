@@ -311,6 +311,14 @@ body{margin:0px}
     border: solid 1px black;
     font-family: Dotum,'돋움';
 }
+#itemViewPriceSum{
+	font-size: 48px;
+    display: inline-block;
+    position: relative;
+    left: 373px;
+    color: red;
+    font-weight: bold;
+}
 
 
 /*-------------장바구니 영역------------------*/
@@ -348,6 +356,22 @@ body{margin:0px}
 .cartTable>img{
 	width:100px;
 	height:100px;
+}
+.cartTableWrap table{
+	border:none;
+	width: 700px;
+}
+.cartTableWrap{
+	position: relative;
+    top: 30px;
+    text-align: center;
+    display: inline-block;
+}
+#cartTextWrap{
+	display: inline-block;
+    position: relative;
+    bottom: 340px;
+    left: 600px;
 }
 /*------------결제영역--------------*/
 #orderWrap{
@@ -521,4 +545,28 @@ body{margin:0px}
     border: solid 1px black;
     font-family: Dotum,'돋움';
 }
-
+/*---------개인정보,수정--------*/
+#myInfoWrap{
+	
+}
+#myInfoText{
+	font-size: 35px;
+    position: relative;
+    top: 25px;
+    background: whitesmoke;
+    display: inline-block;
+}
+#myInfoBtn{
+	display: inline-block;
+    position: relative;
+    top: 50px;
+    right: 168px;
+}
+#myInfoBtn a{
+	text-decoration:none;
+}
+#myInfoBtn button{
+	background: #f7c856;
+    border: solid 1px black;
+    font-family: Dotum,'돋움';
+}

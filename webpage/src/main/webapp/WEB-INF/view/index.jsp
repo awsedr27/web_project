@@ -31,12 +31,12 @@
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category?category=clothing">할인상품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">인기상품</a></li>
+				<li class="navLi"><a href="/category/discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category/hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
+				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
-				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
+				<li class="navLi"><a href="/category?category=book">도서</a></li>
 				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
@@ -48,7 +48,7 @@
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-					    	<li class="dropDown"><a href="/cart/order">주문하기</a></li>
+					    	<li class="dropDown"><a href="/order">주문하기</a></li>
 							<li class="dropDown"><a href="">장바구니</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
@@ -91,7 +91,7 @@
 							class="itemImg" src="${item.itemUrl}">
 						</a>
 						<div class="itemIcon">
-							<a href="/cartPut?itemId=${item.itemId}">
+							<a class="itemCartPut">
 							<i class="fas fa-shopping-basket"></i></a>
 						</div>
 					</div>
@@ -104,8 +104,7 @@
 						<span>${item.itemPrice}원</span>
 					</div>
 					
-					<div class="itemId">${item.itemId}
-					</div>
+					<div class="itemId">${item.itemId}</div>
 					
 				</div>
 			</c:forEach>

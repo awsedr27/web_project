@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.webpage.DAO.orderInfo.OrderInfoDTO;
+
 @Repository
 public class CartDAOImpl implements CartDAO {
 	
@@ -36,6 +38,30 @@ public class CartDAOImpl implements CartDAO {
 		map.put("itemId", itemId);
 		
 		sqlSession.delete("mapper.deleteCart",map);
+		
+	}
+
+	@Override
+	public void setDeleteAllCart(OrderInfoDTO orderInfo) {
+		String memberId=orderInfo.getMemberId();
+		sqlSession.delete("mapper.deleteAllCart",memberId);
+		
+	}
+
+	@Override
+	public boolean checkCart(CartDTO cart) {
+		CartDTO checkCart=sqlSession.selectOne("mapper.checkCart",cart);
+		if(checkCart==null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public void updateCartDAO(CartDTO cart) {
+		sqlSession.update("mapper.updateCart",cart);
 		
 	}
 
