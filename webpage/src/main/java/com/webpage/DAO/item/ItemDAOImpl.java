@@ -38,9 +38,13 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	public List<ItemDTO> getCategoryItemDAO(String category) {
+	public List<ItemDTO> getCategoryItemDAO(String category,int limitValue) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("category", category);
+		map.put("limitValue", limitValue);
 		
-		List<ItemDTO> listDAO=sqlSession.selectList("mapper.getCategoryItem",category);
+		
+		List<ItemDTO> listDAO=sqlSession.selectList("mapper.getCategoryItem",map);
 		return listDAO;
 	}
 
@@ -63,16 +67,29 @@ public class ItemDAOImpl implements ItemDAO {
 		}
 	}
 
+
 	@Override
-	public List<ItemDTO> getHotItem() {
-		List<ItemDTO> list=sqlSession.selectList("mapper.getHotItem");
+	public List<ItemDTO> getHotItem(int limitValue) {
+		List<ItemDTO> list=sqlSession.selectList("mapper.getHotItem",limitValue);
 		return list;
 	}
 
 	@Override
-	public List<ItemDTO> getDiscountItem() {
-		List<ItemDTO> list=sqlSession.selectList("mapper.getDiscountItem");
+	public List<ItemDTO> getDiscountItem(int limitValue) {
+		List<ItemDTO> list=sqlSession.selectList("mapper.getDiscountItem",limitValue);
 		return list;
+	}
+
+	@Override
+	public int getCountPage() {
+		int pageCount=sqlSession.selectOne("mapper.getCountItemPage");
+		return pageCount;
+	}
+
+	@Override
+	public int getDiscountPageCount() {
+		int pageCount=sqlSession.selectOne("mapper.getDiscountPageCount");
+		return pageCount;
 	}
 
 }

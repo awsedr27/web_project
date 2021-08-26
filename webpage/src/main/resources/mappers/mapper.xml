@@ -27,8 +27,8 @@
 	</select>
 	
 	<select id="getCategoryItem"
-		resultType="com.webpage.DAO.item.ItemDTO" parameterType="String">
-		select *from item where category=#{category} order by itemId limit 6 
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="Map">
+		select * from item where category=#{category} limit #{limitValue},6;
 		
 	</select>
 	
@@ -44,13 +44,23 @@
 	</update>
 	
 	<select id="getHotItem"
-		resultType="com.webpage.DAO.item.ItemDTO">
-	select * from item order by popularity desc;
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="Int">
+	select * from item order by popularity desc limit #{limitValue},6;
 	</select>
 	
 	<select id="getDiscountItem"
-		resultType="com.webpage.DAO.item.ItemDTO">
-	select * from item order by discountNum desc;
+		resultType="com.webpage.DAO.item.ItemDTO" parameterType="Int">
+select * from item where discount=true order by discountNum desc limit #{limitValue},6;
+	</select>
+	
+	<select id="getCountItemPage"
+		resultType="Int">
+	select count(*) from item;
+	</select>
+	
+	<select id="getDiscountPageCount"
+		resultType="Int">
+	select count(*) from item where discount=true;
 	</select>
 	
 	<!-- 회원 매퍼-->
@@ -132,6 +142,10 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	UPDATE homeshop.cart SET `quantity` = #{quantity} WHERE (`memberId` = #{memberId}) and (`itemId` = #{itemId});
 	
 	</update>
+	
+	<select id="getCartItem" parameterType="Map" resultType="com.webpage.DAO.cart.CartDTO">
+	select * from cart where itemId=#{itemId} and memberId=#{memberId}
+	</select>
 	
 	<!-- 게시판  -->
 	<select id="getBbs"

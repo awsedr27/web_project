@@ -65,4 +65,14 @@ public class CartDAOImpl implements CartDAO {
 		
 	}
 
+	@Override
+	public CartDTO getCartItem(String memberId, int itemId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("itemId", itemId);
+		CartDTO cartDTO=sqlSession.selectOne("mapper.getCartItem",map);
+
+		return cartDTO;
+	}
+
 }

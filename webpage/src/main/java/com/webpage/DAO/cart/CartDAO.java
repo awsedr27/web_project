@@ -18,4 +18,6 @@ public interface CartDAO {
 
 	void updateCartDAO(CartDTO cart);
 
+	CartDTO getCartItem(String memberId, int itemId);
+
 }

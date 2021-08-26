@@ -1,5 +1,7 @@
 package com.webpage.DAO.cart;
 
+import java.util.List;
+
 public class CartDTO {
 	private String memberId;
 	private int itemId;
@@ -11,6 +13,7 @@ public class CartDTO {
 	private int popularity;
 	private String category;
 	private int quantity;
+	
 	
 	public String getMemberId() {
 		return memberId;
@@ -72,6 +75,8 @@ public class CartDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	
 	
 	
 	

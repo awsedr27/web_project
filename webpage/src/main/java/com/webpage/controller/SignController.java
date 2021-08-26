@@ -24,9 +24,14 @@ public class SignController {
 	
 	
 	@RequestMapping(value="/signIn",method=RequestMethod.GET)
-	public String signIn() {
-		
-		return "signIn";
+	public String signIn(HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		if(memberId==null) {
+			return "signIn";
+		}else {
+			return "redirect:/index";
+		}
 		
 	}
 	
@@ -54,9 +59,15 @@ public class SignController {
 	}
 	
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
-	public String signUp() {
+	public String signUp(HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		if(memberId==null) {
+			return "signUp";
+		}else {
+			return "redirect:/index";
+		}
 		
-		return "signUp";
 		
 		
 	}
@@ -76,7 +87,7 @@ public class SignController {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		if(memberId==null) {
-			return "signIn";
+			return "redirect:/signIn";
 		}
 		else {
 			MemberDTO memberDTO=memberService.getMemberInfo(memberId);
@@ -119,7 +130,7 @@ public class SignController {
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("memberId");
 		if(userId==null) {
-			return "signIn";
+			return "redirect:/signIn";
 		}
 		else {
 			if(mode.equals("myInfo")) {

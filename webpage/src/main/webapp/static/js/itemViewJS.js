@@ -94,3 +94,82 @@ function writeReview(){
 	
 	
 }
+
+$(function(){
+	$("#minusQuantity").on("click",function(){
+		
+		var quantityValue=parseInt($("#quantityValue").text());
+		quantityValue=quantityValue-1;
+		$("#quantityValue").text(quantityValue);
+		if(quantityValue<1){
+			$("#quantityValue").text(1);
+		}
+		itemViewPriceSum();
+		
+		
+	
+	})
+	
+	$("#plusQuantity").on("click",function(){
+		
+		var quantityValue=parseInt($("#quantityValue").text());
+		
+		quantityValue=quantityValue+1;
+		$("#quantityValue").text(quantityValue);
+		itemViewPriceSum();
+
+	})
+	
+})
+/*-------------------아이템뷰 총액 계산----------------------- */
+function itemViewPriceSum(){
+	
+	var priceSum=0;
+	var discountSum=0;
+	var itemViewPrice=parseInt($("#itemViewPrice").text());
+	var itemViewDiscount=parseInt($("#itemViewDiscount").text());
+    if($("#itemViewDiscount").text()==""){
+		itemViewDiscount=0;
+	}
+	var quantityValue=parseInt($("#quantityValue").text());
+	priceSum=itemViewPrice*quantityValue;
+	discountSum=itemViewDiscount*quantityValue;
+	$("#itemViewPriceSum").text(priceSum-discountSum);
+}
+$(function(){
+	itemViewPriceSum();
+})
+/*-----------------아이템 뷰에서 장바구니 담기-------------------*/
+$(function(){
+	$("#itemPutBtn").on("click",function(){
+		itemViewCartPut();
+
+	})
+	
+})
+function itemViewCartPut(){
+	var itemId=document.getElementById("itemIdInput").value;
+	var quantity=$("#quantityValue").text();
+	$.ajax({
+		type: "POST",
+		url: "/cartPut",
+		data: { "itemId": itemId,"quantity":quantity},
+		dataType:"json",
+		success: function(item) {
+			
+			if(item==false){
+				alert("로그인하세요");
+			}else{
+			    alert("장바구니에 추가되었습니다");
+			}
+			
+
+		},
+		error: function(){
+			alert("데이터 오류입니다.");
+		}
+		
+	})
+	
+	
+}

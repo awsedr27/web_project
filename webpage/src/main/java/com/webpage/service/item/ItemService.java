@@ -8,10 +8,8 @@ public interface ItemService {
 	List<ItemDTO> getItemService();
 	List<ItemDTO> getItemAjaxService(int pageNum);
 	ItemDTO getItemView(int itemId);
-	List<ItemDTO> getCategory(String category);
 	List<ItemDTO> getCategoryItemAjaxService(int lastIdNum, String category);
-	List<ItemDTO> getHotItem();
-	List<ItemDTO> getDiscountItem();
+	List<ItemDTO> infinityPageService(String category, int categoryPage);
 
 
 }

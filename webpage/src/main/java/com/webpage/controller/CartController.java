@@ -33,13 +33,17 @@ public class CartController {
 	public String cart(HttpServletRequest request,Model model){
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
-		List<CartDTO> list=cartService.getCartAjaxService(memberId);
+		if(memberId==null) {
+			return "redirect:/signIn";
+		}else {
+			List<CartDTO> list=cartService.getCartAjaxService(memberId);
+
+			model.addAttribute("cartList", list);
+			
+			return "cart";
+			
+		}
 		
-		
-		
-		model.addAttribute("cartList", list);
-		
-		return "cart";
 		}
 	
 	@ResponseBody
@@ -47,7 +51,12 @@ public class CartController {
 	public void cartDel(HttpServletRequest request,@RequestParam("itemId") int itemId) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
-		cartService.deleteCart(memberId,itemId);
+		if(memberId==null) {
+			
+		}else {
+			cartService.deleteCart(memberId,itemId);	
+		}
+		
 	}
 	
 	
@@ -57,30 +66,41 @@ public class CartController {
 	public List<CartDTO> cartOut(HttpServletRequest request){
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
-		List<CartDTO> list=cartService.getCartAjaxService(memberId);
-		return list;
+		
+			
+	
+			List<CartDTO> list=cartService.getCartAjaxService(memberId);
+			return list;	
+		
+		
 		
 	}
 	
 	@ResponseBody
 	@RequestMapping("/cartPut")
-	public void cartPut(@RequestParam(value = "quantity",required = false,defaultValue = "1") int quantity,@RequestParam(value = "itemId") int itemId,HttpServletRequest request){
+	public boolean cartPut(@RequestParam(value = "quantity",required = false,defaultValue = "1") int quantity,@RequestParam(value = "itemId") int itemId,HttpServletRequest request){
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
-		ItemDTO item=itemService.getItemView(itemId);
-		CartDTO cart = new CartDTO();
-		cart.setMemberId(memberId);
-		cart.setItemId(itemId);
-		cart.setItemUrl(item.getItemUrl());
-		cart.setItemName(item.getItemName());
-		cart.setItemPrice(item.getItemPrice());
-		cart.setDiscountNum(item.getDiscountNum());
-		cart.setDiscount(item.isDiscount());
-		cart.setPopularity(item.getPopularity());
-		cart.setCategory(item.getCategory());
-		cart.setQuantity(quantity);
+		if(memberId==null) {
+			return false;
+		}else {
+			ItemDTO item=itemService.getItemView(itemId);
+			CartDTO cart = new CartDTO();
+			cart.setMemberId(memberId);
+			cart.setItemId(itemId);
+			cart.setItemUrl(item.getItemUrl());
+			cart.setItemName(item.getItemName());
+			cart.setItemPrice(item.getItemPrice());
+			cart.setDiscountNum(item.getDiscountNum());
+			cart.setDiscount(item.isDiscount());
+			cart.setPopularity(item.getPopularity());
+			cart.setCategory(item.getCategory());
+			cart.setQuantity(quantity);
+			
+			cartService.setCartService(cart);
+			return true;
+		}
 		
-		cartService.setCartService(cart);
 		
 		
 		

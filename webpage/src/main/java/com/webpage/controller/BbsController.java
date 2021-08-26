@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webpage.DAO.bbs.BbsDTO;
 import com.webpage.service.bbs.BbsService;
@@ -43,30 +44,38 @@ public class BbsController {
 	}
 	
 	@RequestMapping("/bbs/write")
-	public String bbsWrite() {
+	public String bbsWrite(HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		if(memberId==null) {
+			return "redirect:/signIn";
+		}else {
 		return "bbsWrite";
-		
+		}
 	}
 	
-	@RequestMapping("bbs/put")
+	@RequestMapping("/bbs/put")
 	public String bbsPut(HttpServletRequest request,@RequestParam("bbsTitle") String bbsTitle,@RequestParam("bbsContents") String bbsContents) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		if(memberId==null) {
 			return "redirect:/signIn";
+		}else {
+			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+	     	String dateString=dateFormat.format(new java.util.Date());
+			Date bbsTime=java.sql.Date.valueOf(dateString);
+			BbsDTO bbsDTO=new BbsDTO();
+			bbsDTO.setMemberId(memberId);
+			bbsDTO.setBbsTitle(bbsTitle);
+			bbsDTO.setBbsContents(bbsContents);
+			bbsDTO.setBbsTime(bbsTime);
+			
+			bbsService.setBbs(bbsDTO);
+			
+			return "redirect:/bbs";	
+			
 		}
-		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-     	String dateString=dateFormat.format(new java.util.Date());
-		Date bbsTime=java.sql.Date.valueOf(dateString);
-		BbsDTO bbsDTO=new BbsDTO();
-		bbsDTO.setMemberId(memberId);
-		bbsDTO.setBbsTitle(bbsTitle);
-		bbsDTO.setBbsContents(bbsContents);
-		bbsDTO.setBbsTime(bbsTime);
 		
-		bbsService.setBbs(bbsDTO);
-		
-		return "redirect:/bbs";
 		
 	}
 	
@@ -79,13 +88,22 @@ public class BbsController {
 	}
 	
 	@RequestMapping("bbs/modify")
-	public String bbsModify(Model model,@RequestParam("bbsId") int bbsId) {
+	public String bbsModify(HttpServletRequest request,Model model,@RequestParam("bbsId") int bbsId) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
 		BbsDTO bbs = bbsService.getBbsView(bbsId);
-		model.addAttribute("bbs", bbs);
+		if(bbs.getMemberId().equals(memberId)) {
+			model.addAttribute("bbs", bbs);
+			
+			return "bbsModify";
+		}else {
+			
+			model.addAttribute("modify", false);
+			return "bbsModify";
+		}
 		
-		return "bbsModify";
 	}
-	
+	@ResponseBody
 	@RequestMapping("/bbs/modify_action")
 	public String bbsModify_Action(HttpServletRequest request,@RequestParam("bbsId") int bbsId, @RequestParam("bbsTitle") String bbsTitle,
 			@RequestParam("bbsContents") String bbs_contents,@RequestParam("memberId") String memberId) {
@@ -93,15 +111,15 @@ public class BbsController {
 		String userId=(String) session.getAttribute("memberId");
 		if(userId.equals(memberId)) {
 			bbsService.setBbsModify(bbsTitle,bbs_contents,bbsId);
-			return "redirect:/bbs";
+			return "<script>alert('수정완료');location.href='/bbs'</script>";
 		}else {
-			return "redirect:/bbs";
+			return "<script>alert('글쓴이가 아닙니다');location.href='/bbs'</script>";
 			
 		}
 		
 
 	}
-	
+	@ResponseBody
 	@RequestMapping("bbs/delete")
 	public String bbsDelete(HttpServletRequest request,@RequestParam("bbsId") int bbsId,@RequestParam("memberId") String memberId) {
 		HttpSession session=request.getSession();
@@ -109,10 +127,11 @@ public class BbsController {
 		
 		if(userId.equals(memberId)) {
 			bbsService.deleteBbs(bbsId);
-			return "redirect:/bbs";
+			
+			return "<script>alert('삭제완료');location.href='/bbs'</script>";
 		}
 		else {
-			return "redirect:/bbs";
+			return "<script>alert('글쓴이가 아닙니다');location.href='/bbs'</script>";
 		}
 
 

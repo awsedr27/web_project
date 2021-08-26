@@ -12,7 +12,12 @@
   />
 <link rel="stylesheet" href="/css/jquery.bxslider.css">
 <link rel="stylesheet" href="/css/css.css">
-
+<script type="text/javascript">
+if(${modify}==false){
+	alert("작성자가 아닙니다");
+	location.href="/bbs";
+}
+</script>
 
 </head>
 <body>
@@ -31,12 +36,12 @@
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category?category=clothing">할인상품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category?category=hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
+				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
-				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
+				<li class="navLi"><a href="/category?category=book">도서</a></li>
 				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
@@ -68,17 +73,16 @@
 		</div>
 
 		
-		
 			<div id="writeBbsWrap">
 			<form action="/bbs/modify_action" method="post">
-				<input type="text" name="bbsTitle" value="${bbs.bbsTitle}"></input>
-				<textarea name="bbsContents">${bbs.bbsContents}</textarea>
+				<input type="text" name="bbsTitle" value="<c:out value="${bbs.bbsTitle}"></c:out>"></input>
+				<textarea name="bbsContents"><c:out value="${bbs.bbsContents}"></c:out>
+				</textarea>
 				<input type="submit"></input>
-				<input type="hidden" name="memberId" value="${bbs.memberId}">
-				<input type="hidden" name="bbsId" value="${bbs.bbsId}">
+				<input type="hidden" name="memberId" value="<c:out value="${bbs.memberId}"></c:out>">
+				<input type="hidden" name="bbsId" value="<c:out value="${bbs.bbsId}"></c:out>">
 				
 				
-
 
 			</form>
 

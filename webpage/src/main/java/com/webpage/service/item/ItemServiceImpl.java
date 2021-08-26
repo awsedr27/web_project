@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.webpage.DAO.item.ItemDAO;
 import com.webpage.DAO.item.ItemDTO;
@@ -34,13 +35,7 @@ public class ItemServiceImpl implements ItemService {
 		return item;
 	}
 
-	@Override
-	public List<ItemDTO> getCategory(String category) {
-
-		List<ItemDTO> item = itemDAO.getCategoryItemDAO(category);
-
-		return item;
-	}
+	
 
 	@Override
 	public List<ItemDTO> getCategoryItemAjaxService(int lastIdNum, String category) {
@@ -48,16 +43,45 @@ public class ItemServiceImpl implements ItemService {
 		return item;
 	}
 
+	
+	@Transactional
 	@Override
-	public List<ItemDTO> getHotItem() {
-		List<ItemDTO> item = itemDAO.getHotItem();
-		return item;
+	public List<ItemDTO> infinityPageService(String category, int categoryPage) {
+		 
+		int limitValue=(categoryPage-1)*6;
+		
+		if(category.equals("hotItem")) {
+			int hotItemPageCount=(int) Math.ceil((itemDAO.getCountPage()/6.0));
+			if(categoryPage<=hotItemPageCount) {
+			    List<ItemDTO> list=itemDAO.getHotItem(limitValue);
+			    return list;
+			}else {
+				return null;
+			}
+			
+		}else if(category.equals("discountItem")) {
+			int discountPageCount=(int) Math.ceil(itemDAO.getDiscountPageCount()/6.0);
+			if(categoryPage<=discountPageCount) {
+			    List<ItemDTO> list=itemDAO.getDiscountItem(limitValue);
+			    return list;
+			}else {
+				return null;
+			}
+			
+		} 
+		else {
+			int categoryPageCount=(int) Math.ceil((itemDAO.getCountPage()/6.0));
+			if(categoryPage<=categoryPageCount) {
+			    List<ItemDTO> list=itemDAO.getCategoryItemDAO(category,limitValue);
+			    return list;
+			}else {
+				return null;
+			}
+			
+		}
+		
 	}
-
-	@Override
-	public List<ItemDTO> getDiscountItem() {
-		List<ItemDTO> item = itemDAO.getDiscountItem();
-		return item;
-	}
+	
+	
 
 }

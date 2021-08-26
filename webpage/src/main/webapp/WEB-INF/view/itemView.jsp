@@ -31,12 +31,12 @@
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category?category=clothing">할인상품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category?category=hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
+				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
-				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
+				<li class="navLi"><a href="/category?category=book">도서</a></li>
 				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
@@ -72,9 +72,9 @@
 		<div id="itemViewWrap">
 		<div id="itemViewImg"><img src="${itemView.itemUrl}"></div>
 		<div id="itemViewTextWrap">
-		<div class="itemViewText"><h1>${itemView.itemName}</h1></div>
+		<div class="itemViewText"><h1><c:out value="${itemView.itemName}"></c:out></h1></div>
 		<div class="itemViewText"><b>판매가</b>  <div class="itemView"><span id="itemViewPrice">${itemView.itemPrice}</span>원</div></div>
-		<div class="itemViewText"><b>상품설명</b> <div class="itemView">${itemView.itemText}</div></div>
+		<div class="itemViewText"><b>상품설명</b> <div class="itemView"><c:out value="${itemView.itemText}"></c:out></div></div>
 		<c:if test="${itemView.discount eq true}">
 		<div class="itemViewText"><b>할인가</b>  <div class="itemView">-<span id="itemViewDiscount">${itemView.discountNum}</span>원</div></div>
 		</c:if>
@@ -133,7 +133,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/common.js"></script>
-	<script src="/js/review.js"></script>
+	<script src="/js/itemViewJS.js"></script>
 	
 </body>
 </html>

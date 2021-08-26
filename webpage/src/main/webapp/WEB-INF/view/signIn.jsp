@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>sign in</title>
-<link rel="stylesheet" href="/css/bootstrap.css">
+
 <link rel="stylesheet" href="/css/jquery.bxslider.css">
 <link rel="stylesheet" href="/css/css.css">
 

@@ -31,8 +31,8 @@
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category/discountItem">할인상품</a></li>
-				<li class="navLi"><a href="/category/hotItem">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category?category=hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
 				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
@@ -96,8 +96,8 @@
 						</div>
 					</div>
 
-					<div class="itemText">
-						<span>${item.itemText}</span>
+					<div class="itemText"> 
+						<span><c:out value="${item.itemText}"></c:out></span>
 					</div>
 					
 					<div class="itemPrice">

@@ -24,39 +24,39 @@
 		<div id="iconNav">
 			<div id="iconWrap">
 				<a href="/signIn"><i class="fas fa-power-off" id="iconPower"></i></a>
-				<a href=""><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
+				<a href="/myInfo"><i class="far fa-user" id="iconUser"></i></a> <a href="/cart"><i
 					class="fas fa-shopping-cart" id="iconCart"></i></a>
 			</div>
 		</div>
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category?category=clothing">할인상품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category?category=hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
+				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
-				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
+				<li class="navLi"><a href="/category?category=book">도서</a></li>
 				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
 			<div id="dropDownWrap">
 				<button id="dropDownBtn">
-					내 쇼핑<i class="fas fa-chevron-down" id="iconChevron"></i>
+					내 쇼핑<i class="fas fa-chevron-down" id="iconChevronDown"></i>
 				</button>
 
 				<c:choose>
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
-					    	<li class="dropDown"><a href="">서비스</a></li>
-							<li class="dropDown"><a href="">서비스</a></li>
+					    	<li class="dropDown"><a href="/order">주문하기</a></li>
+							<li class="dropDown"><a href="">장바구니</a></li>
 							<li class="dropDown"><a href="">서비스</a></li>
 						</ul>
 					</c:when>
 
 					<c:otherwise>
 						<ul>
-							<li><a>로그인하세요</a></li>
+							<li><a href="/signIn">로그인</a></li>
 						</ul>
 					</c:otherwise>
 
@@ -67,13 +67,13 @@
 
 		</div>
 
-		<div id="myInfoWrap">
+		<div id="myInfoWrap"><c:out value="${memberInfo.memberId}"></c:out>
 			<div id="myInfoText">
-				<div>아이디 : ${memberInfo.memberId}</div>
+				<div>아이디 : <c:out value="${memberInfo.memberId}"></c:out></div>
 				<div>생일 : ${memberInfo.birthday}</div>
 				<div>전화번호 : ${memberInfo.phoneNum}</div>
-				<div>이메일 : ${memberInfo.email}</div>
-				<div>집주소 : ${memberInfo.houseLocation}</div>
+				<div>이메일 : <c:out value="${memberInfo.email}"></c:out></div>
+				<div>집주소 : <c:out value="${memberInfo.houseLocation}"></c:out></div>
 			</div>
 			<div id="myInfoBtn">
 				<button>
@@ -84,7 +84,6 @@
 				</button>
 			</div>
 			
-			<div>내가 쓴 글 구역</div>
 
 
 		</div>

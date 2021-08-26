@@ -22,43 +22,45 @@ public class CategoryController {
 	
 	
 	@RequestMapping("/category")
-	public String category(Model model,@RequestParam(value="category",required = false) String category) {
+	public String category(Model model,@RequestParam(value="category",required = false) String category,@RequestParam(value="categoryPage",defaultValue = "1") int categoryPage) {
 	
+		
 		if(category==null) {
 			
 			return "redirect:/index";
 		}
 		else {
-		List<ItemDTO> itemList=itemService.getCategory(category);
-		model.addAttribute("itemList",itemList);
+			
+			List<ItemDTO> list=itemService.infinityPageService(category,categoryPage);
+			if(list==null) {
+				return "redirect:/index";
+
+			}else {
+                model.addAttribute("itemList", list);
+				
+				return "index";
+				
+			}
+			
+				
+			}
 		
-		return "index";
 		}
-	}
- 
-	
 	@ResponseBody
 	@RequestMapping("/category/ajax")
-	public List<ItemDTO> categoryAjax(@RequestParam("category") String category,@RequestParam("lastIdNum") int lastIdNum){
-		List<ItemDTO> list=itemService.getCategoryItemAjaxService(lastIdNum,category);
-		return list;
+	public List<ItemDTO> categoryAjax(@RequestParam("category") String category,@RequestParam("categoryPage") int categoryPage){
+		List<ItemDTO> list=itemService.infinityPageService(category, categoryPage);
+		
+			return list;
+		
+		
+		
 		
 	}
 	
-	@RequestMapping("/category/hotItem")
-	public String hotItem(Model model) {
-		List<ItemDTO> list=itemService.getHotItem();
-		model.addAttribute("itemList",list);
-
-		return "index";
-	}
 	
-	@RequestMapping("/category/discountItem")
-	public String discountItem(Model model) {
-		List<ItemDTO> list=itemService.getDiscountItem();
-		model.addAttribute("itemList",list);
-
-		return "index";
-	}
+	
+	
+	
 
 }

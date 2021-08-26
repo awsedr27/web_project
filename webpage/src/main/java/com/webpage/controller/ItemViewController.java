@@ -37,8 +37,6 @@ public class ItemViewController {
 		String memberId=(String) session.getAttribute("memberId");
 		
 		if(itemId==null) {
-			
-			
 			return "redirect:/index";
 
 		}else {
@@ -69,8 +67,11 @@ public class ItemViewController {
 	@ResponseBody
 	@RequestMapping("/review")
 	public List<ReviewDTO> Review(@RequestParam("itemId") int itemId) {
-		List<ReviewDTO> review=reviewService.getReview(itemId);
-		return review;
+	
+			List<ReviewDTO> review=reviewService.getReview(itemId);
+			return review;
+		
+		
 	}
 	
 	@ResponseBody
@@ -79,19 +80,24 @@ public class ItemViewController {
 			@RequestParam("star") int star) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
+		if(memberId==null) {
+			
+		}else {
+			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+	     	String dateString=dateFormat.format(new java.util.Date());
+			Date reviewTime=java.sql.Date.valueOf(dateString);
+			
+			ReviewDTO review=new ReviewDTO();
+			review.setMemberId(memberId);
+			review.setItemId(writeReviewItemId);
+			review.setContents(reviewContents);
+			review.setRating(star);
+			review.setReviewTime(reviewTime);
+			
+			reviewService.setReview(review);
+			
+		}
 		
-		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-     	String dateString=dateFormat.format(new java.util.Date());
-		Date reviewTime=java.sql.Date.valueOf(dateString);
-		
-		ReviewDTO review=new ReviewDTO();
-		review.setMemberId(memberId);
-		review.setItemId(writeReviewItemId);
-		review.setContents(reviewContents);
-		review.setRating(star);
-		review.setReviewTime(reviewTime);
-		
-		reviewService.setReview(review);
 		
 	}
 

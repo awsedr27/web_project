@@ -177,7 +177,7 @@ body{margin:0px}
 }
 
 .login_button {
-	width: 265px;
+	width: 274px;
 	height: 47px;
 	position: relative;
 	background: white;
@@ -189,14 +189,14 @@ body{margin:0px}
 	background: white;
 	margin-top: 10px;
 	position: relative;
-	left: 258px;
+	left: 267px;
 	display: block;
 }
 
 #loginSearch>a {
 	margin-top: 10px;
 	position: relative;
-	left: 172px;
+	left: 157px;
 	color: #767676;
 }
 
@@ -215,6 +215,12 @@ body{margin:0px}
 }
 
 #email {
+	display: block;
+	width: 266px;
+	border-style: dotted;
+	margin-bottom: 10px;
+}
+#houseLocation{
 	display: block;
 	width: 266px;
 	border-style: dotted;
@@ -359,19 +365,95 @@ body{margin:0px}
 }
 .cartTableWrap table{
 	border:none;
-	width: 700px;
+	width: 979px;
 }
 .cartTableWrap{
 	position: relative;
     top: 30px;
     text-align: center;
     display: inline-block;
+    overflow:scroll;
+    height:500px;
 }
 #cartTextWrap{
-	display: inline-block;
+       display: inline-block;
+    position: fixed;
+    border: solid 1px #ccc9c9;
+    width: 300px;
+    height: 274px;
+    text-align: left;
+    right: 125px;
+    top: 144px;
+}
+.cartText:nth-child(1){
+	    font-size: 25px;
+    display: inline-block;
     position: relative;
-    bottom: 340px;
-    left: 600px;
+    top: 32px;
+}
+.cartText:nth-child(3){
+	    font-size: 23px;
+    display: inline-block;
+    position: relative;
+    top: 43px;
+    color:red;
+}
+.cartText:nth-child(5){
+	font-size: 25px;
+    display: inline-block;
+    position: relative;
+       top: 85px;
+}
+.cartTextPrice:nth-child(2){
+	    font-size: 20px;
+    text-align: right;
+    position: relative;
+}
+.cartTextPrice:nth-child(4){
+    font-size: 20px;
+    text-align: right;
+    position: relative;
+   bottom: -17px;
+    border-bottom: dotted 2px black;
+    color:red;
+}
+.cartTextPrice:nth-child(6){
+	font-size: 26px;
+    text-align: right;
+    position: relative;
+  top: 49px;
+}
+
+
+.cartTableItemWrap{
+	position: relative;
+    top: 30px;
+    text-align: center;
+    display: inline-block;
+    min-height: 384px;
+}
+.cartTableItemWrap table{
+	border:none;
+	width: 700px;
+	border-collapse:collapse;
+}
+.cartTableItemWrap img{
+	width:100px;
+	height:100px;
+}
+.cartTableItemWrap td,.cartTableItemWrap th{
+	border-bottom: solid 1px whitesmoke;
+	
+}
+#cartOrderBtnWrap{
+	position: relative;
+    top: 63px;
+    text-align: right;
+}
+#cartOrderBtn{
+	background: #f7c856;
+    border: solid 1px black;
+    font-family: Dotum,'돋움';
 }
 /*------------결제영역--------------*/
 #orderWrap{
@@ -443,6 +525,15 @@ body{margin:0px}
 }
 .fa-shopping-basket{
 	    color: #dadada;
+}
+
+#logoWrap{
+	
+	
+}
+#logoWrap>img{
+	  width: 220px;
+    height: 100px;
 }
 
 
@@ -569,4 +660,15 @@ body{margin:0px}
 	background: #f7c856;
     border: solid 1px black;
     font-family: Dotum,'돋움';
+}
+.myInfoModifyWrap{
+	    position: relative;
+    display: inline-block;
+    top: 16px;
+	
+}
+.myInfoModifyWrap input{
+	display: inline-block;
+	border:none;
+	border-bottom:solid 1px black;
 }

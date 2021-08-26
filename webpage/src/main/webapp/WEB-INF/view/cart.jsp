@@ -31,12 +31,12 @@
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category?category=clothing">할인상품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category?category=hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
+				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
-				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
+				<li class="navLi"><a href="/category?category=book">도서</a></li>
 				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
@@ -67,10 +67,10 @@
 
 		</div>
 
-		<div class="cartTableWrap">
+		<div class="cartTableItemWrap">
 			<c:choose>
 				<c:when test="${not empty sessionScope.memberId}">
-					<table border="1">
+					<table>
 
 						<tr>
 							<th>이름</th>
@@ -87,7 +87,7 @@
 
 
 							<tr>
-								<td>${cartItem.itemName}</td>
+								<td><c:out value="${cartItem.itemName}"></c:out></td>
 								<td><span class="cartTableItemPrice">${cartItem.itemPrice}</span>원</td>
 								<c:choose>
 								<c:when test="${cartItem.discount eq true}">
@@ -109,17 +109,39 @@
 
 						</c:forEach>
 					</table>
+
 					<div id="cartTextWrap">
-					<div>총 주문금액</div>
-					<span id="cartPriceSum">${cartSum}</span>원
-					<div>할인 금액</div>
-					-<span id="cartPriceDiscountSum">${cartDiscountSum}</span>원
-					
-					<div>예상결제금액</div>
-					<span id="cartAllPriceSum"></span>원
-					
+
+						<div class="cartText">총 주문금액</div>
+						<div class="cartTextPrice">
+							<span id="cartPriceSum">${cartSum}</span>원
+						</div>
+						<div class="cartText">할인 금액</div>
+						<div class="cartTextPrice">
+							-<span id="cartPriceDiscountSum">${cartDiscountSum}</span>원
+						</div>
+						<div class="cartText">예상결제금액</div>
+						<div class="cartTextPrice">
+							<span id="cartAllPriceSum"></span>원
+						</div>
+						<div id="cartOrderBtnWrap">
+						<form action="/cart/order" method="post">
+						<c:forEach var="cartOrderItem" items="${cartList}" varStatus="status">
+						    <input type="hidden" name="orderItemList[${status.index}].itemId" value="${cartOrderItem.itemId}">
+						    <input type="hidden" name="orderItemList[${status.index}].quantity" value="${cartOrderItem.quantity}">
+							
+						
+						</c:forEach>
+						    
+						
+						
+						    <input type="submit"value="주문하기">
+						
+						</form>
+						</div>
+
 					</div>
-       
+
 
 				</c:when>
 				<c:otherwise>로그인하세요</c:otherwise>

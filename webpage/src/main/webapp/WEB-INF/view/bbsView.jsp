@@ -31,12 +31,12 @@
 
 		<div id="navWrap">
 			<ul id="nav">
-				<li class="navLi"><a href="/category?category=clothing">할인상품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">인기상품</a></li>
+				<li class="navLi"><a href="/category?category=discountItem">할인상품</a></li>
+				<li class="navLi"><a href="/category?category=hotItem">인기상품</a></li>
 				<li class="navLi"><a href="/category?category=food">식품</a></li>
-				<li class="navLi"><a href="/category?category=clothing">가전</a></li>
+				<li class="navLi"><a href="/category?category=appliance">가전</a></li>
 				<li class="navLi"><a href="/category?category=clothing">의류</a></li>
-				<li class="navLi"><a href="/category?category=clothing">도서</a></li>
+				<li class="navLi"><a href="/category?category=book">도서</a></li>
 				<li class="navLi"><a href="/bbs">게시판</a></li>
 
 			</ul>
@@ -66,22 +66,21 @@
 
 
 		</div>
-
 		<div id="bbsViewWrap">
-		    <div id="bbsTitle">${bbsView.bbsTitle}</div>
-			<div id="bbsMemberId">${bbsView.memberId}</div>
+		    <div id="bbsTitle"><c:out value="${bbsView.bbsTitle}"></c:out>
+		    </div>
+			<div id="bbsMemberId"><c:out value="${bbsView.memberId}"></c:out></div>
 			<div id="bbsTime">${bbsView.bbsTime}</div>
 
 			
 
-			<div id="bbsContents">${bbsView.bbsContents}</div>
+			<div id="bbsContents"><c:out value="${bbsView.bbsContents}"></c:out></div>
 
 			<button>
 				<a href="/bbs/modify?bbsId=${bbsView.bbsId}">수정하기</a>
 			</button>
 			<button>
-				<a
-					href="/bbs/delete?bbsId=${bbsView.bbsId}&memberId=${bbsView.memberId}">삭제하기</a>
+				<a href="/bbs/delete?bbsId=${bbsView.bbsId}&memberId=<c:out value="${bbsView.memberId}"></c:out>">삭제하기</a>
 			</button>
 
 		</div>

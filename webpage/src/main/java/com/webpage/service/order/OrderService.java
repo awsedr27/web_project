@@ -7,8 +7,10 @@ import com.webpage.DAO.orderInfo.OrderInfoDTO;
 
 public interface OrderService {
 
-	List<CartDTO> readCartOrderService(String memberId);
+	List<CartDTO> readCartService(String memberId);
 
 	void setOrder(OrderInfoDTO orderInfo);
+
+	List<CartDTO> readCartOrderService(OrderInfoDTO orderInfo);
 
 }
