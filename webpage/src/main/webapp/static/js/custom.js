@@ -28,9 +28,15 @@ $(window).scroll(function() {
 			
 			startAjax=false;
 			if(urlParamsCategory==null){
+				
 				next_page();
+				
+				
 			}else{
+				
 				next_page_category();
+			
+				
 			}
 		
 		    
@@ -54,19 +60,21 @@ function next_page() {
 			
 			for (step = 0; step < 6; step++){
 			$("#itemListWrap").append("<div class='itemWrap'><div class='itemImgWrap'><a href='/itemView?itemId="+item[step].itemId+"'><img class='itemImg' src='" +
-			 item[step].itemUrl +"'></a><div class='itemIcon'><a class='itemCartPut'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemText'><span>"+item[step].itemText+"</span></div>"+
-		"<div class='itemPrice'><span>"+item[step].itemPrice+"원</span></div><div class='itemId'>"+item[step].itemId+"</div>")
+			 item[step].itemUrl +"'></a><div class='itemIcon'><a class='itemCartPut'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemTextWrap'><span class='itemText'>"+item[step].itemText+"</span></div>"+
+		"<div class='itemPriceWrap'><span class='itemPrice'>"+item[step].itemPrice+"</span>원</div><div class='itemDiscountNumWrap'>-<span class='itemDiscountNum'>"+item[step].discountNum+"</span>원</div><div class='itemResultPriceWrap'><span class='itemResultPrice'></span>원</div><div class='itemId'>"+item[step].itemId+"</div>")
 		}
 		lastIdNum=item[5].itemId;
 		startAjax=true;
-		
+		calculateDiscount();
 		}catch(error){
 			
 			startAjax=false;
+			calculateDiscount();
 
 		}
 		}
-	})
+	});
+	
 }
 
 /*---------------카테고리 무한페이지-------------- */
@@ -83,17 +91,19 @@ function next_page_category() {
 	
 			for (step = 0; step < 6; step++){
 			$("#itemListWrap").append("<div class='itemWrap'><div class='itemImgWrap'><a href='/itemView?itemId="+item[step].itemId+"'><img class='itemImg' src='" +
-			 item[step].itemUrl +"'></a><div class='itemIcon'><a class='itemCartPut'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemText'><span>"+item[step].itemText+"</span></div>"+
-		"<div class='itemPrice'><span>"+item[step].itemPrice+"원</span></div><div class='itemId'>"+item[step].itemId+"</div>")
+			 item[step].itemUrl +"'></a><div class='itemIcon'><a class='itemCartPut'><i class='fas fa-shopping-basket'></i></a></div></div><div class='itemTextWrap'><span class='itemText'>"+item[step].itemText+"</span></div>"+
+		"<div class='itemPriceWrap'><span class='itemPrice'>"+item[step].itemPrice+"</span>원</div><div class='itemDiscountNumWrap'>-<span class='itemDiscountNum'>"+item[step].discountNum+"</span>원</div><div class='itemResultPriceWrap'><span class='itemResultPrice'></span>원</div><div class='itemId'>"+item[step].itemId+"</div>")
 		}
 		
 		 startAjax=true;
 	     categoryPage++;
+         calculateDiscount();
 	
 		
 		}catch(error){
 			
 			startAjax=false;
+			calculateDiscount();
 
 		}
 		},
@@ -101,6 +111,20 @@ function next_page_category() {
 			
 			startAjax=false;
 		}
-	})
+	});
+	
 }
-/*-------------인기상품 무한스크롤 ajax------- */
+/*-------------할인가격계산------- */
+$(function(){
+	calculateDiscount();
+})
+function calculateDiscount(){
+	
+	$.each($(".itemPrice"),function(index,item){
+		var price=parseInt($(this).text());
+		var discount=parseInt($(this).parent(".itemPriceWrap").next(".itemDiscountNumWrap").children(".itemDiscountNum").text());
+		$(this).parent(".itemPriceWrap").nextAll(".itemResultPriceWrap").children(".itemResultPrice").text(price-discount);
+	})
+	
+
+}

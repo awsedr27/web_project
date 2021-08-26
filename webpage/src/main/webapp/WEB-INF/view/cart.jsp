@@ -18,7 +18,7 @@
 <body>
 	<div id="wrap">
 		<div id="header">
-			<h2>홈쇼핑</h2>
+			<a href="/index"><h2>HOMESHOP</h2></a>
 		</div>
 
 		<div id="iconNav">

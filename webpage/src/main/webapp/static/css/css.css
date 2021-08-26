@@ -8,6 +8,19 @@ body{margin:0px}
 	margin: 0 auto;
 	width: 1000px;
 }
+#header{
+	display: inline-block;
+    position: relative;
+    top: 47px;
+    left: 4px;
+    font-size: 23px;
+   
+}
+#header>a{
+	text-decoration:none;
+	color: #717171;
+}
+
 
 /*------------슬라이더바--------------------*/
 .bx-viewport{
@@ -111,25 +124,39 @@ body{margin:0px}
 	   visibility: hidden;
 	
 }
-.itemText{
+.itemTextWrap{
 	display:inline-block;
 
 }
 
-.itemText>span{
+.itemText{
 	font-size: 23px;
     font-weight: 100;
 
 }
 
-.itemPrice {
+
+.itemPrice{
+	font-size: 18px;
+    
+}
+.itemDiscountNumWrap{
+	display: inline-block;
+    position: relative;
+    color:red;
+	font-size: 24px;
+   
+}
+.itemDiscountNum{
 	
 }
-.itemPrice>span{
-	font-size: 28px;
-    font-weight: bold;
+.itemResultPriceWrap{
+    position: relative;
+    font-size: 35px;
+    text-align: right;
+        bottom: 30px;
+        font-weight: bold;
 }
-
 
 /*------------------------------------*/
 /*------------footer------------------*/
@@ -496,19 +523,31 @@ body{margin:0px}
     top: -56px;
     width: 250px;
 }
+#iconWrap>a:nth-child(1){
+	position: relative;
+    left: 28px;
+}
+#iconWrap>a:nth-child(2){
+	position: relative;
+    left: 56px;
+}
+#iconWrap>a:nth-child(3){
+	position: relative;
+    left: 84px;
+}
 
 #iconPower {
-	margin-left: 28px;
+	
 	color: #c5c5c5;
 }
 
 #iconUser {
-	margin-left: 28px;
+	
 	color: #c5c5c5;
 }
 
 #iconCart {
-	margin-left: 28px;
+
 	color: #c5c5c5;
 }
 #iconChevron{}

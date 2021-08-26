@@ -18,7 +18,7 @@
 <body>
 	<div id="wrap">
 		<div id="header">
-			<h2>홈쇼핑</h2>
+			<a href="/index"><h2>HOMESHOP</h2></a>
 		</div>
 
 		<div id="iconNav">
@@ -96,14 +96,20 @@
 						</div>
 					</div>
 
-					<div class="itemText"> 
-						<span><c:out value="${item.itemText}"></c:out></span>
+					<div class="itemTextWrap"> 
+						<span class="itemText"><c:out value="${item.itemText}"></c:out></span>
 					</div>
 					
-					<div class="itemPrice">
-						<span>${item.itemPrice}원</span>
+					<div class="itemPriceWrap">
+						<span class="itemPrice">${item.itemPrice}</span>원
 					</div>
+					<div class="itemDiscountNumWrap">
+						-<span class="itemDiscountNum">${item.discountNum}</span>원
+					</div>
+					<div class="itemResultPriceWrap">
+						<span class="itemResultPrice"></span>원
 					
+					</div>
 					<div class="itemId">${item.itemId}</div>
 					
 				</div>
