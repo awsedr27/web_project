@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<div align='center'>
+		<div id="headerSign" align='center'>
 			<a href="/index"><h2>HOMESHOP</h2></a>
 		</div>
 

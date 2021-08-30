@@ -244,3 +244,46 @@ $(function(){
 		
 	})
 })
+/*---------------주문취소----------------------------------- */
+$(function(){
+	$(".myInfoOrderDelete").on("click",function(){
+		var orderId=$(this).parent(".myInfoOrderDeleteWrap").next().children(".myInfoOrderId").text();
+		var check=confirm("주문을 취소하시겠습니까?");
+		if(check){
+			myInfoOrderDelete(orderId);
+		}else{
+			
+		}
+		
+		
+	})
+	
+	$(".myInfoOrderDelete").on("mouseover", function() {
+		$(this).parent(".myInfoOrderDeleteWrap").parent(".myInfoOrderDeleteBody").css("background", "#d2c9c9");
+	
+	})
+
+	$(".myInfoOrderDelete").on("mouseout", function() {
+		$(this).parent(".myInfoOrderDeleteWrap").parent(".myInfoOrderDeleteBody").css("background", "");
+
+	})
+	
+})
+function myInfoOrderDelete(orderId){
+	
+	$.ajax({
+		type: "POST",
+		url: "/myInfo/orderDelete",
+		data: { "orderId": orderId},
+		success: function() {
+			alert("주문 취소가 완료되었습니다");
+			location.reload();
+
+		},
+		error: function(){
+			alert("이미 취소된 주문입니다.");
+			location.reload();
+		}
+		
+	})
+}

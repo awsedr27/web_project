@@ -1,6 +1,7 @@
 package com.webpage.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webpage.DAO.member.MemberDTO;
+import com.webpage.DAO.orderInfo.OrderInfoDTO;
+import com.webpage.DAO.orderItem.OrderItemDTO;
 import com.webpage.service.member.MemberService;
 
 @Controller
@@ -58,6 +61,14 @@ public class SignController {
 		
 	}
 	
+	@RequestMapping("/signOut")
+	public String signOut(HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		session.invalidate();
+		return "redirect:/index";
+
+	}
+	
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
 	public String signUp(HttpServletRequest request) {
 		HttpSession session=request.getSession();
@@ -91,7 +102,10 @@ public class SignController {
 		}
 		else {
 			MemberDTO memberDTO=memberService.getMemberInfo(memberId);
+			List<OrderInfoDTO> orderItemList=memberService.getMemberOrderService(memberId);
 			model.addAttribute("memberInfo", memberDTO);
+			model.addAttribute("memberInfoOrder", orderItemList);
+			
 			return "myInfo";
 		}
 

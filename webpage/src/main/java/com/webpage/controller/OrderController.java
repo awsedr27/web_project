@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webpage.DAO.cart.CartDTO;
 import com.webpage.DAO.orderInfo.OrderInfoDTO;
@@ -45,17 +46,26 @@ public class OrderController {
 			return "redirect:/signIn";
 
 		}
-		else{
-			orderInfo.setMemberId(memberId);
-			List<CartDTO> list=orderService.readCartOrderService(orderInfo);
-			model.addAttribute("cartList", list);
-			return "order";
+		else{ 
+				orderInfo.setMemberId(memberId);
+				List<CartDTO> list=orderService.readCartOrderService(orderInfo);
+				if(list==null) {
+					model.addAttribute("cartEmpty", true);
+					return "order";
+				}else {
+					model.addAttribute("cartList", list);
+					return "order";	
+				}
+				
+				
+			}
+			
 		}
 		
 		
 	
 		
-	}
+	
 	
 	@RequestMapping("/cart/order/payment")
 	public String orderPay(@ModelAttribute OrderInfoDTO orderInfo,HttpServletRequest request) {
@@ -72,6 +82,19 @@ public class OrderController {
 			
 		}
 		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/myInfo/orderDelete")
+	public void myInfoOrderDelete(HttpServletRequest request,@RequestParam("orderId") int orderId) {
+        HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		if(memberId==null) {
+			
+		}else {
+			orderService.deleteOrderService(orderId,memberId);
+		}
 		
 	}
 

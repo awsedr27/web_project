@@ -49,8 +49,8 @@
 					<c:when test="${not empty sessionScope.memberId}">
 						<ul>
 					    	<li class="dropDown"><a href="/order">주문하기</a></li>
-							<li class="dropDown"><a href="">장바구니</a></li>
-							<li class="dropDown"><a href="">서비스</a></li>
+							<li class="dropDown"><a href="/cart">장바구니</a></li>
+							<li class="dropDown"><a href="/signOut">로그아웃</a></li>
 						</ul>
 					</c:when>
 

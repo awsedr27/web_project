@@ -20,6 +20,10 @@ body{margin:0px}
 	text-decoration:none;
 	color: #717171;
 }
+#headerSign>a{
+	text-decoration:none;
+	color: #717171;
+}
 
 
 /*------------슬라이더바--------------------*/
@@ -403,14 +407,14 @@ body{margin:0px}
     height:500px;
 }
 #cartTextWrap{
-       display: inline-block;
+    display: inline-block;
     position: fixed;
     border: solid 1px #ccc9c9;
     width: 300px;
     height: 274px;
     text-align: left;
-    right: 125px;
-    top: 144px;
+    right: 78px;
+    top: 149px;
 }
 .cartText:nth-child(1){
 	    font-size: 25px;
@@ -660,6 +664,7 @@ body{margin:0px}
     font-size: 16pt;
     border-top: solid 1px #bdb9b9;
     padding-top: 30px;
+    white-space: pre-wrap;
 }
 #bbsViewWrap a{
 	text-decoration: none;
@@ -677,20 +682,19 @@ body{margin:0px}
 }
 /*---------개인정보,수정--------*/
 #myInfoWrap{
-	
+	display: inline-block;
+   
+    top: 192px;
 }
 #myInfoText{
 	font-size: 35px;
-    position: relative;
-    top: 25px;
+    
     background: whitesmoke;
-    display: inline-block;
+    
 }
 #myInfoBtn{
-	display: inline-block;
     position: relative;
-    top: 50px;
-    right: 168px;
+    left: 121px;
 }
 #myInfoBtn a{
 	text-decoration:none;
@@ -711,3 +715,21 @@ body{margin:0px}
 	border:none;
 	border-bottom:solid 1px black;
 }
+#myInfoOrderWrap{
+	    min-height: 247px;
+    position: relative;
+    
+    top: 27px;
+    display: inline-block;
+}
+
+#myInfoOrderWrap>table{
+	width:500px;
+	border-collapse: collapse;
+	text-align: center;
+}
+#myInfoOrderWrap tr{
+	border-bottom:solid 1px black;
+}
+
+	

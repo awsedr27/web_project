@@ -66,8 +66,8 @@
 
 
 		</div>
-
-		<div id="myInfoWrap"><c:out value="${memberInfo.memberId}"></c:out>
+		
+		<div id="myInfoWrap">
 			<div id="myInfoText">
 				<div>아이디 : <c:out value="${memberInfo.memberId}"></c:out></div>
 				<div>생일 : ${memberInfo.birthday}</div>
@@ -83,10 +83,47 @@
 					<a href="/myInfo/modify?mode=modifyPassword">비밀번호변경</a>
 				</button>
 			</div>
-			
-
-
 		</div>
+		
+		<div id="myInfoOrderWrap">
+				<table class="myInfoOrderTable">
+					<tr>
+						<th>주문ID</th>
+						<th>물품ID</th>
+						<th>이름</th>
+						<th>가격</th>
+						<th>할인</th>
+						<th>수량</th>
+						<th></th>
+					</tr>
+
+					<c:forEach var="order" items="${memberInfoOrder}">
+						<tbody class="myInfoOrderDeleteBody">
+							<tr class="myInfoOrderDeleteWrap">
+								<td class="myInfoOrderDelete" colspan="7"><i
+									class="far fa-trash-alt"></i></td>
+							</tr>
+							<c:forEach var="item" items="${order.orderItemList}">
+								<tr>
+									<td class="myInfoOrderId">${item.orderId}</td>
+									<td>${item.itemId}</td>
+									<td>${item.itemName}</td>
+									<td>${item.itemPrice}</td>
+									<td>${item.discountNum}</td>
+									<td>${item.quantity}</td>
+									<td></td>
+								</tr>
+							</c:forEach>
+
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
+		
+		
+		
+		
+		
 
 
 
@@ -117,7 +154,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/jquery.bxslider.js"></script>
-	<script src="/js/custom.js"></script>
+	
 	<script src="/js/common.js"></script>
 </body>
 </html>

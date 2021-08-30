@@ -13,4 +13,6 @@ public interface OrderService {
 
 	List<CartDTO> readCartOrderService(OrderInfoDTO orderInfo);
 
+	void deleteOrderService(int orderId, String memberId);
+
 }

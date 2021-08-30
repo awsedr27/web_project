@@ -12,7 +12,12 @@
   />
 <link rel="stylesheet" href="/css/jquery.bxslider.css">
 <link rel="stylesheet" href="/css/css.css">
-
+<script type="text/javascript">
+if(${cartEmpty}==true){
+	alert("장바구니가 비어있습니다.");
+	location.href="/index";
+}
+</script>
 
 </head>
 <body>

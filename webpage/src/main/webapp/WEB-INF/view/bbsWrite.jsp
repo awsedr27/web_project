@@ -71,7 +71,7 @@
 			<form action="/bbs/put" method="post">
 				<input type="text" name="bbsTitle" placeholder="제목입력하세요"></input>
 				<textarea name="bbsContents" placeholder="글을 입력하세요(100자)"></textarea>
-				<input type="submit"></input>
+				<input type="submit" value="글쓰기"></input>
 				
 
 

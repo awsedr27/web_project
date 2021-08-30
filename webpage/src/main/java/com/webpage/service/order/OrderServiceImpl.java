@@ -51,37 +51,45 @@ public class OrderServiceImpl implements OrderService {
 	@Transactional
 	@Override
 	public List<CartDTO> readCartOrderService(OrderInfoDTO orderInfo) {
-		CartDTO cart=new CartDTO();
-		List<CartDTO> list=new ArrayList<CartDTO>();
-		for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
-			cart.setItemId(orderInfo.getOrderItemList().get(i).getItemId());
-			cart.setMemberId(orderInfo.getMemberId());
-			boolean check=cartDAO.checkCart(cart);
-			if(check) {
-				ItemDTO itemDTO=itemDAO.getItemView(cart.getItemId());
-				cart.setItemUrl(itemDTO.getItemUrl());
-				cart.setItemName(itemDTO.getItemName());
-				cart.setItemPrice(itemDTO.getItemPrice());
-				cart.setDiscount(itemDTO.isDiscount());
-				cart.setDiscountNum(itemDTO.getDiscountNum());
-				cart.setPopularity(itemDTO.getPopularity());
-				cart.setCategory(itemDTO.getCategory());
-				cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
-			}else {
-				cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
-				cartDAO.updateCartDAO(cart);
+		try {
+			CartDTO cart=new CartDTO();
+			List<CartDTO> list=new ArrayList<CartDTO>();
+			for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
+				cart.setItemId(orderInfo.getOrderItemList().get(i).getItemId());
+				cart.setMemberId(orderInfo.getMemberId());
+				boolean check=cartDAO.checkCart(cart);
+				if(check) {
+					ItemDTO itemDTO=itemDAO.getItemView(cart.getItemId());
+					cart.setItemUrl(itemDTO.getItemUrl());
+					cart.setItemName(itemDTO.getItemName());
+					cart.setItemPrice(itemDTO.getItemPrice());
+					cart.setDiscount(itemDTO.isDiscount());
+					cart.setDiscountNum(itemDTO.getDiscountNum());
+					cart.setPopularity(itemDTO.getPopularity());
+					cart.setCategory(itemDTO.getCategory());
+					cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
+				}else {
+					cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
+					cartDAO.updateCartDAO(cart);
+				}
 			}
+			
+			for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
+				cart=cartDAO.getCartItem(orderInfo.getMemberId(),orderInfo.getOrderItemList().get(i).getItemId());
+				list.add(i, cart);
+			}
+			return list;
+			
+		}catch(Exception e){
+			return null;
 		}
 		
-		for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
-			cart=cartDAO.getCartItem(orderInfo.getMemberId(),orderInfo.getOrderItemList().get(i).getItemId());
-			list.add(i, cart);
-		}
+	}
+
+	@Override
+	public void deleteOrderService(int orderId, String memberId) {
+		orderInfoDAO.deleteOrder(orderId,memberId);
 		
-		
-		
-		
-		return list;
 	}
 
 }

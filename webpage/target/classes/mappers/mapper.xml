@@ -162,7 +162,7 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 		 parameterType="com.webpage.DAO.bbs.BbsDTO">
 		 INSERT INTO homeshop.bbs
 (memberId, bbsId, bbsTitle, bbsTime, bbsContents)
-values (${memberId},(select ifnull(max(bbsId)+1,1)from bbs as b),'${bbsTitle}','${bbsTime}','${bbsContents}');
+values (#{memberId},(select ifnull(max(bbsId)+1,1)from bbs as b),'${bbsTitle}','${bbsTime}','${bbsContents}');
 
 	</select>
 	
@@ -208,6 +208,19 @@ UPDATE homeshop.bbs SET bbsTitle = #{bbsTitle},bbsContents=#{bbsContents} WHERE 
 		oi),#{quantity});
 
 	</insert>
+	
+	<select id="getOrderItem" resultType="com.webpage.DAO.orderItem.OrderItemDTO" parameterType="Int">
+	select * from orderItem where orderId=#{orderId};
+	</select>
+	
+	<select id="getMemberOrder" parameterType="String" resultType="com.webpage.DAO.orderInfo.OrderInfoDTO">
+	select * from orderInfo where memberId=#{memberId};
+	</select>
+	
+	<delete id="deleteOrder" parameterType="Map">
+	DELETE FROM `homeshop`.`orderinfo` WHERE orderId=#{orderId} and memberId=#{memberId};
+	
+	</delete>
 	
 	
 </mapper>
