@@ -13,8 +13,15 @@ public class CartDTO {
 	private int popularity;
 	private String category;
 	private int quantity;
+	private boolean purchase;
 	
 	
+	public boolean isPurchase() {
+		return purchase;
+	}
+	public void setPurchase(boolean purchase) {
+		this.purchase = purchase;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,7 +43,7 @@ public class ItemViewController {
 		}else {
 		if(memberId==null) {
 			ItemDTO itemView=itemService.getItemView(itemId);
-			 boolean writeReviewBtn=false;
+			 String writeReviewBtn="NotLogIn";
 			model.addAttribute("itemView",itemView); 
 			model.addAttribute("writeBtnExist",writeReviewBtn); 
 			
@@ -50,7 +51,7 @@ public class ItemViewController {
 			
 		}else {
 			ItemDTO itemView=itemService.getItemView(itemId);
-			 boolean writeReviewBtn=reviewService.getWriteReviewBtn(memberId,itemView.getItemId());
+			String writeReviewBtn=reviewService.getWriteReviewBtn(memberId,itemView.getItemId());
 			model.addAttribute("itemView",itemView); 
 			model.addAttribute("writeBtnExist",writeReviewBtn); 
 			
@@ -65,9 +66,8 @@ public class ItemViewController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/review")
+	@RequestMapping(value = "/review",method=RequestMethod.POST)
 	public List<ReviewDTO> Review(@RequestParam("itemId") int itemId) {
-	
 			List<ReviewDTO> review=reviewService.getReview(itemId);
 			return review;
 		
@@ -75,7 +75,7 @@ public class ItemViewController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/writeReview")
+	@RequestMapping(value = "/writeReview",method=RequestMethod.POST)
 	public void writeReview(HttpServletRequest request,@RequestParam("reviewContents") String reviewContents,@RequestParam("writeReviewItemId") int writeReviewItemId,
 			@RequestParam("star") int star) {
 		HttpSession session=request.getSession();

@@ -10,6 +10,6 @@ public interface ReviewService {
 
 	void setReview(ReviewDTO review);
 
-	boolean getWriteReviewBtn(String memberId, int itemId);
+	String getWriteReviewBtn(String memberId, int itemId);
 
 }

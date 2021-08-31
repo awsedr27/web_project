@@ -8,6 +8,8 @@ public interface ReviewDAO {
 
 	void setReview(ReviewDTO review);
 
-	boolean getWriteReviewBtn(String memberId, int itemId);
+	String getWriteReviewBtn(String memberId, int itemId);
+
+	
 
 }

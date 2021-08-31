@@ -46,7 +46,16 @@ function review(){
 							+"</tr>");
 				    
 				});
-				if(writeBtnExist=="true"){
+				if(writeBtnExist=="NotLogIn"){
+					$(".review").append("<div id='writeReviewWrap'></div>");
+					$("#writeReviewWrap").append("<input type='text' id='writeReview' placeholder='로그인 하세요' disabled> ")
+					$("#writeReviewWrap").append("<div id='starReviewIconWrap'></div>")
+				}else if(writeBtnExist=="NotPurchase"){
+					$(".review").append("<div id='writeReviewWrap'></div>");
+					$("#writeReviewWrap").append("<input type='text' id='writeReview' placeholder='구매 후 작성가능' disabled> ")
+					$("#writeReviewWrap").append("<div id='starReviewIconWrap'></div>")
+					
+				}else if(writeBtnExist=="true"){
 					$(".review").append("<div id='writeReviewWrap'></div>");
 					$("#writeReviewWrap").append("<input type='text' id='writeReview' placeholder='리뷰를 입력하세요'>")
 					$("#writeReviewWrap").append("<div id='starReviewIconWrap'></div>")
@@ -57,7 +66,7 @@ function review(){
 					}
 					
 				}else{
-					
+					/*수정, 삭제 추가부분  */
 				}
 				
 			}catch(error){
@@ -83,7 +92,7 @@ function writeReview(){
 			$(".reviewContentsWrap").children("table").remove();
 	        review();
 		},
-		error:function(error){
+		error:function(){
 			alert("이미 리뷰를 작성하셨거나 데이터 오류입니다.");
 			location.href="/index";
 		}

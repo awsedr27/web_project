@@ -95,9 +95,9 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	</select>
 	
 		<!-- 아이템뷰에 리뷰-->
-		<select id="getWriteReviewBtn" parameterType="Map" resultType="com.webpage.DAO.review.ReviewDTO">
+	<select id="getWriteReviewBtn" parameterType="Map" resultType="com.webpage.DAO.review.ReviewDTO">
 		select * from review where memberId=#{memberId} and itemId=#{itemId}
-		</select>
+	</select>
 		
     <select id="getReview"
 		resultType="com.webpage.DAO.review.ReviewDTO" parameterType="int">
@@ -107,6 +107,7 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	INSERT INTO homeshop.review (`memberId`, `itemId`, `contents`, `rating`, `reviewTime`) VALUES (#{memberId},#{itemId},#{contents},#{rating},#{reviewTime});
 	
 	</insert>
+	
 	
 	<!-- 장바구니 -->
 	
@@ -222,5 +223,8 @@ UPDATE homeshop.bbs SET bbsTitle = #{bbsTitle},bbsContents=#{bbsContents} WHERE 
 	
 	</delete>
 	
+	<select id="isPurchase" parameterType="Map" resultType="com.webpage.DAO.orderItem.OrderItemDTO">
+	select * from orderItem where memberId=#{memberId} and itemId=#{itemId}
+	</select>
 	
 </mapper>

@@ -131,7 +131,7 @@
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="/js/bootstrap.js"></script>
+	
 	<script src="/js/common.js"></script>
 	<script src="/js/itemViewJS.js"></script>
 	

@@ -33,7 +33,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public boolean getWriteReviewBtn(String memberId,int itemId) {
+	public String getWriteReviewBtn(String memberId,int itemId) {
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("memberId", memberId);
 		map.put("itemId", itemId);
@@ -41,12 +41,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 		ReviewDTO writeReviewBtn=sqlSession.selectOne("mapper.getWriteReviewBtn", map);
 		
 		if(writeReviewBtn==null) {
-			return true;
+			return "true";
 			
 		}else {
-			return false;
+			return "false";
 		}
 	
 	}
+
+	
+	
 
 }
