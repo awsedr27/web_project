@@ -100,13 +100,17 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	</select>
 		
     <select id="getReview"
-		resultType="com.webpage.DAO.review.ReviewDTO" parameterType="int">
-		select * from review where itemId=#{itemId}
+		resultType="com.webpage.DAO.review.ReviewDTO" parameterType="Map">
+		select * from review where itemId=#{itemId} order by reviewTime desc limit #{reviewPageNum},15
 	</select>
 	<insert id="setReview" parameterType="com.webpage.DAO.review.ReviewDTO">
 	INSERT INTO homeshop.review (`memberId`, `itemId`, `contents`, `rating`, `reviewTime`) VALUES (#{memberId},#{itemId},#{contents},#{rating},#{reviewTime});
 	
 	</insert>
+	
+	<select id="getReviewPageCnt" resultType="Int" parameterType="Int">
+	select count(*) from review where itemId=#{itemId};
+	</select>
 	
 	
 	<!-- 장바구니 -->

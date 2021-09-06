@@ -356,6 +356,13 @@ body{margin:0px}
     color: red;
     font-weight: bold;
 }
+.reviewPagingNum{
+		text-decoration:none;
+}
+#itemViewBtn>form{
+	display:inline-block;
+}
+
 
 
 /*-------------장바구니 영역------------------*/
@@ -626,26 +633,28 @@ body{margin:0px}
 #writeBbsWrap input:nth-child(1){
 	width: 700px;
     height: 33px;
-    position: relative;
-    top: 50px;
-    font-size:20pt;
+    font-size: 20pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #writeBbsWrap input:nth-child(3){
-	position: relative;
-    left: 707px;
-    border: solid 1px black;
-    background: #f7c856;;
+	border: solid 1px black;
+    background: #f7c856;
     width: 45px;
     height: 30px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 960px;
+    
 }
 #writeBbsWrap textarea{
-	width: 700px;
-    height: 400px;
+	width: 1000px;
+    min-height: 400px;
     display: block;
     position: relative;
-    top: 100px;
-    resize:none;
+    resize: none;
     font-size: 16pt;
+    margin-bottom: 10px;
 }
 #bbsTitle{
 	font-size: 24px;
@@ -659,12 +668,14 @@ body{margin:0px}
 	display: inline-block;
 }
 #bbsContents{
-	width: 1000px;
-    height: 400px;
-    font-size: 16pt;
+	    font-size: 18pt;
     border-top: solid 1px #bdb9b9;
     padding-top: 30px;
     white-space: pre-wrap;
+    width: 970px;
+    min-height: 400px;
+    display: inline-block;
+    word-break: break-all;
 }
 #bbsViewWrap a{
 	text-decoration: none;
@@ -680,6 +691,12 @@ body{margin:0px}
     border: solid 1px black;
     font-family: Dotum,'돋움';
 }
+#textAreaCnt{
+	display: inline-block;
+    position: relative;
+    right: 50px;
+}
+
 /*---------개인정보,수정--------*/
 #myInfoWrap{
 	display: inline-block;
@@ -732,4 +749,4 @@ body{margin:0px}
 	border-bottom:solid 1px black;
 }
 
-	
+

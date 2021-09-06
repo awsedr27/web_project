@@ -53,6 +53,7 @@ public class OrderController {
 					model.addAttribute("cartEmpty", true);
 					return "order";
 				}else {
+					
 					model.addAttribute("cartList", list);
 					return "order";	
 				}

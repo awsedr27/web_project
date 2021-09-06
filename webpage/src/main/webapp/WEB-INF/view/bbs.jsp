@@ -94,9 +94,38 @@
 				</button>
 			</div>
 			<div id="bbsPagingWrap">
-				<c:forEach var="i" begin='${bbsPageRange}' end='${bbsPageCnt}'>
-					<a href="/bbs?pageNum=${i}">${i}</a>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${nextRange eq true}">
+						<c:if test="${pageRangeFirst>5}">
+							<button
+								onclick="location.href='/bbs?pageNum=${pageRangeFirst-5}'">
+								<i class="fas fa-chevron-left"></i>
+							</button>
+						</c:if>
+						<c:forEach var="i" begin='${pageRangeFirst}'
+							end='${pageRangeLast}'>
+							<a href="/bbs?pageNum=${i}">${i}</a>
+						</c:forEach>
+						<button onclick="location.href='/bbs?pageNum=${pageRangeFirst+5}'">
+							<i class="fas fa-chevron-right"></i>
+						</button>
+					</c:when>
+
+
+					<c:otherwise>
+						<c:if test="${pageRangeFirst>5}">
+							<button
+								onclick="location.href='/bbs?pageNum=${pageRangeFirst-5}'">
+								<i class="fas fa-chevron-left"></i>
+							</button>
+						</c:if>
+						<c:forEach var="i" begin='${pageRangeFirst}' end='${pageCnt}'>
+							<a href="/bbs?pageNum=${i}">${i}</a>
+						</c:forEach>
+
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 

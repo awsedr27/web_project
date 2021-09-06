@@ -70,8 +70,10 @@
 		<div id="writeBbsWrap">
 			<form action="/bbs/put" method="post">
 				<input type="text" name="bbsTitle" placeholder="제목입력하세요"></input>
-				<textarea name="bbsContents" placeholder="글을 입력하세요(100자)"></textarea>
+				<textarea id="bbsWriteText" name="bbsContents" placeholder="글을 입력하세요(100자)"></textarea>
+				
 				<input type="submit" value="글쓰기"></input>
+				<div id="textAreaCnt">(0/100)</div>
 				
 
 
@@ -97,7 +99,7 @@
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="/js/custom.js"></script>
+	
 	<script src="/js/common.js"></script>
 </body>
 </html>

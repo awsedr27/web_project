@@ -68,19 +68,21 @@ public class OrderServiceImpl implements OrderService {
 					cart.setPopularity(itemDTO.getPopularity());
 					cart.setCategory(itemDTO.getCategory());
 					cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
+					
 				}else {
 					cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
 					cartDAO.updateCartDAO(cart);
+					cart=cartDAO.getCartItem(orderInfo.getMemberId(),orderInfo.getOrderItemList().get(i).getItemId());
 				}
-			}
-			
-			for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
-				cart=cartDAO.getCartItem(orderInfo.getMemberId(),orderInfo.getOrderItemList().get(i).getItemId());
 				list.add(i, cart);
 			}
+			
+			
 			return list;
 			
 		}catch(Exception e){
+			
+			
 			return null;
 		}
 		

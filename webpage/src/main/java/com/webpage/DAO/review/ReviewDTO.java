@@ -12,6 +12,8 @@ public class ReviewDTO {
 	private int rating;
 	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private Date reviewTime;
+	
+	
 	public String getMemberId() {
 		return memberId;
 	}

@@ -18,9 +18,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<ReviewDTO> getReview(int itemId) {
+	public List<ReviewDTO> getReview(int itemId,int reviewPageNum) {
+		int reviewNum=(reviewPageNum-1)*15;
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("reviewPageNum", reviewNum);
+		map.put("itemId", itemId);
 		
-		List<ReviewDTO> review=sqlSession.selectList("mapper.getReview", itemId);
+		List<ReviewDTO> review=sqlSession.selectList("mapper.getReview", map);
 		return review;
 		
 		
@@ -47,6 +51,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 			return "false";
 		}
 	
+	}
+
+	@Override
+	public int getPageCnt(int itemId) {
+        int pageCnt=sqlSession.selectOne("mapper.getReviewPageCnt",itemId);
+		
+		pageCnt=(int)Math.ceil(pageCnt/15.0);
+		
+		return pageCnt;
 	}
 
 	

@@ -76,12 +76,12 @@ if(${modify}==false){
 			<div id="writeBbsWrap">
 			<form action="/bbs/modify_action" method="post">
 				<input type="text" name="bbsTitle" value="<c:out value="${bbs.bbsTitle}"></c:out>"></input>
-				<textarea name="bbsContents"><c:out value="${bbs.bbsContents}"></c:out>
+				<textarea id="bbsWriteText" name="bbsContents"><c:out value="${bbs.bbsContents}"></c:out>
 				</textarea>
 				<input type="submit"></input>
 				<input type="hidden" name="memberId" value="<c:out value="${bbs.memberId}"></c:out>">
 				<input type="hidden" name="bbsId" value="<c:out value="${bbs.bbsId}"></c:out>">
-				
+				<div id="textAreaCnt">(0/100)</div>
 				
 
 			</form>
@@ -106,7 +106,7 @@ if(${modify}==false){
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="/js/custom.js"></script>
+	
 	<script src="/js/common.js"></script>
 </body>
 </html>

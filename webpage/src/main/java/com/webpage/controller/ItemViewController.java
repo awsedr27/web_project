@@ -3,6 +3,7 @@ package com.webpage.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,19 +38,22 @@ public class ItemViewController {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		
+		
 		if(itemId==null) {
 			return "redirect:/index";
 
 		}else {
 		if(memberId==null) {
 			ItemDTO itemView=itemService.getItemView(itemId);
-			 String writeReviewBtn="NotLogIn";
+			String writeReviewBtn="NotLogIn";
 			model.addAttribute("itemView",itemView); 
 			model.addAttribute("writeBtnExist",writeReviewBtn); 
 			
 			return "itemView";
 			
 		}else {
+			
+			
 			ItemDTO itemView=itemService.getItemView(itemId);
 			String writeReviewBtn=reviewService.getWriteReviewBtn(memberId,itemView.getItemId());
 			model.addAttribute("itemView",itemView); 
@@ -67,8 +71,8 @@ public class ItemViewController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/review",method=RequestMethod.POST)
-	public List<ReviewDTO> Review(@RequestParam("itemId") int itemId) {
-			List<ReviewDTO> review=reviewService.getReview(itemId);
+	public List<ReviewDTO> Review(@RequestParam("itemId") int itemId,@RequestParam(value = "reviewPageNum",defaultValue = "1") int reviewPageNum) {
+			List<ReviewDTO> review=reviewService.getReview(itemId,reviewPageNum);
 			return review;
 		
 		
@@ -97,6 +101,21 @@ public class ItemViewController {
 			reviewService.setReview(review);
 			
 		}
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/reviewPaging",method=RequestMethod.POST)
+	public Map<String,Object> reviewPaging(@RequestParam(value = "reviewPageNum",defaultValue = "1") int reviewPageNum,@RequestParam(value = "itemId",required = false) Integer itemId) {
+		
+			
+		
+            Map<String,Object> pageMap=reviewService.getPagingService(reviewPageNum,itemId);
+			
+			
+			return pageMap;
+		
 		
 		
 	}

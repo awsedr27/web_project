@@ -287,3 +287,28 @@ function myInfoOrderDelete(orderId){
 		
 	})
 }
+/*---------------주문취소----------------------------------- */
+$(function(){
+	$("#bbsWriteText").on("keyup",function(){
+		$("#textAreaCnt").html("("+$(this).val().length+"/100)");
+		
+		if($(this).val().length>100){
+			
+			$(this).val($(this).val().substring(0,100));
+		    $("#textAreaCnt").html("(100/100)");
+
+		}
+	})
+	
+	$("#bbsWriteText").on("keydown",function(){
+		$("#textAreaCnt").html("("+$(this).val().length+"/100)");
+		
+		if($(this).val().length>100){
+			
+			$(this).val($(this).val().substring(0,100));
+		    $("#textAreaCnt").html("(100/100)");
+
+		}
+	})
+	
+})

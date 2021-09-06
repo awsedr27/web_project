@@ -90,8 +90,17 @@
 		<div id="itemViewBtn">
 		<button id="minusQuantity">-</button><span id="quantityValue">1</span><button id="plusQuantity">+</button>
 		
-		<button id="itemPutBtn" >장바구니</button>
-		<button id="itemBuyBtn" >결제하기</button>
+		<button id="itemPutBtn">장바구니</button>
+		
+		
+		<form action="/cart/order" method="post">
+			    <input type="hidden" name="orderItemList[0].itemId" value="${itemView.itemId}">
+			    <input type="hidden" name="orderItemList[0].quantity" value="1" id="cartOrderQuantity">
+				
+				<input type="submit" id="itemBuyBtn" value="결제하기"> 
+						
+		</form>
+		
 		</div>
 
 			<div id="reviewWrap">
@@ -99,17 +108,14 @@
 
 
 
-					<div class="reviewContentsWrap">
-						
-
-					</div>
-
+					<div class="reviewContentsWrap"></div>
+					<div id="reviewContentsPagingWrap"></div>
 
 					<input type="hidden" id="writeBtnExist" value="${writeBtnExist}">
 
 
 				</div>
-				
+
 			</div>
 
 
