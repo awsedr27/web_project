@@ -39,7 +39,7 @@ public class SignController {
 	}
 	
 	@RequestMapping(value="/signIn",method=RequestMethod.POST)
-	public String signIn(HttpServletRequest request,@RequestParam("userID") String memberId,@RequestParam("userPassword") int password) {
+	public String signIn(Model model,HttpServletRequest request,@RequestParam("userID") String memberId,@RequestParam("userPassword") int password) {
 		
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("memberId", memberId);
@@ -53,7 +53,9 @@ public class SignController {
 			
 		}
 		else {
-			return "signIn";
+			model.addAttribute("url", "signIn");
+			model.addAttribute("msg", "로그인 실패");
+			return "/redirect";
 		}
 		
 		
@@ -62,21 +64,27 @@ public class SignController {
 	}
 	
 	@RequestMapping("/signOut")
-	public String signOut(HttpServletRequest request) {
+	public String signOut(Model model,HttpServletRequest request) {
 		HttpSession session=request.getSession();
 		session.invalidate();
-		return "redirect:/index";
+		model.addAttribute("url", "index");
+		model.addAttribute("msg", "로그아웃 하셨습니다");
+		return "/redirect";
+		
 
 	}
 	
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
-	public String signUp(HttpServletRequest request) {
+	public String signUp(Model model,HttpServletRequest request) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		if(memberId==null) {
 			return "signUp";
 		}else {
-			return "redirect:/index";
+			model.addAttribute("url", "index");
+			model.addAttribute("msg", "이미 로그인하셨습니다");
+			return "/redirect";
+			
 		}
 		
 		
@@ -84,12 +92,19 @@ public class SignController {
 	}
 	
 	@RequestMapping(value="/signUp", method=RequestMethod.POST)
-	public String signUp(MemberDTO memberDTO) {
+	public String signUp(Model model,MemberDTO memberDTO) {
 		
-		
+		try {
 		memberService.setMember(memberDTO);
-		return "redirect:/signIn";
-		
+		model.addAttribute("url", "signIn");
+		model.addAttribute("msg", "회원가입 성공!");
+		return "/redirect";
+		}
+		catch(Exception e){
+			model.addAttribute("url", "signIn");
+			model.addAttribute("msg", "회원가입 실패");
+			return "/redirect";
+		}
 		
 	}
 	
@@ -140,7 +155,7 @@ public class SignController {
 	}
 	
 	@RequestMapping("/myInfo/modify_action")
-	public String myInfoModify_Action(HttpServletRequest request,MemberDTO memberDTO,@RequestParam(value = "mode",required = false) String mode,@RequestParam(value = "newPassword",required = false) Integer newPassword) {
+	public String myInfoModify_Action(Model model,HttpServletRequest request,MemberDTO memberDTO,@RequestParam(value = "mode",required = false) String mode,@RequestParam(value = "newPassword",required = false) Integer newPassword) {
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("memberId");
 		if(userId==null) {
@@ -148,18 +163,27 @@ public class SignController {
 		}
 		else {
 			if(mode.equals("myInfo")) {
+				
 				memberService.setMyInfoModify(memberDTO);
-				return "redirect:/index";
+				model.addAttribute("url", "index");
+				model.addAttribute("msg", "회원정보 수정 완료");
+				return "/redirect";
 			}
 			else if(mode.equals("modifyPassword")) {
 				boolean checkPassword=memberService.checkPassword(userId,memberDTO.getMemberPassword());
 				if(checkPassword) {
 					
 					memberService.setNewPassword(userId,newPassword);
-					return "redirect:/myInfo"; 
+					model.addAttribute("url", "myInfo");
+					model.addAttribute("msg", "비밀번호 변경하셨습니다");
+					return "/redirect";
+					
 				}
 				else {
-					return "redirect:/myInfo";	
+					model.addAttribute("url", "myInfo");
+					model.addAttribute("msg", "정확한 비밀번호를 입력하세요");
+					return "/redirect";
+						
 				}
 				
 				

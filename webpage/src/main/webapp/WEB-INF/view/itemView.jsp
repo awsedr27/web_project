@@ -79,7 +79,7 @@
 		<div class="itemViewText"><b>할인가</b>  <div class="itemView">-<span id="itemViewDiscount">${itemView.discountNum}</span>원</div></div>
 		</c:if>
 		<div class="itemViewText"><b>추천점수(한사람당 1~5)</b>  <div class="itemView">${itemView.popularity}점</div></div>
-		<div class="itemViewText"><b>배송지</b>  <div class="itemView"></div></div>
+		
 		<div class="itemViewText"><b>배송비</b>  <div class="itemView">5000원</div></div>
 		
 		<input type="hidden" value="${itemView.itemId}" id="itemIdInput">
