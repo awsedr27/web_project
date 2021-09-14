@@ -89,4 +89,11 @@ public class ReviewSerivceImpl implements ReviewService {
 		return map;
 	}
 
+
+	@Override
+	public ReviewDTO getReviewContentsViewService(int memberId, int itemId) {
+		ReviewDTO review=reviewDAO.getReviewContentsView(memberId,itemId);
+		return review;
+	}
+
 }

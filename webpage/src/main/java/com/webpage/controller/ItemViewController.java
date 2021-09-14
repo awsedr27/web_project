@@ -119,5 +119,16 @@ public class ItemViewController {
 		
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/reviewContentsView",method=RequestMethod.POST)
+	public ReviewDTO reviewContentsView(@RequestParam("itemId") int itemId,@RequestParam("memberId") int memberId) {
+		
+		ReviewDTO reviewContents=reviewService.getReviewContentsViewService(memberId,itemId);
+		
+		
+		return reviewContents;
+   
+}
 
 }

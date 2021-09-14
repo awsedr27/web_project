@@ -112,6 +112,10 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	select count(*) from review where itemId=#{itemId};
 	</select>
 	
+	<select id="getReviewContentsView" resultType="com.webpage.DAO.review.ReviewDTO" parameterType="Map">
+	select * from review where itemId=#{itemId} and memberId=#{memberId};
+	</select>
+	
 	
 	<!-- 장바구니 -->
 	

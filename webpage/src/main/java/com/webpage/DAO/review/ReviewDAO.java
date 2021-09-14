@@ -12,6 +12,8 @@ public interface ReviewDAO {
 
 	int getPageCnt(int itemId);
 
+	ReviewDTO getReviewContentsView(int memberId, int itemId);
+
 	
 
 }

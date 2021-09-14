@@ -15,4 +15,6 @@ public interface ReviewService {
 
 	Map<String, Object> getPagingService(int reviewPageNum, int itemId);
 
+	ReviewDTO getReviewContentsViewService(int memberId, int itemId);
+
 }

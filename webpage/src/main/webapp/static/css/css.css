@@ -363,7 +363,21 @@ body{margin:0px}
 	display:inline-block;
 }
 
-
+#reviewContentsView{
+	display: inline-block;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    border: solid 1px whitesmoke;
+    margin-left: 50px;
+}
+.reviewContentsViewBtn{
+	text-decoration: none;
+}
+#reviewContentsViewId{}
+#reviewContentsViewRating{}
+#reviewContentsViewTime{}
+#reviewContentsViewText{}
 
 /*-------------장바구니 영역------------------*/
 #cartBtnWrap{

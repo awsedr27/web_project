@@ -62,6 +62,17 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return pageCnt;
 	}
 
+	@Override
+	public ReviewDTO getReviewContentsView(int memberId, int itemId) {
+		
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("itemId", itemId);
+		
+		ReviewDTO review=sqlSession.selectOne("mapper.getReviewContentsView", map);
+		return review;
+	}
+
 	
 	
 

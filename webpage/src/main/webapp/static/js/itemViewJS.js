@@ -46,6 +46,19 @@ $(function(){
 		reviewPaging(reviewPageNum);
 	})
 	
+	$(".review").on("click",".reviewContentsViewBtn",function(e){
+		e.preventDefault();
+		$("#reviewContentsView").remove();
+		
+		var memberId=$(this).parent("td").prev().text();
+		reviewContentsView(memberId);
+		
+		
+		
+		
+		
+	})
+	
 	
 })
 
@@ -71,10 +84,16 @@ function review(pageNum){
 								+"<th>작성날짜</th>"
 							+"</tr></table>");
 				$.each(data,function(index,item){
+					var itemContents;
+					if(item.contents.length>14){
+						itemContents=item.contents.substring(0,14)+"...";
+					}else{
+						itemContents=item.contents;
+					}
 				
 					$("#reviewContents").append("<tr>"
 								+"<td>"+item.memberId+"</td>"
-								+"<td>"+item.contents+"</td>"
+								+"<td><a href='#' class='reviewContentsViewBtn'>"+itemContents+"</a></td>"
 								+"<td>"+item.rating+"</td>"
 								+"<td>"+item.reviewTime+"</td>"
 							+"</tr>");
@@ -215,6 +234,30 @@ $(function(){
 	})
 	
 })
+/*-------------------리뷰 콘텐츠 뷰(리뷰보기)----------------------- */
+function reviewContentsView(memberId){
+	var itemId=document.getElementById("itemIdInput").value;
+	$.ajax({
+		type: "POST",
+		url: "/reviewContentsView",
+		data: { "itemId": itemId,"memberId":memberId},
+		dataType:"json",
+		success: function(item) {
+		$("#reviewWrap").append("<div id='reviewContentsView'></div>");
+		$("#reviewContentsView").append("<div id='reviewContentsViewId'>ID : "+item.memberId+"</div>");
+		$("#reviewContentsView").append("<div id='reviewContentsViewRating'>평점 : "+item.rating+"</div>");
+		$("#reviewContentsView").append("<div id='reviewContentsViewTime'>"+item.reviewTime+"</div>");
+		$("#reviewContentsView").append("<div id='reviewContentsViewText'>"+item.contents+"</div>");
+		
+
+		},
+		error: function(){
+			alert("데이터 오류입니다.");
+		}
+		
+	})
+
+}
 /*-------------------아이템뷰 총액 계산----------------------- */
 function itemViewPriceSum(){
 	
