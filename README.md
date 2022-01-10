@@ -27,5 +27,5 @@
 
 <h1>게시판</h1>
 
-![게시판](https://user-images.githubusercontent.com/70567584/148724280-18d5c8c4-c5f2-4912-a7e2-b8a200bdba67.png)
+![게시판2](https://user-images.githubusercontent.com/70567584/148727299-e7dcad70-7eb8-4c5f-b595-b440f65314eb.png)
 xss보안문제 간단하게 해결
