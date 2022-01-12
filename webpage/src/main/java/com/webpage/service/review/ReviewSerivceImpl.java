@@ -96,4 +96,11 @@ public class ReviewSerivceImpl implements ReviewService {
 		return review;
 	}
 
+
+	@Override
+	public void deleteReviewService(int itemId, String memberId) {
+		reviewDAO.deleteReviewDAO(itemId,memberId);
+		
+	}
+
 }

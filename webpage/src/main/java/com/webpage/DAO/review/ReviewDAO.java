@@ -14,6 +14,8 @@ public interface ReviewDAO {
 
 	ReviewDTO getReviewContentsView(int memberId, int itemId);
 
+	void deleteReviewDAO(int itemId, String memberId);
+
 	
 
 }

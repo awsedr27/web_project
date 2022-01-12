@@ -35,6 +35,7 @@ $(function() {
 			$("#iconChevronLeft").addClass("fas fa-chevron-left");
 			$("#cartBtn").css("position","");
 			$("#cartBtn").css("right","");
+			$("body").css("overflow","");
 			
 		}else{
 			$("body").prepend("<div id='cartView'></div>");
@@ -44,6 +45,7 @@ $(function() {
 			$("#cartBtn").css("position","relative");
 			$("#cartBtn").css("right","984px");
 			cart();
+			$("body").css("overflow","hidden");
 		}
 		
 		})
@@ -312,3 +314,26 @@ $(function(){
 	})
 	
 })
+
+/*--------------------------------------------------------------------*/
+$(document).ready(function(){ 
+	
+	
+$(window).scroll(function() { 
+	 
+	var x=$("#footer").offset().top;
+	if($(window).scrollTop()>200){
+		$(".cartTextWrap").attr("class","cartTextWrap fixed");
+	}else{
+		$(".cartTextWrap").attr("class","cartTextWrap");
+	}
+		
+	
+
+
+
+ });
+ }
+
+);
+

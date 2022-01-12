@@ -55,6 +55,7 @@ public class ItemViewController {
 			
 			
 			ItemDTO itemView=itemService.getItemView(itemId);
+
 			String writeReviewBtn=reviewService.getWriteReviewBtn(memberId,itemView.getItemId());
 			model.addAttribute("itemView",itemView); 
 			model.addAttribute("writeBtnExist",writeReviewBtn); 
@@ -130,5 +131,21 @@ public class ItemViewController {
 		return reviewContents;
    
 }
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteReview",method=RequestMethod.POST)
+	public void deleteReview(HttpServletRequest request,@RequestParam("itemId") int itemId) {
+		HttpSession session=request.getSession();
+		String memberId=(String) session.getAttribute("memberId");
+		if(memberId==null) {
+			
+		}else {
+			reviewService.deleteReviewService(itemId,memberId);
+			
+			
+		}
+		
+		
+	}
 
 }

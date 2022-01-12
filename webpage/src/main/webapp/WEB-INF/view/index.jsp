@@ -117,7 +117,10 @@
 		</div>
 		
 		<div id="cartBtnWrap">
-		<button id="cartBtn"><i id="iconChevronLeft" class="fas fa-chevron-left"></i></button>
+		<button type="button" id="cartBtn">
+		<i id="iconChevronLeft" class="fas fa-chevron-left"></i>
+		</button>
+		</div>
 		</div>
 
 

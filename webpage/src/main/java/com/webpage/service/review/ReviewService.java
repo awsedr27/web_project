@@ -17,4 +17,6 @@ public interface ReviewService {
 
 	ReviewDTO getReviewContentsViewService(int memberId, int itemId);
 
+	void deleteReviewService(int itemId, String memberId);
+
 }

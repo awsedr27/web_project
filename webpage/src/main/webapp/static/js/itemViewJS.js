@@ -10,6 +10,11 @@ $(function(){
 		
 	})
 	
+	$(".review").on("click","#writeReviewDeleteBtn",function(){
+		deleteReview();
+		
+	})
+	
 	$(".review").on("click",".starIconWrap",function(){
 		star=$(this).children("i").attr("id");
 		
@@ -121,7 +126,10 @@ function review(pageNum){
 					}
 					
 				}else{
-					
+					$("#reviewContentsPagingWrap").before("<div id='writeReviewWrap'></div>");
+					$("#writeReviewWrap").append("<input type='text' id='writeReview' placeholder='이미 작성하셨습니다' disabled>")
+					$("#writeReviewWrap").append("<div id='starReviewIconWrap'></div>")
+					$("#writeReviewWrap").append("<button id='writeReviewDeleteBtn'>리뷰삭제</button>")
 					/*수정, 삭제 추가부분  */
 				}
 				
@@ -248,7 +256,8 @@ function reviewContentsView(memberId){
 		$("#reviewContentsView").append("<div id='reviewContentsViewRating'>평점 : "+item.rating+"</div>");
 		$("#reviewContentsView").append("<div id='reviewContentsViewTime'>"+item.reviewTime+"</div>");
 		$("#reviewContentsView").append("<div id='reviewContentsViewText'>"+item.contents+"</div>");
-		
+	  
+
 
 		},
 		error: function(){
@@ -310,4 +319,28 @@ function itemViewCartPut(){
 	
 	
 }
-
+/*-----------------리뷰 삭제 -------------------*/
+function deleteReview(){
+	var itemId=document.getElementById("itemIdInput").value;
+	
+	$.ajax({
+		type: "POST",
+		url: "deleteReview",
+		data: { "itemId": itemId},
+		
+		success: function() {
+			document.getElementById("writeBtnExist").value="true";
+			$("#writeReviewWrap").remove();
+			$(".reviewContentsWrap").children("table").remove();
+			$("#reviewPagingWrap").remove();
+	        review(1);
+            reviewPaging(1);
+		},
+		error: function(error){
+			alert(error);
+		}
+		
+	})
+	
+	
+}

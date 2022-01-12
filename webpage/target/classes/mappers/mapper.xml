@@ -116,6 +116,11 @@ UPDATE homeshop.memberinfo SET `memberId` = #{memberId}, `birthday` = #{birthday
 	select * from review where itemId=#{itemId} and memberId=#{memberId};
 	</select>
 	
+	<delete id="deleteReview" parameterType="Map">
+	DELETE FROM homeshop.review WHERE (`memberId` = #{memberId}) and (`itemId` = #{itemId});
+
+	</delete>
+	
 	
 	<!-- 장바구니 -->
 	

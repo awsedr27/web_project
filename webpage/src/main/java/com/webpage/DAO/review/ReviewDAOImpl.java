@@ -73,6 +73,16 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return review;
 	}
 
+	@Override
+	public void deleteReviewDAO(int itemId, String memberId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("itemId", itemId);
+		
+		sqlSession.delete("mapper.deleteReview", map);
+		
+	}
+
 	
 	
 
