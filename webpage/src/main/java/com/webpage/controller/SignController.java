@@ -154,7 +154,7 @@ public class SignController {
 
 	}
 	
-	@RequestMapping("/myInfo/modify_action")
+	@RequestMapping(value="/myInfo/modify_action",method = RequestMethod.POST)
 	public String myInfoModify_Action(Model model,HttpServletRequest request,MemberDTO memberDTO,@RequestParam(value = "mode",required = false) String mode,@RequestParam(value = "newPassword",required = false) Integer newPassword) {
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("memberId");

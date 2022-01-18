@@ -2,13 +2,16 @@
  * 
  */
 /*-----------------네비게이션바 아이콘 밑 드롭다운---------------------- */
+
 $(function(){
+	
 	var checkBtn=true;
 	$("#dropDownBtn").on("click",function(){
 		if (checkBtn) {
 			$("#dropDownWrap").children("ul").css("display", "block");
 			$("#iconChevronDown").removeClass("fas fa-chevron-down");
 			$("#iconChevronDown").addClass("fas fa-chevron-up");
+			$("#dropDownBtn").css("background-color","whitesmoke");
 
 			
 			checkBtn = false;
@@ -17,11 +20,12 @@ $(function(){
 			$("#dropDownWrap").children("ul").css("display", "none");
 			$("#iconChevronDown").removeClass("fas fa-chevron-up");
 			$("#iconChevronDown").addClass("fas fa-chevron-down");
-			
+			$("#dropDownBtn").css("background-color","white");
 			checkBtn = true;
 		}
 	})
 })
+
 
 
 
@@ -33,8 +37,13 @@ $(function() {
 			$("#cartView").remove();
 			$("#iconChevronLeft").removeClass("fas fa-chevron-right");
 			$("#iconChevronLeft").addClass("fas fa-chevron-left");
-			$("#cartBtn").css("position","");
-			$("#cartBtn").css("right","");
+			//$("#cartBtn").css("position","");
+			//$("#cartBtn").css("right","");
+			$("#cartBtnWrap").css("right","20px");
+			$("#cartBtnWrap").css("top","350px");
+			$("#cartBtn").css("background-color","white");
+			$("#cartBtn").css("border-radius","");
+			$("#cartBtn").css("font-size","88px");
 			$("body").css("overflow","");
 			
 		}else{
@@ -42,8 +51,13 @@ $(function() {
 			$("body").prepend("<div id='cartViewOutSide'></div>");
 			$("#iconChevronLeft").removeClass("fas fa-chevron-left");
 			$("#iconChevronLeft").addClass("fas fa-chevron-right");
-			$("#cartBtn").css("position","relative");
-			$("#cartBtn").css("right","984px");
+			//$("#cartBtn").css("position","relative");
+			//$("#cartBtn").css("right","984px");
+			$("#cartBtnWrap").css("right","985px");
+			$("#cartBtnWrap").css("top","253px");
+			$("#cartBtn").css("background-color","black");
+			$("#cartBtn").css("border-radius","46px");
+			$("#cartBtn").css("font-size","30px");
 			cart();
 			$("body").css("overflow","hidden");
 		}
@@ -58,7 +72,7 @@ function cart() {
 		dataType: "json",
 		success: function(item) {
 			try {
-				$("#cartView").append("<div class='cartTableWrap'><table border='1'><tr><th class='cartTable'>이름</th><th class='cartTable'>가격</th><th class='cartTable'>할인</th><th class='cartTable'>사진</th><th>수량</th><th></th></table>")
+				$("#cartView").append("<div class='cartTableWrap'><table border='1'><tr><th class='cartTable'>이름</th><th class='cartTable'>가격</th><th class='cartTable'>할인</th><th class='cartTable'>사진</th><th class='cartTable'>수량</th><th></th></table>")
 				
 				$.each(item,function(index,item){
 					$(".cartTableWrap>table").append("<tr><td class='cartTable'>"
@@ -105,7 +119,7 @@ function cartDel(itemId) {
 		data: { "itemId": itemId },
 		dataType: "html",
 		success: function() {
-			location.reload();
+			location.reload(); 
 
 		}
 	})
@@ -224,7 +238,8 @@ $(function(){
 })
 
 function updateCartQuantity(quantity,itemId){
-	
+	var cartQuantity=parseInt(quantity);
+	if(cartQuantity>0){
 	$.ajax({
 		type: "POST",
 		url: "/cartPut",
@@ -234,11 +249,19 @@ function updateCartQuantity(quantity,itemId){
 
 		},
 		error: function(){
-			alert("0이하는 선택할수없습니다.");
+			alert("DB 반영 에러");
 			location.reload();
 		}
 		
 	})
+	}else if(cartQuantity==0){
+		alert("0이하는 선택할수없습니다!.");
+		location.reload();
+		
+	}else{
+		alert("0이하는 선택할수없습니다!!.");
+		location.reload();
+	}
 }
 /*------------------장바구니에서 주문하기--------------------- */
 $(function(){
@@ -289,7 +312,7 @@ function myInfoOrderDelete(orderId){
 		
 	})
 }
-/*---------------주문취소----------------------------------- */
+/*---------------bbs 100글자제한----------------------------------- */
 $(function(){
 	$("#bbsWriteText").on("keyup",function(){
 		$("#textAreaCnt").html("("+$(this).val().length+"/100)");
@@ -315,13 +338,13 @@ $(function(){
 	
 })
 
-/*--------------------------------------------------------------------*/
+/*--------------------------장바구니주문페이지 fixed설정----------------------------------*/
 $(document).ready(function(){ 
 	
 	
 $(window).scroll(function() { 
 	 
-	var x=$("#footer").offset().top;
+	
 	if($(window).scrollTop()>200){
 		$(".cartTextWrap").attr("class","cartTextWrap fixed");
 	}else{

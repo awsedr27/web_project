@@ -66,40 +66,97 @@
 
 
 		</div>
-		
+
 		<c:if test="${mode eq 'myInfo'}">
-	
-		<div class="myInfoModifyWrap">
-		<form action="/myInfo/modify_action" method="post">
-		<div class="myInfoModifyText">아이디</div><div><input type="text" name="memberId" value="<c:out value="${memberInfo.memberId}"></c:out>"></div>
-		<div class="myInfoModifyText">생일</div><div><input type="text" name="birthday" value="${memberInfo.birthday}"></div>
-		<div class="myInfoModifyText">전화번호</div><div><input type="text" name="phoneNum" value="${memberInfo.phoneNum}"></div>
-		<div class="myInfoModifyText">이메일</div><div><input type="text" name="email" value="<c:out value="${memberInfo.email}"></c:out>"></div>
-		<div class="myInfoModifyText">집주소</div><div><input type="text" name="houseLocation" value="<c:out value="${memberInfo.houseLocation}"></c:out>"></div>
-		<input type="hidden" name="mode" value="myInfo">
-		<div><input type="submit" value="수정완료"></div>
-		</form>
-		</div>
+
+			<div class="myInfoModifyWrap">
+				<form action="/myInfo/modify_action" method="post">
+					<table id='myInfoModifyTable'>
+						<tr>
+							<th>
+								<p class='myInfoModifyText'>아이디</p>
+							</th>
+							<td><input type="text" name="memberId"
+								value="<c:out value="${memberInfo.memberId}"></c:out>">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<p class='myInfoModifyText'>생일</p>
+							</th>
+							<td><input type="date" name="birthday"
+								value="<c:out value='${memberInfo.birthday}'></c:out>">
+
+							</td>
+						</tr>
+
+						<tr>
+							<th>
+								<p class='myInfoModifyText'>전화번호</p>
+							</th>
+							<td><input type="number" name="phoneNum"
+								value="<c:out value='${memberInfo.phoneNum}'></c:out>">
+							</td>
+						</tr>
+
+						<tr>
+							<th>
+								<p class='myInfoModifyText'>이메일</p>
+							</th>
+							<td><input type="text" name="email"
+								value="<c:out value="${memberInfo.email}"></c:out>"></td>
+						</tr>
+
+						<tr>
+							<th>
+								<p class='myInfoModifyText'>집주소</p>
+							</th>
+							<td><input type="text" name="houseLocation"
+								value="<c:out value="${memberInfo.houseLocation}"></c:out>">
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" name="mode" value="myInfo">
+					<div id='myInfoModifyBtn'>
+						<input type="submit" value="수정완료">
+					</div>
+				</form>
+
+
+
+			</div>
 		</c:if>
-		
+
 		<c:if test="${mode eq 'modifyPassword'}">
-		<div class="myInfoModifyWrap">
-		<form action="/myInfo/modify_action" mothod="post">
-		<div class="myInfoModifyText">현재 비밀번호</div> <div><input type="password" name="memberPassword"></div>
-		<div class="myInfoModifyText">새로운 비밀번호</div> <div><input type="password" name="newPassword"></div>
-		<input type="hidden" name="mode" value="modifyPassword">
-		<div><input type="submit" value="수정완료"></div>
-		</form>
-		</div>
+			<div class="myInfoModifyWrap">
+				<form action="/myInfo/modify_action" mothod="post">
+					<table id='myInfoModifyTable'>
+						<tr>
+							<th><p>현재 비밀번호</p></th>
+							<td><input type="password" name="memberPassword"></td>
+						</tr>
+
+						<tr>
+							<th><p>새로운 비밀번호</p></th>
+							<td><input type="password" name="newPassword"></td>
+						</tr>
+
+					</table>
+					<input type="hidden" name="mode" value="modifyPassword"> 
+					<div id='myInfoModifyBtn'>
+						<input type="submit" value="수정완료">
+					</div>
+				</form>
+			</div>
 		</c:if>
-		
 
 
-		
 
-		
-		
-		
+
+
+
+
+
 
 
 		<div id="footer">

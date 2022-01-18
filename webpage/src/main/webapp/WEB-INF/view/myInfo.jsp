@@ -69,11 +69,12 @@
 		
 		<div id="myInfoWrap">
 			<div id="myInfoText">
-				<div>아이디 : <c:out value="${memberInfo.memberId}"></c:out></div>
-				<div>생일 : ${memberInfo.birthday}</div>
-				<div>전화번호 : ${memberInfo.phoneNum}</div>
-				<div>이메일 : <c:out value="${memberInfo.email}"></c:out></div>
-				<div>집주소 : <c:out value="${memberInfo.houseLocation}"></c:out></div>
+				<dl><dt>아이디</dt><dd><c:out value="${memberInfo.memberId}"></c:out></dd></dl>
+				<dl><dt>생일</dt><dd><c:out value='${memberInfo.birthday}'></c:out></dd></dl>
+				<dl><dt>전화번호</dt><dd><c:out value='${memberInfo.phoneNum}'></c:out></dd></dl>
+				<dl><dt>이메일</dt><dd><c:out value="${memberInfo.email}"></c:out></dd></dl>
+				<dl><dt>집주소</dt><dd><c:out value="${memberInfo.houseLocation}"></c:out></dd></dl>
+			
 			</div>
 			<div id="myInfoBtn">
 				<button>
@@ -86,6 +87,7 @@
 		</div>
 		
 		<div id="myInfoOrderWrap">
+		<p style="font-size:20px; font-weight:600">주문목록</p>
 				<table class="myInfoOrderTable">
 					<tr>
 						<th>주문ID</th>
@@ -104,7 +106,7 @@
 									class="far fa-trash-alt"></i></td>
 							</tr>
 							<c:forEach var="item" items="${order.orderItemList}">
-								<tr>
+								<tr class="myInfoOrderText">
 									<td class="myInfoOrderId">${item.orderId}</td>
 									<td>${item.itemId}</td>
 									<td>${item.itemName}</td>

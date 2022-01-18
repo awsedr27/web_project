@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
 
-body{
+body,html{
 	margin:0px;
+	height:100%
 
 }
 
@@ -54,6 +55,9 @@ body{
 	   
 	
 }
+.current_nav{
+	text-decoration: underline;
+}
 #nav{
 	list-style: none;
 	display: inline-block;
@@ -71,6 +75,9 @@ body{
     font-weight: bold;
     display: block;
 }
+.active{
+	text-decoration: underline;
+}
 #dropDownWrap{
 	display: inline-block;
     position: relative;
@@ -78,7 +85,7 @@ body{
 }
 #dropDownWrap>ul{
 	position: absolute;
-    left: 10px;
+    
     width: 86px;
     border: solid 1px #ababab;
     margin-top: 0px;
@@ -192,7 +199,7 @@ body{
 }
 /*-----------------로그인,회원가입 영역-----------*/
 .sign_box {
-	border: double;
+	border: solid 1px #d7d4d4;
 	height: 400px;
 	width: 400px;
 	position: relative;
@@ -202,17 +209,19 @@ body{
 }
 
 .id_login {
-	width: 265px;
-	height: 47px;
-	border-style: hidden;
-	border-bottom-style: dotted;
+	    width: 265px;
+    height: 47px;
+    border-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-color: #e7e7e7;
 }
 
 .password_login {
 	width: 265px;
 	height: 47px;
 	border-style: hidden;
-	border-bottom-style: dotted;
+	border-bottom-style: solid;
+    border-bottom-color: #e7e7e7;
 	margin-bottom: 10px;
 }
 
@@ -221,16 +230,18 @@ body{
 	height: 47px;
 	position: relative;
 	background: white;
-	border-style: dotted;
+	border: solid 1px #e7e7e7;
+	cursor: pointer;
 }
 
 #signUpBtn {
-	border-style: dotted;
+	border: solid 1px #e7e7e7;
 	background: white;
 	margin-top: 10px;
 	position: relative;
 	left: 267px;
 	display: block;
+	cursor: pointer;
 }
 
 #loginSearch>a {
@@ -243,27 +254,27 @@ body{
 #birthday {
 	display: block;
 	width: 266px;
-	border-style: dotted;
+	border: solid 1px #e7e7e7;
 	margin-bottom: 10px;
 }
 
 #phoneNum {
 	display: block;
 	width: 266px;
-	border-style: dotted;
+	border: solid 1px #e7e7e7;
 	margin-bottom: 10px;
 }
 
 #email {
 	display: block;
 	width: 266px;
-	border-style: dotted;
+	border: solid 1px #e7e7e7;
 	margin-bottom: 10px;
 }
 #houseLocation{
 	display: block;
 	width: 266px;
-	border-style: dotted;
+	border: solid 1px #e7e7e7;
 	margin-bottom: 10px;
 }
 /*-----------------아이템뷰 영역-----------*/
@@ -405,7 +416,7 @@ body{
     background-color: white;
     border: none;
     font-size: 88px;
-    cursor:pointer
+    cursor:pointer;
     }
 
 #cartViewOutSide{
@@ -420,10 +431,10 @@ body{
 }
 #cartView{
     width: 1000px;
-    height: 1000px;
+    height: 100%;
     position: fixed;
-    top: 1px;
-    right: 5px;
+    top: 0;
+    right: 0;
     z-index: 2;
     background: white;
 }
@@ -431,14 +442,17 @@ body{
 	width: 215px;
     height: 50px;
     text-align: center;
+    border-left: none;
+    border-right: none;
 }
 .cartTable>img{
 	width:100px;
 	height:100px;
 }
 .cartTableWrap table{
-	border:none;
-	width: 979px;
+	border: none;
+    border-collapse: collapse;
+    width: 979px;
 }
 .cartTableWrap{
 	position: relative;
@@ -448,7 +462,26 @@ body{
     height:500px;
     overflow-y: scroll;
    
+
     
+}
+.cartTableWrap::-webkit-scrollbar{
+	width:10px;
+	
+}
+.cartTableWrap::-webkit-scrollbar-thumb{
+	width:10px;
+	background-color: #e7e7e7;
+}
+.cartTableWrap::-webkit-scrollbar-track{
+	width:10px;
+	background-color: whitesmoke;
+}
+
+.cartDelBtn{
+	border:none;
+	cursor:pointer;
+	background:white;
 }
 
 .cartTableItemWrap{
@@ -746,19 +779,29 @@ body{
 
 /*---------개인정보,수정--------*/
 #myInfoWrap{
-	display: inline-block;
-   
-    top: 192px;
+	text-align: center;
+    margin-top: 100px;
+    min-height: 200px;
 }
 #myInfoText{
-	font-size: 35px;
-    
-    background: whitesmoke;
+	
     
 }
+#myInfoText dl{
+	overflow:hidden;
+} 
+#myInfoText dt{
+	float : left;
+	font-size: 20px;
+} 
+#myInfoText dd{
+	float : right;
+	font-weight: 600;
+} 
 #myInfoBtn{
-    position: relative;
-    left: 121px;
+       text-align: right;
+       margin-bottom: 15px;
+ 
 }
 #myInfoBtn a{
 	text-decoration:none;
@@ -768,32 +811,77 @@ body{
     border: solid 1px black;
     font-family: Dotum,'돋움';
 }
+.myInfoOrderDeleteWrap{
+	border:none;
+}
+.myInfoOrderDelete{
+	cursor: pointer;
+}
+
+
 .myInfoModifyWrap{
-	    position: relative;
-    display: inline-block;
-    top: 16px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.myInfoModifyText{
 	
 }
+#myInfoModifyBtn{
+	text-align:right;
+}
+
+#myInfoModifyTable{
+	width:100%;
+	border-collapse: collapse;
+}
+#myInfoModifyTable th{
+    background: whitesmoke;
+    border-top: solid 1px #cbc8c8;
+    border-right: solid 1px #cbc8c8;
+    border-bottom: solid 1px #cbc8c8;;
+	
+}
+#myInfoModifyTable td{
+	
+    border-top: solid 1px #cbc8c8;
+    border-bottom: solid 1px #cbc8c8;
+    border-left: solid 1px #cbc8c8;
+    text-align: center;
+	
+}
+
 .myInfoModifyWrap input{
 	display: inline-block;
 	border:none;
 	border-bottom:solid 1px black;
+	cursor:pointer;
+	text-align: center;
+	width:300px;
+}
+
+
+#myInfoModifyBtn>input{
+	border: solid 1px;
+    border-radius: 50%;
+    margin-top: 10px;
+    background: black;
+    color: white;
+    width: 70px;
 }
 #myInfoOrderWrap{
-	    min-height: 247px;
+	padding-top: 10px;
+    border-top: solid 1px #606060;
+    min-height: 247px;
     position: relative;
-    
-    top: 27px;
-    display: inline-block;
 }
 
 #myInfoOrderWrap>table{
-	width:500px;
+	width:100%;
 	border-collapse: collapse;
 	text-align: center;
 }
-#myInfoOrderWrap tr{
-	border-bottom:solid 1px black;
+.myInfoOrderText{
+	border-bottom:solid 1px #c3bfbf;
 }
 
 

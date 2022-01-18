@@ -111,6 +111,26 @@ if(${cartEmpty}==true){
 		
 		</div>
 		
+		<table>
+		<c:forEach var="cartItems" items="${cartList}">
+		<tr>
+		<th><p><c:out value="${cartItems.itemName}"></c:out></p></th>
+		
+		
+		<td>
+		<p>
+		<c:choose>
+		<c:when test="${cartItems.itemPrice eq '0'}"></c:when>
+		<c:otherwise><c:out value="${cartItems.itemPrice}"></c:out></c:otherwise>
+		</c:choose>
+		</p>
+		</td>
+		<td><p><c:out value="${cartItems.discountNum}"></c:out></p></td>
+		<td><p><c:out value="${cartItems.quantity}"></c:out></p></td>
+		</tr>
+		</c:forEach>
+		</table>
+		
 	
 		
 

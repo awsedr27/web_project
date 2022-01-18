@@ -19,6 +19,7 @@ const url=new URL(window.location.href);
 //const urlParams=url.searchParams.get("categoryPage");
 const urlParamsCategory=url.searchParams.get("category");
 var categoryPage=2;
+
 $(window).scroll(function() {
 	
 	if ($(window).scrollTop()+100 >= $(document).height() - $(window).height()) {
@@ -128,3 +129,38 @@ function calculateDiscount(){
 	
 
 }
+
+/*-------------------네비게이션 강조------------- */
+$(function(){
+	//alert(url.pathname.replace(/\//gi,""));
+	$(".navLi").each(function(){
+		if (urlParamsCategory == "discountItem") {
+			
+			$(".navLi:nth-child(1)").addClass("active");
+
+		} else if (urlParamsCategory == "hotItem") {
+			$(".navLi:nth-child(2)").addClass("active");
+
+		} else if (urlParamsCategory == "food") {
+			$(".navLi:nth-child(3)").addClass("active");
+
+		} else if (urlParamsCategory == "appliance") {
+			$(".navLi:nth-child(4)").addClass("active");
+
+		} else if (urlParamsCategory == "clothing") {
+			$(".navLi:nth-child(5)").addClass("active");
+
+		} else if (urlParamsCategory == "book") {
+			$(".navLi:nth-child(6)").addClass("active");
+
+		}
+		
+	})
+	
+	
+		
+	
+		
+	
+	
+})

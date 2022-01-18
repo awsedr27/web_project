@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String memberId;
 	private int memberPassword;
 	private Date birthday;
-	private int phoneNum;
+	private Integer phoneNum;
 	private String email;
 	private String houseLocation;
 	
@@ -32,10 +32,11 @@ public class MemberDTO {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public int getPhoneNum() {
+	
+	public Integer getPhoneNum() {
 		return phoneNum;
 	}
-	public void setPhoneNum(int phoneNum) {
+	public void setPhoneNum(Integer phoneNum) {
 		this.phoneNum = phoneNum;
 	}
 	public String getEmail() {

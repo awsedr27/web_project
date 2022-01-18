@@ -44,18 +44,7 @@
 
 
 
-	<div id="footer">
-		<div id="footerTitle">
-			<h2>HomeShop</h2>
-			<br> 대표이사 : 김진옥 주소 : 서울특별시 은평구 <br> 판매신고번호 : 2020-서울-0000호
-			<br>개인정보 및 보호책임자 : 김진옥 <br> 안전한 금융거래를 위해 타인에게 비밀번호를 발설하지
-			마십시오.<br>
-		</div>
-		<div id="footerContens">
-			<br> 고객센터 전화번호 : 000-0000-0000 <br>(업무시간 09:00~21:00) <br>
-			이메일 : awsedr27@naver.com<br>
-		</div>
-	</div>
+	
 
 	</div>
 
