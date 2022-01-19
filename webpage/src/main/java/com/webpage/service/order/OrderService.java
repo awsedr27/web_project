@@ -9,10 +9,12 @@ public interface OrderService {
 
 	List<CartDTO> readCartService(String memberId);
 
-	void setOrder(OrderInfoDTO orderInfo);
+	
 
-	List<CartDTO> readCartOrderService(OrderInfoDTO orderInfo);
+	List<CartDTO> readCartOrderService(String memberId);
 
 	void deleteOrderService(int orderId, String memberId);
+
+	void setOrder(String memberId,OrderInfoDTO orderInfo);
 
 }

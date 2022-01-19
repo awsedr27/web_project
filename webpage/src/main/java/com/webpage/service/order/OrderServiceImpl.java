@@ -14,6 +14,8 @@ import com.webpage.DAO.item.ItemDTO;
 import com.webpage.DAO.orderInfo.OrderInfoDAO;
 import com.webpage.DAO.orderInfo.OrderInfoDTO;
 import com.webpage.DAO.orderItem.OrderItemDAO;
+import com.webpage.DAO.orderItem.OrderItemDTO;
+import com.webpage.DAO.payment.PaymentDAO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -29,6 +31,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	ItemDAO itemDAO;
+	
+	@Autowired
+	PaymentDAO paymentDAO;
 
 	@Override
 	public List<CartDTO> readCartService(String memberId) {
@@ -38,54 +43,46 @@ public class OrderServiceImpl implements OrderService {
 
 	@Transactional
 	@Override
-	public void setOrder(OrderInfoDTO orderInfo) {
+	public void setOrder(String memberId,OrderInfoDTO orderInfo) {
+		   orderInfo.setMemberId(memberId);
+		   List<CartDTO> list=paymentDAO.getPayment(memberId);
+		   
+		   List<OrderItemDTO> listOrder=new ArrayList<OrderItemDTO>();
+		for(int i=0;i<list.size();i++) {
+			OrderItemDTO orderItemDTO= new OrderItemDTO();
+			orderItemDTO.setItemId(list.get(i).getItemId());
+			orderItemDTO.setItemName(list.get(i).getItemName());
+			orderItemDTO.setItemPrice(list.get(i).getItemPrice());
+			orderItemDTO.setDiscountNum(list.get(i).getDiscountNum());
+			orderItemDTO.setDiscount(list.get(i).isDiscount());
+			orderItemDTO.setQuantity(list.get(i).getQuantity());
+			orderItemDTO.setMemberId(list.get(i).getMemberId());
+			
+			listOrder.add(i,orderItemDTO);
+			
+		}
 		
+		orderInfo.setOrderItemList(listOrder);
 		int orderId=orderInfoDAO.setOrderInfo(orderInfo);
 		orderItemDAO.setOrderItem(orderInfo,orderId);
 		itemDAO.setRemainder(orderInfo);
 		cartDAO.setDeleteAllCart(orderInfo);
-		
+		paymentDAO.deletePayment(memberId);
 
 	}
 
 	@Transactional
 	@Override
-	public List<CartDTO> readCartOrderService(OrderInfoDTO orderInfo) {
-		try {
-			CartDTO cart=new CartDTO();
-			List<CartDTO> list=new ArrayList<CartDTO>();
-			for(int i=0;i<orderInfo.getOrderItemList().size();i++) {
-				cart.setItemId(orderInfo.getOrderItemList().get(i).getItemId());
-				cart.setMemberId(orderInfo.getMemberId());
-				boolean check=cartDAO.checkCart(cart);
-				if(check) {
-					ItemDTO itemDTO=itemDAO.getItemView(cart.getItemId());
-					cart.setItemUrl(itemDTO.getItemUrl());
-					cart.setItemName(itemDTO.getItemName());
-					cart.setItemPrice(itemDTO.getItemPrice());
-					cart.setDiscount(itemDTO.isDiscount());
-					cart.setDiscountNum(itemDTO.getDiscountNum());
-					cart.setPopularity(itemDTO.getPopularity());
-					cart.setCategory(itemDTO.getCategory());
-					cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
-					
-				}else {
-					cart.setQuantity(orderInfo.getOrderItemList().get(i).getQuantity());
-					cartDAO.updateCartDAO(cart);
-					cart=cartDAO.getCartItem(orderInfo.getMemberId(),orderInfo.getOrderItemList().get(i).getItemId());
-				}
-				list.add(i, cart);
-			}
-			
-			
-			return list;
-			
-		}catch(Exception e){
-			
-			
-			return null;
-		}
+	public List<CartDTO> readCartOrderService(String memberId) {
 		
+		List<CartDTO> list=cartDAO.getCartAjax(memberId);
+		if(list.isEmpty()) {
+			return null;
+		}else {
+			paymentDAO.deletePayment(memberId);
+			paymentDAO.setPayment(list);
+			return list;
+		}
 	}
 
 	@Override

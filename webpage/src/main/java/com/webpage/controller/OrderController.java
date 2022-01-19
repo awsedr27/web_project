@@ -31,15 +31,21 @@ public class OrderController {
 			return "redirect:/signIn";
 		}else {
 			List<CartDTO> list=orderService.readCartService(memberId);
-			model.addAttribute("cartList", list);
-			return "order";
+			if(list.isEmpty()) {
+				model.addAttribute("cartEmpty", true);
+				return "order";
+			}else {
+				model.addAttribute("cartList", list);
+				return "order";
+			}
+			
 			
 		}
 		
 	}
 	
 	@RequestMapping("/cart/order")
-	public String cartOrder(HttpServletRequest request,OrderInfoDTO orderInfo,Model model) {
+	public String cartOrder(HttpServletRequest request,Model model) {
         HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
 		if(memberId==null) {
@@ -47,8 +53,8 @@ public class OrderController {
 
 		}
 		else{ 
-				orderInfo.setMemberId(memberId);
-				List<CartDTO> list=orderService.readCartOrderService(orderInfo);
+				
+				List<CartDTO> list=orderService.readCartOrderService(memberId);
 				if(list==null) {
 					model.addAttribute("cartEmpty", true);
 					return "order";
@@ -69,15 +75,15 @@ public class OrderController {
 	
 	
 	@RequestMapping("/cart/order/payment")
-	public String orderPay(@ModelAttribute OrderInfoDTO orderInfo,HttpServletRequest request) {
+	public String orderPay(HttpServletRequest request,OrderInfoDTO orderInfo) {
 		HttpSession session=request.getSession();
-		
 		String memberId=(String) session.getAttribute("memberId");
+		
 		if(memberId==null) {
 			return "redirect:/signIn";
 		}else {
-			orderInfo.setMemberId(memberId);
-			orderService.setOrder(orderInfo);
+			
+			orderService.setOrder(memberId,orderInfo);
 			
 			return "redirect:/index";
 			

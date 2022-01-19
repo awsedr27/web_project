@@ -1,7 +1,7 @@
-package com.webpage.DAO.orderItem;
+package com.webpage.DAO.payment;
 
-public class OrderItemDTO {
-	private int orderId;
+public class PaymentDTO {
+	private int paymentId;
 	private String memberId;
 	private int itemId;
 	private String itemName;
@@ -11,11 +11,11 @@ public class OrderItemDTO {
 	private int quantity;
 	
 	
-	public int getOrderId() {
-		return orderId;
+	public int getPaymentId() {
+		return paymentId;
 	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -60,5 +60,4 @@ public class OrderItemDTO {
 		this.quantity = quantity;
 	}
 	
-
 }

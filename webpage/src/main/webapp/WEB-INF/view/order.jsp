@@ -95,16 +95,6 @@ if(${cartEmpty}==true){
 		<li>배송지:<input type="text" name="orderLocation"></li>
 		<li>받는분:<input type="text" name="orderRecipient"></li>
 		<li>배송 시 요청사항:<input type="text" name="orderRequest"></li>
-		
-		<c:forEach var="cartItem" items="${cartList}" varStatus="status">
-		    <li><input type="hidden" name="orderItemList[${status.index}].itemId" value="${cartItem.itemId}"></li>
-		    <li><input type="hidden" name="orderItemList[${status.index}].itemName" value="${cartItem.itemName}"></li>
-		    <li><input type="hidden" name="orderItemList[${status.index}].itemPrice" value="${cartItem.itemPrice}"></li>
-		    <li><input type="hidden" name="orderItemList[${status.index}].discountNum" value="${cartItem.discountNum}"></li>
-		    <li><input type="hidden" name="orderItemList[${status.index}].discount" value="${cartItem.discount}"></li>
-		    <li><input type="hidden" name="orderItemList[${status.index}].quantity" value="${cartItem.quantity}"></li>
-		    
-		</c:forEach>
 		</ul>
 		<input type="submit" value="결제하기">
 		</form>

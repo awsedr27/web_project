@@ -239,5 +239,19 @@ UPDATE homeshop.bbs SET bbsTitle = #{bbsTitle},bbsContents=#{bbsContents} WHERE 
 	<select id="isPurchase" parameterType="Map" resultType="com.webpage.DAO.orderItem.OrderItemDTO">
 	select * from orderItem where memberId=#{memberId} and itemId=#{itemId}
 	</select>
+	<!-- 결제창  -->
+	<insert id="setPayment" parameterType="com.webpage.DAO.cart.CartDTO">
 	
+		INSERT INTO `homeshop`.`payment` (`itemId`, `itemName`, `itemPrice`, `discountNum`, `discount`, `quantity`, `memberId`) 
+		VALUES (#{itemId}, #{itemName}, #{itemPrice}, #{discountNum}, #{discount}, #{quantity}, #{memberId});
+		
+	</insert>
+	
+	<select id="getPayment" resultType="com.webpage.DAO.cart.CartDTO" parameterType="String">
+		select * from payment where memberId=#{memberId};
+	</select>
+	
+	<delete id="deletePayment" parameterType="String">
+	DELETE FROM `homeshop`.`payment` WHERE (`memberId` = #{memberId});
+	</delete>
 </mapper>

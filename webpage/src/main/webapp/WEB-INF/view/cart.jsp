@@ -147,24 +147,12 @@
 
 					<div class="cartOrderBtnWrap">
 						<form action="/cart/order" method="post">
-							<c:forEach var="cartOrderItem" items="${cartList}"
-								varStatus="status">
-								<input type="hidden"
-									name="orderItemList[${status.index}].itemId"
-									value="${cartOrderItem.itemId}">
-								<input type="hidden"
-									name="orderItemList[${status.index}].quantity"
-									value="${cartOrderItem.quantity}">
-
-
-							</c:forEach>
-
-
-
+							
 							<input type="submit" value="주문하기" class='requestOrderBtn'>
-
 						</form>
 					</div>
+					
+					
 				</div>
 			</div>
 
