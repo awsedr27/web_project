@@ -104,7 +104,7 @@
 						<span class="itemPrice">${item.itemPrice}</span>원
 					</div>
 					<div class="itemDiscountNumWrap">
-						-<span class="itemDiscountNum">${item.discountNum}</span>원
+					    -<span class="itemDiscountNum">${item.discountNum}</span>원
 					</div>
 					<div class="itemResultPriceWrap">
 						<span class="itemResultPrice"></span>원

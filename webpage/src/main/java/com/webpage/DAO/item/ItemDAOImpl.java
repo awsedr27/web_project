@@ -92,4 +92,20 @@ public class ItemDAOImpl implements ItemDAO {
 		return pageCount;
 	}
 
+	@Override
+	public void setPopularity(int rating,int itemId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("itemId", itemId);
+		map.put("rating", rating);
+		
+		sqlSession.update("mapper.setPopularity",map);
+		
+	}
+
+	@Override
+	public int getPopularity(int itemId) {
+		int popularity=sqlSession.selectOne("mapper.getPopularity",itemId);
+		return popularity;
+	}
+
 }

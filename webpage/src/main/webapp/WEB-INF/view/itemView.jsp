@@ -71,57 +71,97 @@
 		
 		<div id="itemViewWrap">
 		<div id="itemViewImg"><img src="${itemView.itemUrl}"></div>
-		<div id="itemViewTextWrap">
-		<div class="itemViewText"><h1><c:out value="${itemView.itemName}"></c:out></h1></div>
-		<div class="itemViewText"><b>판매가</b>  <div class="itemView"><span id="itemViewPrice">${itemView.itemPrice}</span>원</div></div>
-		<div class="itemViewText"><b>상품설명</b> <div class="itemView"><c:out value="${itemView.itemText}"></c:out></div></div>
-		<c:if test="${itemView.discount eq true}">
-		<div class="itemViewText"><b>할인가</b>  <div class="itemView">-<span id="itemViewDiscount">${itemView.discountNum}</span>원</div></div>
-		</c:if>
-		<div class="itemViewText"><b>추천점수(한사람당 1~5)</b>  <div class="itemView">${itemView.popularity}점</div></div>
-		
-		<div class="itemViewText"><b>배송비</b>  <div class="itemView">5000원</div></div>
-		
-		<input type="hidden" value="${itemView.itemId}" id="itemIdInput">
-		
-		</div>
-		
-		<div id="itemViewPriceSum"></div>
-		<div id="itemViewBtn">
-		<button id="minusQuantity">-</button><span id="quantityValue">1</span><button id="plusQuantity">+</button>
-		
-		<button id="itemPutBtn">장바구니</button>
-		
-		
-		<form action="/cart/order" method="post">
-			    <input type="hidden" name="orderItemList[0].itemId" value="${itemView.itemId}">
-			    <input type="hidden" name="orderItemList[0].quantity" value="1" id="cartOrderQuantity">
-				
-				<input type="submit" id="itemBuyBtn" value="결제하기"> 
-						
-		</form>
-		
-		</div>
-
-			<div id="reviewWrap">
-				<div class="review">
-
-
-
-					<div class="reviewContentsWrap"></div>
-					<div id="reviewContentsPagingWrap"></div>
-
-					<input type="hidden" id="writeBtnExist" value="${writeBtnExist}">
-
-
+			<div id="itemViewTextWrap">
+				<div class="itemViewText">
+					<h1>
+						<c:out value="${itemView.itemName}"></c:out>
+					</h1>
+				</div>
+				<div class="itemViewText">
+					<dl>
+						<dt>판매가</dt>
+						<dd>
+							<div class="itemView">
+								<span id="itemViewPrice">${itemView.itemPrice}</span>원
+							</div>
+						</dd>
+					</dl>
 				</div>
 				
-				
+				<div class="itemViewText">
+					<dl>
+						<dt>상품설명</dt>
+						<dd>
+							<div class="itemView">
+								<c:out value="${itemView.itemText}"></c:out>
+							</div>
+						</dd>
+					</dl>
+				</div>
+				<c:if test="${itemView.discount eq true}">
+					<div class="itemViewText">
+						<dl>
+							<dt>할인가</dt>
+							<dd>
+								<div class="itemView">
+									-<span id="itemViewDiscount">${itemView.discountNum}</span>원
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</c:if>
+				<div class="itemViewText">
+					<dl>
+						<dt>추천점수</dt>
+						<dd>
+							<div class="itemView">${itemView.popularity}점</div>
+						</dd>
+					</dl>
+				</div>
+
+				<div class="itemViewText">
+					<dl>
+						<dt>배송비</dt>
+						<dd>
+							<div class="itemView">5000원</div>
+						</dd>
+					</dl>
+				</div>
+
+				<input type="hidden" value="${itemView.itemId}" id="itemIdInput">
 
 			</div>
+			<div id="itemViewMenu">
+				<div id="itemViewPriceSum"></div>
+				<div id="itemViewBtn">
+					<button id="minusQuantity">-</button>
+					<span id="quantityValue">1</span>
+					<button id="plusQuantity">+</button>
+
+					<button id="itemPutBtn">장바구니</button>
 
 
-			<div id="footer">
+					<form action="/order" method="post">
+						<input type="hidden" name="itemId" value="${itemView.itemId}">
+						<input type="hidden" name="quantity" value="1"
+							id="cartOrderQuantity"> <input type="submit"
+							id="itemBuyBtn" value="결제하기">
+
+					</form>
+
+				</div>
+			</div>
+			<div id="reviewWrap">
+				<div class="review">
+					<div class="reviewContentsWrap"></div>
+					<div id="reviewContentsPagingWrap"></div>
+					<input type="hidden" id="writeBtnExist" value="${writeBtnExist}">
+				</div>
+			</div>
+		</div>
+</div>
+
+<div id="footer">
 		<div id="footerTitle">
 			<h2>HomeShop</h2>
 			<br> 대표이사 : 김진옥 주소 : 서울특별시 은평구 <br> 판매신고번호 : 2020-서울-0000호
@@ -133,9 +173,6 @@
 			이메일 : awsedr27@naver.com<br>
 		</div>
 	</div>
-		
-		</div>
-</div>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -301,22 +301,36 @@ body,html{
 }
 
 .itemViewText {
-	font-size: 25px;
+	font-size: 22px;
 	position: relative;
 	margin-left: 50px;
-	margin-bottom: 17px;
-	    border-bottom: solid 1px #e0e0e0;
+    border-bottom: solid 1px #e0e0e0;
+}
+.itemViewText>dl{
+	overflow:hidden;
 }
 
-.itemViewText>.itemView {
-	display: inline-block;
-	margin-left: 100px;
+.itemViewText>dl>dt{
+	float:left;
 }
+.itemViewText>dl>dd{
+	float:right;
+}
+#itemViewMenu{
+	text-align: right;
+}
+
 #itemViewBtn{
-	position: relative;
-    left: 854px;
     margin-bottom: 10px;
 	
+}
+
+#itemViewBtn button,#itemViewBtn input{
+	border: none;
+    cursor: pointer;
+    background: black;
+    color: white;
+    border-radius: 65%;
 }
 .review{
 	display: inline-block;
@@ -351,6 +365,9 @@ body,html{
 #starReviewIconWrap{
 	display:inline-block;
 }
+.starIconWrap{
+	cursor:pointer;
+}
 #writeReviewWrap{
 	display: inline-block;
     position: relative;
@@ -371,11 +388,14 @@ body,html{
     border: solid 1px black;
     font-family: Dotum,'돋움';
 }
+#writeReviewDeleteBtn{
+	background: #f7c856;
+    border: solid 1px black;
+    font-family: Dotum,'돋움';
+    cursor: pointer;
+}
 #itemViewPriceSum{
 	font-size: 48px;
-    display: inline-block;
-    position: relative;
-    left: 373px;
     color: red;
     font-weight: bold;
 }
@@ -393,9 +413,21 @@ body,html{
     position: absolute;
     border: solid 1px whitesmoke;
     margin-left: 50px;
+    overflow: auto;
 }
 .reviewContentsViewBtn{
 	text-decoration: none;
+}
+
+.reviewPagingRightBtn{
+	cursor: pointer;
+    background: white;
+    border-radius: 30%;
+}
+.reviewPagingLeftBtn{
+	cursor: pointer;
+    background: white;
+    border-radius: 30%;
 }
 #reviewContentsViewId{}
 #reviewContentsViewRating{}
@@ -575,17 +607,40 @@ body,html{
 }
 /*------------결제영역--------------*/
 #orderWrap{
-	    
+	   margin-top: 100px; 
+	   overflow: hidden;
 }
 #orderImgWrap{
 	display: inline-block;
-	border: solid 1px #bdb9b9;
+    border: solid 1px #bdb9b9;
+    height: 245px;
+    min-height: 245px;
+    overflow: auto;
+    width: 100%;
 }
+
+#orderImgWrap::-webkit-scrollbar{
+	width:7px;
+	
+}
+#orderImgWrap::-webkit-scrollbar-thumb{
+	width:7px;
+	background-color: black;
+	border-radius:30px;
+}
+#orderImgWrap::-webkit-scrollbar-track{
+	width:7px;
+	
+	background-color: whitesmoke;
+}
+
+
 #orderImgWrap>ul{
 	list-style: none;
     display: flex;
     flex-wrap: wrap;
     width: 400px;
+    padding-left: 13px;
 }
 #orderImgWrap img{
 	width:100px;
@@ -600,6 +655,59 @@ body,html{
 }
 #orderInfo ul{
 	list-style: none;
+}
+
+
+.orderInfoText{
+	display: inline-block;
+	
+}
+#orderInfo>form>table input{
+	border:none;
+	border-bottom:solid 1px #c3c0c0;
+	margin-left:30px;
+    width: 335px;
+
+}
+
+#orderInfo>form>div>input{
+	background: red;
+    color: white;
+    cursor: pointer;
+    width: 350px;
+    height: 40px;
+	
+}
+#orderInfo>form>div{
+	text-align:center;
+}
+#orderRight{
+	float:right;
+}
+#orderLeft{
+	float:left;
+}
+#orderInfoList{
+	width:500px;
+    text-align: center;
+}
+#orderInfoListWrap{
+	height: 400px;
+    min-height: 400px;
+    overflow: auto;
+}
+
+#orderInfoListWrap::-webkit-scrollbar{
+	width:10px;
+	
+}
+#orderInfoListWrap::-webkit-scrollbar-thumb{
+	width:10px;
+	background-color: #e7e7e7;
+}
+#orderInfoListWrap::-webkit-scrollbar-track{
+	width:10px;
+	background-color: whitesmoke;
 }
 
 /*------------아이콘---------------*/
@@ -710,12 +818,17 @@ body,html{
     left: 389px;
     top: 10px;
 }
+#writeBbsWrap{
+	margin-top:100px;
+}
+
 #writeBbsWrap input:nth-child(1){
 	width: 700px;
     height: 33px;
     font-size: 20pt;
     margin-top: 10px;
     margin-bottom: 10px;
+    border:solid 1px whitesmoke;
 }
 #writeBbsWrap input:nth-child(3){
 	border: solid 1px black;
@@ -725,7 +838,7 @@ body,html{
     margin-bottom: 10px;
     position: relative;
     left: 960px;
-    
+    cursor:pointer;
 }
 #writeBbsWrap textarea{
 	width: 1000px;
@@ -735,6 +848,7 @@ body,html{
     resize: none;
     font-size: 16pt;
     margin-bottom: 10px;
+    border:solid 1px whitesmoke;
 }
 #bbsTitle{
 	font-size: 24px;
@@ -757,6 +871,10 @@ body,html{
     display: inline-block;
     word-break: break-all;
 }
+#bbsViewWrap{
+	margin-top:100px;
+}
+
 #bbsViewWrap a{
 	text-decoration: none;
     color: black;
@@ -775,6 +893,12 @@ body,html{
 	display: inline-block;
     position: relative;
     right: 50px;
+}
+
+.bbsPageBtn{
+	cursor:pointer;
+	background: white;
+    border-radius: 30%;
 }
 
 /*---------개인정보,수정--------*/

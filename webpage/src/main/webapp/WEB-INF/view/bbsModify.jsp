@@ -78,7 +78,7 @@ if(${modify}==false){
 				<input type="text" name="bbsTitle" value="<c:out value="${bbs.bbsTitle}"></c:out>"></input>
 				<textarea id="bbsWriteText" name="bbsContents"><c:out value="${bbs.bbsContents}"></c:out>
 				</textarea>
-				<input type="submit"></input>
+				<input type="submit" value="수정"></input>
 				<input type="hidden" name="memberId" value="<c:out value="${bbs.memberId}"></c:out>">
 				<input type="hidden" name="bbsId" value="<c:out value="${bbs.bbsId}"></c:out>">
 				<div id="textAreaCnt">(0/100)</div>

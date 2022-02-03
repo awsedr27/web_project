@@ -12,7 +12,7 @@ public interface ReviewDAO {
 
 	int getPageCnt(int itemId);
 
-	ReviewDTO getReviewContentsView(int memberId, int itemId);
+	ReviewDTO getReviewContentsView(String memberId, int itemId);
 
 	void deleteReviewDAO(int itemId, String memberId);
 

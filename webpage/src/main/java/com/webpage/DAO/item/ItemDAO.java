@@ -16,5 +16,6 @@ public interface ItemDAO {
 	public List<ItemDTO> getDiscountItem(int categoryPage);
 	public int getCountPage();
 	public int getDiscountPageCount();
-
+	public void setPopularity(int rating,int itemId);
+	public int getPopularity(int itemId);
 }

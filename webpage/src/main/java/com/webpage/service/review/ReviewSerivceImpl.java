@@ -1,5 +1,7 @@
 package com.webpage.service.review;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.webpage.DAO.item.ItemDAO;
 import com.webpage.DAO.orderItem.OrderItemDAO;
 import com.webpage.DAO.review.ReviewDAO;
 import com.webpage.DAO.review.ReviewDTO;
@@ -22,6 +25,8 @@ public class ReviewSerivceImpl implements ReviewService {
 	@Autowired
 	OrderItemDAO orderItemDAO;
 	
+	@Autowired
+	ItemDAO itemDAO;
 	
 	@Override
 	public List<ReviewDTO> getReview(int itemId,int reviewPageNum) {
@@ -29,11 +34,18 @@ public class ReviewSerivceImpl implements ReviewService {
 		return review;
 	}
 
-
+	@Transactional
 	@Override
-	public void setReview(ReviewDTO review) {
-		reviewDAO.setReview(review);
+	public void setReview(ReviewDTO review,String memberId) {
+		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+     	String dateString=dateFormat.format(new java.util.Date());
+		Date reviewTime=java.sql.Date.valueOf(dateString);
 		
+		review.setReviewTime(reviewTime);
+		review.setMemberId(memberId);
+		reviewDAO.setReview(review);
+		int popularity= itemDAO.getPopularity(review.getItemId())+review.getRating();
+		itemDAO.setPopularity(popularity,review.getItemId());
 	}
 
 
@@ -91,14 +103,23 @@ public class ReviewSerivceImpl implements ReviewService {
 
 
 	@Override
-	public ReviewDTO getReviewContentsViewService(int memberId, int itemId) {
+	public ReviewDTO getReviewContentsViewService(String memberId, int itemId) {
 		ReviewDTO review=reviewDAO.getReviewContentsView(memberId,itemId);
 		return review;
 	}
 
 
+	@Transactional
 	@Override
 	public void deleteReviewService(int itemId, String memberId) {
+		int rating=reviewDAO.getReviewContentsView(memberId, itemId).getRating();
+		int popularity=itemDAO.getPopularity(itemId);
+		if(popularity-rating>0) {
+			popularity=popularity-rating;
+			itemDAO.setPopularity(popularity, itemId);
+		}else {
+			itemDAO.setPopularity(0,itemId);
+		}
 		reviewDAO.deleteReviewDAO(itemId,memberId);
 		
 	}

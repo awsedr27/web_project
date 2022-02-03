@@ -37,7 +37,7 @@ public class BbsController {
 		
 		model.addAttribute("bbsList", list);
 		
-		
+	
 		return "bbs";
 		
 	}
@@ -97,7 +97,7 @@ public class BbsController {
 		BbsDTO bbs = bbsService.getBbsView(bbsId);
 		if(bbs.getMemberId().equals(memberId)) {
 			model.addAttribute("bbs", bbs);
-			
+			model.addAttribute("modify", true);
 			return "bbsModify";
 		}else {
 			

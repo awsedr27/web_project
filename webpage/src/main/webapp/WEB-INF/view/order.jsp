@@ -74,55 +74,89 @@ if(${cartEmpty}==true){
 
 
 		<div id="orderWrap">
+			<div id="orderLeft">
 
-			<div id="orderImgWrap">
-			<span>주문상품</span>
-				<ul>
-					<c:forEach var="cartItem" items="${cartList}">
-						<li><img src="${cartItem.itemUrl}"></li>
-					</c:forEach>
-				</ul>
+				<div id="orderImgWrap">
+					<span>주문상품</span>
+					<ul>
+						<c:forEach var="cartItem" items="${cartList}">
+							<li><img src="${cartItem.itemUrl}"></li>
+						</c:forEach>
+					</ul>
+				</div>
+
+
+
+
+
+				<div id="orderInfo">
+					<form action="/cart/order/payment" method="post">
+						<table>
+							<tr>
+								<th><p class="orderInfoText">주문자</p></th>
+								<td><input type="text" name="orderName"></td>
+							</tr>
+
+							<tr>
+								<th><p class="orderInfoText">배송지</p></th>
+								<td><input type="text" name="orderLocation"></td>
+							</tr>
+
+							<tr>
+								<th><p class="orderInfoText">받는분</p></th>
+								<td><input type="text" name="orderRecipient"></td>
+							</tr>
+
+							<tr>
+								<th><p class="orderInfoText">요청사항</p></th>
+								<td><input type="text" name="orderRequest"></td>
+							</tr>
+						</table>
+						<div><input type="submit" value="결제하기"></div>
+					</form>
+				</div>
 			</div>
 
+			<div id="orderRight">
+				<div id="orderInfoListWrap">
+					<table id="orderInfoList">
+					<tr>
+					<th><p>물건이름</p></th>
+					<th><p>가격</p></th>
+					<th><p>할인가격</p></th>
+					<th><p>수량</p></th>
+					</tr>
+						<c:forEach var="cartItems" items="${cartList}">
+							<tr>
+								<th><p>
+										<c:out value="${cartItems.itemName}"></c:out>
+									</p></th>
+
+
+								<td>
+									<p>
+										<c:choose>
+											<c:when test="${cartItems.itemPrice eq '0'}"></c:when>
+											<c:otherwise>
+												<c:out value="${cartItems.itemPrice}"></c:out>
+											</c:otherwise>
+										</c:choose>
+									</p>
+								</td>
+								<td><p style="color:red">
+										<c:out value="${cartItems.discountNum}"></c:out>
+									</p></td>
+								<td><p>
+										<c:out value="${cartItems.quantity}"></c:out>
+									</p></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
 		</div>
-		
-		
-		
-		<div id="orderInfo">
-		<form action="/cart/order/payment" method="post">
-		<ul>
-		<li>주문자:<input type="text" name="orderName"></li>
-		<li>배송지:<input type="text" name="orderLocation"></li>
-		<li>받는분:<input type="text" name="orderRecipient"></li>
-		<li>배송 시 요청사항:<input type="text" name="orderRequest"></li>
-		</ul>
-		<input type="submit" value="결제하기">
-		</form>
-		
-		</div>
-		
-		<table>
-		<c:forEach var="cartItems" items="${cartList}">
-		<tr>
-		<th><p><c:out value="${cartItems.itemName}"></c:out></p></th>
-		
-		
-		<td>
-		<p>
-		<c:choose>
-		<c:when test="${cartItems.itemPrice eq '0'}"></c:when>
-		<c:otherwise><c:out value="${cartItems.itemPrice}"></c:out></c:otherwise>
-		</c:choose>
-		</p>
-		</td>
-		<td><p><c:out value="${cartItems.discountNum}"></c:out></p></td>
-		<td><p><c:out value="${cartItems.quantity}"></c:out></p></td>
-		</tr>
-		</c:forEach>
-		</table>
-		
-	
-		
+
+
 
 
 

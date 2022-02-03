@@ -106,7 +106,7 @@
 							end='${pageRangeLast}'>
 							<a href="/bbs?pageNum=${i}">${i}</a>
 						</c:forEach>
-						<button onclick="location.href='/bbs?pageNum=${pageRangeFirst+5}'">
+						<button class="bbsPageBtn" onclick="location.href='/bbs?pageNum=${pageRangeFirst+5}'">
 							<i class="fas fa-chevron-right"></i>
 						</button>
 					</c:when>
@@ -114,7 +114,7 @@
 
 					<c:otherwise>
 						<c:if test="${pageRangeFirst>5}">
-							<button
+							<button class="bbsPageBtn"
 								onclick="location.href='/bbs?pageNum=${pageRangeFirst-5}'">
 								<i class="fas fa-chevron-left"></i>
 							</button>

@@ -125,6 +125,10 @@ function calculateDiscount(){
 		var price=parseInt($(this).text());
 		var discount=parseInt($(this).parent(".itemPriceWrap").next(".itemDiscountNumWrap").children(".itemDiscountNum").text());
 		$(this).parent(".itemPriceWrap").nextAll(".itemResultPriceWrap").children(".itemResultPrice").text(price-discount);
+		if(discount==0){
+			$(this).parent(".itemPriceWrap").nextAll(".itemDiscountNumWrap").css("visibility","hidden");
+		}
+		
 	})
 	
 

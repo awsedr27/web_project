@@ -70,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
 		List<OrderInfoDTO> list=orderInfo.getMemberOrderDAO(memberId);
 		
 		for(int i=0;i<list.size();i++) {
-			List<OrderItemDTO> orderItemList=orderItem.getOrderItem(list.get(i).getOrderId());
+			List<OrderItemDTO> orderItemList=orderItem.getOrderItem(list.get(i).getOrderId(),memberId);
 			list.get(i).setOrderItemList(orderItemList);
 			
 		}

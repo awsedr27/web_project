@@ -71,9 +71,10 @@ public class ItemViewController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/review",method=RequestMethod.POST)
+	@RequestMapping(value = "/review",method = RequestMethod.POST)
 	public List<ReviewDTO> Review(@RequestParam("itemId") int itemId,@RequestParam(value = "reviewPageNum",defaultValue = "1") int reviewPageNum) {
 			List<ReviewDTO> review=reviewService.getReview(itemId,reviewPageNum);
+			
 			return review;
 		
 		
@@ -81,25 +82,14 @@ public class ItemViewController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/writeReview",method=RequestMethod.POST)
-	public void writeReview(HttpServletRequest request,@RequestParam("reviewContents") String reviewContents,@RequestParam("writeReviewItemId") int writeReviewItemId,
-			@RequestParam("star") int star) {
+	public void writeReview(HttpServletRequest request,ReviewDTO review) {
 		HttpSession session=request.getSession();
 		String memberId=(String) session.getAttribute("memberId");
+		
 		if(memberId==null) {
 			
 		}else {
-			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-	     	String dateString=dateFormat.format(new java.util.Date());
-			Date reviewTime=java.sql.Date.valueOf(dateString);
-			
-			ReviewDTO review=new ReviewDTO();
-			review.setMemberId(memberId);
-			review.setItemId(writeReviewItemId);
-			review.setContents(reviewContents);
-			review.setRating(star);
-			review.setReviewTime(reviewTime);
-			
-			reviewService.setReview(review);
+			reviewService.setReview(review,memberId);
 			
 		}
 		
@@ -123,7 +113,7 @@ public class ItemViewController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/reviewContentsView",method=RequestMethod.POST)
-	public ReviewDTO reviewContentsView(@RequestParam("itemId") int itemId,@RequestParam("memberId") int memberId) {
+	public ReviewDTO reviewContentsView(@RequestParam("itemId") int itemId,@RequestParam("memberId") String memberId) {
 		
 		ReviewDTO reviewContents=reviewService.getReviewContentsViewService(memberId,itemId);
 		

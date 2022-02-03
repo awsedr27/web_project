@@ -7,7 +7,7 @@ import com.webpage.DAO.orderInfo.OrderInfoDTO;
 
 public interface OrderService {
 
-	List<CartDTO> readCartService(String memberId);
+	List<CartDTO> readCartService(String memberId, CartDTO cart);
 
 	
 

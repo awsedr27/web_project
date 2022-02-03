@@ -29,8 +29,12 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	}
 
 	@Override
-	public List<OrderItemDTO> getOrderItem(int orderId) {
-		List<OrderItemDTO> list=sqlSession.selectList("mapper.getOrderItem", orderId);
+	public List<OrderItemDTO> getOrderItem(int orderId,String memberId) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("orderId", orderId);
+		
+		List<OrderItemDTO> list=sqlSession.selectList("mapper.getOrderItem", map);
 		return list;
 	}
 
@@ -39,8 +43,8 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("memberId", memberId);
 		map.put("itemId", itemId);
-		OrderItemDTO writeReviewBtn=sqlSession.selectOne("mapper.isPurchase", map);
-		if(writeReviewBtn==null) {
+		List<OrderItemDTO> writeReviewBtn=sqlSession.selectList("mapper.isPurchase", map);
+		if(writeReviewBtn.isEmpty()) {
 			return "NotPurchase";
 		}else {
 			return "Purchase";

@@ -10,7 +10,7 @@ public class ReviewDTO {
 	private int itemId;
 	private String contents;
 	private int rating;
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date reviewTime;
 	
 	

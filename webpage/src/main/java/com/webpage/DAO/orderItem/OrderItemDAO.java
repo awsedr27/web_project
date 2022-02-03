@@ -7,7 +7,7 @@ import com.webpage.DAO.orderInfo.OrderInfoDTO;
 public interface OrderItemDAO {
 
 	void setOrderItem(OrderInfoDTO orderInfo, int orderId);
-	List<OrderItemDTO> getOrderItem(int orderId);
+	List<OrderItemDTO> getOrderItem(int orderId,String memberId);
 	String isPurchase(String memberId, int itemId);
 
 

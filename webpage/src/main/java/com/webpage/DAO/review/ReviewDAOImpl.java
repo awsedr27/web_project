@@ -25,6 +25,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		map.put("itemId", itemId);
 		
 		List<ReviewDTO> review=sqlSession.selectList("mapper.getReview", map);
+	
 		return review;
 		
 		
@@ -63,7 +64,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public ReviewDTO getReviewContentsView(int memberId, int itemId) {
+	public ReviewDTO getReviewContentsView(String memberId, int itemId) {
 		
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("memberId", memberId);

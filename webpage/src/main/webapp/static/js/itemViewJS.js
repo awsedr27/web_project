@@ -20,6 +20,26 @@ $(function(){
 		
 	})
 	
+	$(".review").on("mouseover",".starIconWrap",function(){
+		var index=$(this).index()+1;
+		for(var i=1;i<index+1;i++){
+			$(".starIconWrap:nth-child("+i+")").children("i").css("color","gold");
+			for(var j=5;j>i;j--){
+				$(".starIconWrap:nth-child("+j+")").children("i").css("color","black");
+			}
+		}
+	
+	
+	})
+	$(".review").on("mouseout",".starIconWrap",function(){
+		$(".starIconWrap").each(function(){
+			$(".starIconWrap").children("i").css("color","black");
+		})
+		
+	
+	})
+	
+	
 	$(".review").on("click",".reviewPagingNum",function(e){
 		e.preventDefault();
 		$("#writeReviewWrap").remove();
@@ -89,6 +109,7 @@ function review(pageNum){
 								+"<th>작성날짜</th>"
 							+"</tr></table>");
 				$.each(data,function(index,item){
+					
 					var itemContents;
 					if(item.contents.length>14){
 						itemContents=item.contents.substring(0,14)+"...";
@@ -153,7 +174,7 @@ function writeReview(){
 	$.ajax({
 		type: "POST",
 		url: "/writeReview",
-		data: {"reviewContents":reviewContents,"writeReviewItemId":writeReviewItemId,"star":star},
+		data: {"contents":reviewContents,"itemId":writeReviewItemId,"rating":star},
 		success: function() {
 			document.getElementById("writeBtnExist").value="false";
 			$("#writeReviewWrap").remove();
@@ -219,10 +240,12 @@ $(function(){
 		
 		var quantityValue=parseInt($("#quantityValue").text());
 		quantityValue=quantityValue-1;
-		$("#cartOrderQuantity").attr("value",quantityValue);
-		$("#quantityValue").text(quantityValue);
 		if(quantityValue<1){
-			$("#quantityValue").text(1);
+		    $("#cartOrderQuantity").attr("value",1);
+		    $("#quantityValue").text(1);
+		}else{
+			$("#cartOrderQuantity").attr("value",quantityValue);
+		    $("#quantityValue").text(quantityValue);
 		}
 		itemViewPriceSum();
 		
@@ -344,3 +367,6 @@ function deleteReview(){
 	
 	
 }
+
+
+

@@ -63,6 +63,14 @@ select * from item where discount=true order by discountNum desc limit #{limitVa
 	select count(*) from item where discount=true;
 	</select>
 	
+	<select id="getPopularity" parameterType="Int" resultType="Int">
+	SELECT popularity FROM `homeshop`.`item` where itemId=#{itemId};
+	</select>
+	
+	<update id="setPopularity" parameterType="Map">
+	UPDATE `homeshop`.`item` SET `popularity` = #{rating} WHERE (`itemId` = #{itemId});
+	</update>
+	
 	<!-- 회원 매퍼-->
 	<select id="setMember" parameterType="com.webpage.DAO.member.MemberDTO">
 	INSERT INTO homeshop.memberinfo (`memberId`, `memberPassword`, `birthday`, `phoneNum`, `email`,`houseLocation`) VALUES (#{memberId}, #{memberPassword}, #{birthday}, #{phoneNum}, #{email},#{houseLocation});
@@ -223,8 +231,8 @@ UPDATE homeshop.bbs SET bbsTitle = #{bbsTitle},bbsContents=#{bbsContents} WHERE 
 
 	</insert>
 	
-	<select id="getOrderItem" resultType="com.webpage.DAO.orderItem.OrderItemDTO" parameterType="Int">
-	select * from orderItem where orderId=#{orderId};
+	<select id="getOrderItem" resultType="com.webpage.DAO.orderItem.OrderItemDTO" parameterType="Map">
+	select * from orderItem where orderId=#{orderId} and memberId=#{memberId};
 	</select>
 	
 	<select id="getMemberOrder" parameterType="String" resultType="com.webpage.DAO.orderInfo.OrderInfoDTO">

@@ -9,13 +9,13 @@ public interface ReviewService {
 
 	List<ReviewDTO> getReview(int itemId, int reviewPageNum);
 
-	void setReview(ReviewDTO review);
+	void setReview(ReviewDTO review, String memberId);
 
 	String getWriteReviewBtn(String memberId, int itemId);
 
 	Map<String, Object> getPagingService(int reviewPageNum, int itemId);
 
-	ReviewDTO getReviewContentsViewService(int memberId, int itemId);
+	ReviewDTO getReviewContentsViewService(String memberId, int itemId);
 
 	void deleteReviewService(int itemId, String memberId);
 
