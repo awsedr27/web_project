@@ -5,7 +5,7 @@
 
 <h1>기본 페이지</h1>
 
-![1](https://user-images.githubusercontent.com/70567584/148721370-2b2ab453-e2b9-48f5-af78-fb65e8a79fc2.png)
+![정면](https://user-images.githubusercontent.com/70567584/155086646-cd70d2e9-7f71-4c63-a0f8-f29e35912888.png)
 
 
 <h5>기본 페이지 구현 기술<h5> <br>
@@ -13,19 +13,19 @@
 장바구니 구현 - 클릭이벤트로 데이터베이스에 접근, 장바구니 내역확인을 위해 오른쪽에 고정위치한 내역확인 UI 설치(클릭시 오픈, 내역 확인) <br>
 네비게이션 바, 이동UI(로그인, 개인정보, 장바구니 결제) - 네비게이션 기준(상품종류,게시판)에 따라 이동
 
-![2](https://user-images.githubusercontent.com/70567584/148722088-6601759d-553c-4d94-9a68-bf7b2fd54b19.png)
+![오버](https://user-images.githubusercontent.com/70567584/155086824-78570425-4a2f-4a9b-bbb2-0924a6ed5c84.png)
 
 마우스 오버시 장바구니 UI 등장 <br>
 
 <h1>로그인</h1>
 
-![로그인](https://user-images.githubusercontent.com/70567584/148724388-09212269-7a59-485b-bbfa-6dc06d82658e.png)
+![로그인신](https://user-images.githubusercontent.com/70567584/155087105-5249893e-9bf2-435a-8a0a-52f9201cd858.png)
 
 <h1>아이템 뷰</h1>
 
-![image](https://user-images.githubusercontent.com/70567584/148724018-8cb31427-85f9-4c3e-b1ba-36e1b54c3e90.png)
+![아이템뷰 신](https://user-images.githubusercontent.com/70567584/155087335-2a898682-ba3e-4f1f-9559-657521e20a9f.png)
 
 <h1>게시판</h1>
 
-![게시판2](https://user-images.githubusercontent.com/70567584/148727299-e7dcad70-7eb8-4c5f-b595-b440f65314eb.png)
+![게시판 신](https://user-images.githubusercontent.com/70567584/155087499-45c3c68e-ad9e-480a-88f9-68ba2ebb42b6.png)
 xss보안문제 간단하게 해결
